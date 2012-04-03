@@ -62,7 +62,7 @@ describe Product do
       end 
     end 
     context "for photo" do 
-      it "should not be required" do 
+      it "is not required" do 
         new_product.photo_url = nil
         new_product.save.should be_true 
       end 
