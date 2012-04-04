@@ -42,6 +42,20 @@
       </div>
     </div>
 
+    <div class="control-group">
+      <%= f.label :active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :active, :class => 'check_box' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :product_categories, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :product_category_ids, ProductCategory.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', products_path, :class => 'btn' %>

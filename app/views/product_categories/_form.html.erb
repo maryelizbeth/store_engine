@@ -9,6 +9,13 @@
       </div>
     </div>
 
+    <div class="control-group">
+      <%= f.label :products, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :product_ids, Product.all.collect {|x| [x.title, x.id]}, {}, :multiple => true %>
+      </div>
+    </div>
+
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', product_categories_path, :class => 'btn' %>

@@ -1,6 +1,6 @@
 class ProductCategory < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :product_ids
   has_many :categorizations 
   has_many :products, :through => :categorizations
-  validate_uniqueness_of :name
+  validates_uniqueness_of :name
 end
