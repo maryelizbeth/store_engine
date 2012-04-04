@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   attr_accessible :description, :photo_url, :price, :title
-
+  has_many :categorizations 
+  has_many :product_categories, :through => :categorizations
   validates_presence_of :title, :description
   validates_uniqueness_of :title 
   validates :price, :numericality => { :greater_than => 0 }, :presence => true
