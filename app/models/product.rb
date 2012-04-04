@@ -12,4 +12,9 @@ class Product < ActiveRecord::Base
   def thumbnail
     photo_url || DEFAULT_IMAGE_PATH
   end
+
+  def display_price
+    # number_with_precision(self.price, :precision => 2)
+    "%.2f" % self.price
+  end
 end

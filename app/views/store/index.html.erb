@@ -1,2 +1,18 @@
-<h1>Store#index</h1>
-<p>Find me in app/views/store/index.html.erb</p>
+<%= form_tag store_index_path, :method => :get  do %>
+  Filter by Category: 
+  <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name"), :include_blank => true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<table>
+  <% @products.each_with_index do |product| %>
+    <tr>
+      <td colspan=2><%= image_tag product.thumbnail %></td>
+    <tr>
+    <tr>
+      <td><%= product.title %></td>
+      <td>$<%= product.display_price %></td>
+    </tr>
+  <% end %>
+</table>
+
