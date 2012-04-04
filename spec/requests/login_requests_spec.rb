@@ -16,7 +16,7 @@ describe "Login Requests" do
       within "#notice" do
         page.should have_content "User was successfully created."
       end
-      within "#nav" do
+      within "ul.nav" do
         page.should have_content "Logout"
       end
     end
@@ -31,7 +31,7 @@ describe "Login Requests" do
       within "#notice" do
         page.should have_content "Login successful."
       end
-      within "#nav" do
+      within "ul.nav" do
         page.should have_content "Logout"
       end
     end
@@ -46,7 +46,7 @@ describe "Login Requests" do
       within "#alert" do
         page.should have_content "Login failed."
       end
-      within "#nav" do
+      within "ul.nav" do
         page.should_not have_content "Logout"
       end
     end
@@ -59,7 +59,7 @@ describe "Login Requests" do
       within "#alert" do
         page.should have_content "Login failed."
       end
-      within "#nav" do
+      within "ul.nav" do
         page.should_not have_content "Logout"
       end
     end
