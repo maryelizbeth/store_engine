@@ -24,4 +24,5 @@ group :development, :test do
   gem 'launchy'
   gem 'faker'
   gem 'simplecov'
+  gem 'twitter-bootstrap-rails'
 end
