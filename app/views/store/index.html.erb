@@ -8,10 +8,19 @@
   <% @products.each_with_index do |product| %>
     <tr>
       <td colspan=2><%= image_tag product.thumbnail %></td>
-    <tr>
+    </tr>
     <tr>
       <td><%= product.title %></td>
       <td>$<%= product.display_price %></td>
+    </tr>
+    <tr> 
+      <td colspan=2>
+        <%= form_tag add_to_cart_path, :method => :post do %>
+          <%= hidden_field_tag "product_id", product.id %>
+          <%= hidden_field_tag "quantity", 1 %>
+          <%= submit_tag "Add to Cart" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

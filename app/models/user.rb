@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   def admin?
     true
   end
+
+  def shopping_cart
+    Order.find(:last, :conditions => ["user_id = ? and status = ?", self.id, "cart"])
+  end
+
+  def has_a_shopping_cart?
+    shopping_cart
+  end
 end
