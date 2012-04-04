@@ -1,5 +1,7 @@
 StoreEngine::Application.routes.draw do
   
+  get "store/index"
+
   resources :product_categories
 
 root :to => 'users#index'
