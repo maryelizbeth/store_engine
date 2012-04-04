@@ -26,7 +26,7 @@
                 </li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
                 <li><%= link_to "Logout", :logout %></li>
               <% else %>
-                <li><%= link_to "Register", new_user_path %></li>
+                <!-- <li><%= link_to "Register", new_user_path %></li> -->
                 <li><%= link_to "Login", :login %></li>
               <%end%>
           </ul>
@@ -48,8 +48,8 @@
     <p id="alert"><%= alert %></p>
   </div>
 <div class="container-fluid">
-  <div class="span9"><%= yield %></div>
+  <div class="span8"><%= yield %></div>
   <div class="span4"></div>
-</div
+</div>
 </body>
 </html>
