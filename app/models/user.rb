@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
 
   def admin?
-    true
+    is_admin
   end
 
   def shopping_cart

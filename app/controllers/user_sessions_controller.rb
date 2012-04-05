@@ -19,6 +19,7 @@ class UserSessionsController < ApplicationController
     
   def destroy
     logout
+    clear_cart
     redirect_to(login_path, :notice => 'Logged out!')
   end
 end

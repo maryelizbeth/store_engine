@@ -1,4 +1,6 @@
 class ProductCategoriesController < ApplicationController
+  before_filter :require_admin
+
   # GET /product_categories
   # GET /product_categories.json
   def index

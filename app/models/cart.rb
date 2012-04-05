@@ -5,11 +5,11 @@ class Cart < ActiveRecord::Base
   has_many :products, :through => :cart_products
 
   def add_product(product, quantity)
-    cp = CartProduct.find_by_product_id(product.id)
+    cp = CartProduct.find(:first, :conditions => ["product_id = ? and cart_id = ?", product.id, self.id])
     if cp
       cp.update_attribute(:quantity, cp.quantity + quantity.to_i)
     else
-      CartProduct.create!(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
+      CartProduct.create(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
     end 
   end
   

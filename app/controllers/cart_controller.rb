@@ -1,7 +1,14 @@
 class CartController < ApplicationController
   before_filter :find_cart_from_session
+  skip_before_filter :require_login
 
   def show
+  end
+  
+  def add_to_cart
+    @cart.add_product_to_cart(params[:product_id], params[:quantity])
+    session[:cart_id] = @cart.id
+    redirect_to cart_show_path
   end
 
   def update
