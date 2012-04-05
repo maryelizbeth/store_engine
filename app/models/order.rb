@@ -10,16 +10,12 @@ class Order < ActiveRecord::Base
   validates :user_id, :presence => true, :uniqueness => true
 
   aasm :column => :status do 
-    state :cart, :initial => true
-    state :pending 
+    state :pending, :initial => true
     state :paid 
     state :shipped 
     state :returned 
     state :cancelled 
 
-    event :checkout do 
-      transitions :to => :pending, :from => [:cart]
-    end 
     event :process_payment do 
       transitions :to => :paid, :from => [:pending]
     end 

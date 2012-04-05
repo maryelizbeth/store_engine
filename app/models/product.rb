@@ -1,7 +1,11 @@
 class Product < ActiveRecord::Base
   attr_accessible :description, :photo_url, :price, :title, :product_category_ids, :active
+  
   has_many :categorizations 
   has_many :product_categories, :through => :categorizations
+  has_many :cart_products
+  has_many :cart, :through => :cart_products
+
   validates_presence_of :title, :description
   validates_uniqueness_of :title 
   validates :price, :numericality => { :greater_than => 0 }, :presence => true
