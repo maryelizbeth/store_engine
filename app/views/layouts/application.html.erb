@@ -20,33 +20,42 @@
         <a class="brand" href="#">Our Store</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Contact Us" %></li>
-            <li><%= link_to "Cart" %></li>
-            <% if current_user %>
-                </li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
-
+            <!-- <li><%= link_to "Contact Us" %></li> -->
+            <% if current_user %> 
+               <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
             <% if current_user.admin? %>
-              <li><%= link_to "Create Product", new_product_path %></li>
+              <li class="dropdown">
+                  <a href="#"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"> 
+                        Products Editor 
+                        <b class="caret"></b>
+                  </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Create Product", new_product_path %></li>
+                      <li><%= link_to "Edit Products", products_path %></li> 
+                    </ul>
             <% end %>
-                <li><%= link_to "Logout", :logout %></li>
+               <li><%= link_to "Logout", :logout %></li>
               <% else %>
-                <!-- <li><%= link_to "Register", new_user_path %></li> -->
-                <li><%= link_to "Login", :login %></li>
-              <%end%>
+               <li><%= link_to "Create an Account", new_user_path %></li>
+               <li><%= link_to "Login", :login %></li>
+              <% end %>
+            <li><%= link_to "Cart" %></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
- <!--  <div id="nav">
+   <!--  <div id="nav">
     <% if current_user %>
       <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
       <%= link_to "Logout", :logout %>
     <% else %>
       <%= link_to "Register", new_user_path %> |
       <%= link_to "Login", :login %>
-    <% end %>
-  </div> -->
+    <% end %> -->
+  </div>
   <div>
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
