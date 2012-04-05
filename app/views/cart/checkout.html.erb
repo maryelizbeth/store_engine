@@ -1,0 +1,10 @@
+<%= form_tag process_order_path, :method => :post do %>
+  <fieldset>
+    <legend>/Checkout</legend>
+
+    <div class="form-actions">
+      <%= submit_tag "checkout", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

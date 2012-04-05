@@ -24,7 +24,7 @@ class CartController < ApplicationController
   end
 
   def checkout
-    flash[:notice] = "Checking out."
-    redirect_to cart_show_path
+    # flash[:notice] = "Checking out."
+    # redirect_to cart_show_path    
   end
 end
