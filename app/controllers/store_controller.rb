@@ -12,15 +12,8 @@ class StoreController < ApplicationController
   end
 
   def add_to_cart
-    @cart.add_product_to_cart(params[:product_id])
+    @cart.add_product_to_cart(params[:product_id], params[:quantity])
     session[:cart_id] = @cart.id
-    redirect_to store_index_path
-  end
-
-  private
-
-  def find_cart_from_session
-    @cart = Cart.find_by_id(session[:cart_id]) if session[:cart_id]
-    @cart ||= Cart.create
+    redirect_to cart_show_path
   end
 end

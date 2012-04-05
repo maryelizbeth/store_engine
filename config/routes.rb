@@ -1,4 +1,7 @@
 StoreEngine::Application.routes.draw do
+
+get "cart/show"
+post "cart/update"
 get   "store/index"
 post  "store/add_to_cart", :as => :add_to_cart
 root :to => 'store#index'
