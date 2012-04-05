@@ -3,7 +3,6 @@
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name"), :include_blank => true %>
   <%= submit_tag "Filter" %>
 <% end %>
-
 <table>
   <% @products.each_with_index do |product| %>
     <tr>
@@ -24,4 +23,16 @@
     </tr>
   <% end %>
 </table>
+<div class="pagination">
+  <ul>
+    <li><a href="#">Previous</a></li>
+    <li class="active">
+    <a href="#">1</a>
+    </li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</div>
 
