@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class Order < ActiveRecord::Base
   include AASM
 
@@ -30,5 +32,9 @@ class Order < ActiveRecord::Base
     event :cancel do 
       transitions :to => :cancelled, :from => [:pending, :cart]
     end 
-  end 
+  end
+  
+  def create_special_url
+    self.special_url = "/store?order=" + Digest::SHA1.hexdigest("#{Time.now.to_i}")
+  end
 end
