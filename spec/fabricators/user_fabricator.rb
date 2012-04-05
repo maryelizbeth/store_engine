@@ -5,6 +5,8 @@ Fabricator(:user, :class_name => "User") do
    # password is "test"
    crypted_password "$2a$10$au77qAT/es6PIiTRT/COROcqjulzfliqQDpimlo.H2uzUDNwlpakq"
    salt             "yGTMxkUXyCNMDy1KDs3Y"
+   # salt           { "asdasdastr4325234324sdfds" }
+   # crypted_password { Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) }            
 end 
 
 Fabricator(:login_test_user, :class_name => "User") do 
@@ -14,5 +16,7 @@ Fabricator(:login_test_user, :class_name => "User") do
    # password is "test"
    crypted_password "$2a$10$au77qAT/es6PIiTRT/COROcqjulzfliqQDpimlo.H2uzUDNwlpakq"
    salt             "yGTMxkUXyCNMDy1KDs3Y"
+   # salt           { "asdasdastr4325234324sdfds" }
+   # crypted_password { Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) }
 end 
 

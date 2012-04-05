@@ -16,3 +16,6 @@
 
 # Ignore SimpleCov files
 coverage
+
+# Ignore RVM RC files
+.rvmrc
