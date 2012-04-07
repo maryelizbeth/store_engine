@@ -1,16 +1,18 @@
 <%= form_tag store_index_path, :method => :get  do %>
   Filter by Category: 
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
-  <%= submit_tag "Filter" %>
+  <%= submit_tag "Filter", :id => "submit_category_filter"%>
 <% end %>
 <table>
   <% @products.each_with_index do |product| %>
-    <tr>
-      <td colspan=2><%= image_tag product.thumbnail %></td>
+    <tr id="store_product_<%= product.id %>_image">
+      <td colspan=2>
+        <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
+      </td>
     </tr>
     <tr>
-      <td><%= product.title %></td>
-      <td>$<%= product.display_price %></td>
+      <td id="store_product_<%= product.id %>_title"><%= product.title %></td>
+      <td id="store_product_<%= product.id %>_price">$<%= product.display_price %></td>
     </tr>
     <tr> 
       <td colspan=2>
@@ -23,12 +25,10 @@
     </tr>
   <% end %>
 </table>
-<ul class="pager">
-  <ul>
+<div>
+  <ul class="pager">
     <li><a href="#">&laquo;</a></li>
-    <li class="active">
-    <a href="#">1</a>
-    </li>
+    <li class="active"><a href="#">1</a></li>
     <li><a href="#">2</a></li>
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>

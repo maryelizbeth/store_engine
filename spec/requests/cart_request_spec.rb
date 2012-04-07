@@ -1,8 +1,6 @@
 require 'spec_helper'
 
-describe "Cart Requests" do
-  include StoreEngine::CartTestHelper
-  
+describe "Cart Requests" do  
   context "there are products in the store" do
     let!(:product_1) { Fabricate(:product) }
     
