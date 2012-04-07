@@ -12,5 +12,30 @@ describe "User Types" do
         current_path.should == new_product_path
       end
     end
-  end  
+  end
+  
+  context "User" do
+    let!(:user)     { Fabricate(:user) }
+    let!(:product)  { Fabricate(:product) }
+    
+    it "can not access the product creation screen" do
+      login_user_post(user.email_address)
+      within "ul.nav" do
+        page.should_not have_selector "#product_menu"
+        page.should_not have_selector "#create_product"
+      end
+      visit new_product_path
+      current_path.should_not == new_product_path
+    end
+
+    it "can not access the product edit screen" do
+      login_user_post(user.email_address)
+      within "ul.nav" do
+        page.should_not have_selector "#product_menu"
+        page.should_not have_selector "#edit_product"
+      end
+      visit edit_product_path(product)
+      current_path.should_not == edit_product_path(product)
+    end
+  end
 end

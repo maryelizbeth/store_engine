@@ -10,14 +10,32 @@ describe "Login Requests" do
       fill_in "Full name", :with => "Test User"
       fill_in "Display name", :with => "test_user"
       fill_in "Email address", :with => email_address
-      fill_in "Password", :with => "test"
-      fill_in "Password confirmation", :with => "test"
+      fill_in "Password", :with => DEFAULT_USER_PASSWORD
+      fill_in "Password confirmation", :with => DEFAULT_USER_PASSWORD
       click_button "Create User"
       within "#notice" do
         page.should have_content "User was successfully created."
       end
       within "ul.nav" do
-        page.should have_content "Logout"
+        page.should_not have_selector "#login"
+        page.should_not have_selector "#create_account"
+        page.should     have_selector "#logout"
+      end
+    end
+    
+    it "does not log in if account creation fails" do
+      email_address = "test_user_#{Time.now.to_i}@lsqa.net"
+      visit new_user_path
+      fill_in "Full name", :with => "Test User"
+      fill_in "Display name", :with => "test_user"
+      fill_in "Email address", :with => email_address
+      fill_in "Password", :with => DEFAULT_USER_PASSWORD
+      fill_in "Password confirmation", :with => DEFAULT_USER_PASSWORD + "y"
+      click_button "Create User"
+      within "ul.nav" do
+        page.should     have_selector "#login"
+        page.should     have_selector "#create_account"
+        page.should_not have_selector "#logout"
       end
     end
   end
@@ -26,13 +44,15 @@ describe "Login Requests" do
     it "logs the user in immediately after creating an account" do
       visit login_path
       fill_in "Email address", :with => existing_user.email_address
-      fill_in "Password", :with => "test"
+      fill_in "Password", :with => DEFAULT_USER_PASSWORD
       click_button "Login"
       within "#notice" do
         page.should have_content "Login successful."
       end
       within "ul.nav" do
-        page.should have_content "Logout"
+        page.should_not have_selector "#login"
+        page.should_not have_selector "#create_account"
+        page.should     have_selector "#logout"
       end
     end
   end
@@ -41,13 +61,15 @@ describe "Login Requests" do
     it "does not log me in if I enter a bad email address" do
       visit login_path
       fill_in "Email address", :with => "existing_user.email_address@blah.blah"
-      fill_in "Password", :with => "test"
+      fill_in "Password", :with => DEFAULT_USER_PASSWORD
       click_button "Login"
       within "#alert" do
         page.should have_content "Login failed."
       end
       within "ul.nav" do
-        page.should_not have_content "Logout"
+        page.should     have_selector "#login"
+        page.should     have_selector "#create_account"
+        page.should_not have_selector "#logout"
       end
     end
     
@@ -60,7 +82,9 @@ describe "Login Requests" do
         page.should have_content "Login failed."
       end
       within "ul.nav" do
-        page.should_not have_content "Logout"
+        page.should     have_selector "#login"
+        page.should     have_selector "#create_account"
+        page.should_not have_selector "#logout"
       end
     end
   end
