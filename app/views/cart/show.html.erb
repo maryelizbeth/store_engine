@@ -24,6 +24,8 @@
         <td><%= link_to 'Remove Item', cart_remove_product_path(:cp_id => cp.id), :class => 'btn btn-warning', :method => :post, 
             :confirm => 'Are you sure?' %>
       </tr>
+      
+      <tr class="order_total"><td>Total:</td></tr> 
     <% end %> 
     </tbody>
   </table>
