@@ -30,7 +30,7 @@ class Cart < ActiveRecord::Base
       line_items.each do |li|
         if li.first == cp.id.to_s
           value = li.last.to_i
-          if value> 0
+          if value > 0
             cp.update_attribute(:quantity, value)
           elsif value == 0
             cp.delete
