@@ -2,7 +2,7 @@
   <fieldset>
     <legend>/Checkout</legend>
 
-    <div class="form-actions">
+    <div class="checkout-form-actions">
       <%= submit_tag "checkout", :class => 'btn btn-primary' %>
         <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
           <div class="modal" id="LoginModal">
@@ -24,9 +24,8 @@
             <div class="modal-footer">
               <%=submit_tag "Login" %>
             </div>
-            <%end%>
+            <%end%> 
         </div>
-      
     </div>
   </fieldset>
 <% end %>
