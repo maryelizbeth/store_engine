@@ -5,15 +5,10 @@ class StoreController < ApplicationController
   def index
     if params[:category_id] && !params[:category_id].empty?
       @products = ProductCategory.find(params[:category_id]).products
+      @selected_category_id = params[:category_id]
     else
       @products = Product.all
     end  
     @product_categories = ProductCategory.all
-  end
-
-  def add_to_cart
-    @cart.add_product_to_cart(params[:product_id], params[:quantity])
-    session[:cart_id] = @cart.id
-    redirect_to cart_show_path
   end
 end

@@ -1,7 +1,7 @@
 module Sorcery
   module TestHelpers
     module Rails
-      def login_user_post(email, password = "test", redirect_path = "/")
+      def login_user_post(email, password = DEFAULT_USER_PASSWORD, redirect_path = "/")
         page.driver.post(user_sessions_url, { email_address: email, password: password })
         # HACK - redirects to a "redirect" page post-login which has 
         # a single link that points to "example.com"

@@ -1,5 +1,6 @@
 <h1>/Cart</h1>
 
+<%= form_tag cart_update_path, :method => :post  do %>
 <div id="cart">
   <table class="table table-bordered table-striped" width="600">
     <thead>
@@ -12,26 +13,25 @@
       </tr>
     </thead>
     <tbody>
-      <%= form_tag cart_update_path, :method => :post  do %>
-          <% @cart.cart_products.each do |cp| %>
-        <tr>
-          <td><%= cp.product.title %></td>
-          <td>
-            <%= text_field_tag "cp_id_quant[#{cp.id}]", cp.quantity, :size => 4, :class => "quantity" %>
-          </td> 
-          <td><%= cp.price %></td> 
-          <td><%= cp.total %></td>
-          <td><%= link_to 'Remove Item', cart_remove_product_path(:cp_id => cp.id), :class => 'btn btn-warning', :method => :post, 
-                  :confirm => 'Are you sure?' %>
-        </tr>
+    <% @cart.cart_products.each do |cp| %>
+      <tr id="cart_item_<%= cp.product.id %>">
+        <td><%= cp.product.title %></td>
+        <td>
+          <%= text_field_tag "cp_id_quant[#{cp.id}]", cp.quantity, :size => 4, :class => "quantity" %>
+        </td> 
+        <td class="cart_item_price"><%= cp.price %></td>
+        <td class="cart_item_total"><%= cp.total %></td>
+        <td><%= link_to 'Remove Item', cart_remove_product_path(:cp_id => cp.id), :class => 'btn btn-warning', :method => :post, 
+            :confirm => 'Are you sure?' %>
+      </tr>
     <% end %> 
-  </tbody>
+    </tbody>
   </table>
 </div>
 
 <div class="form-actions">
   <%= link_to 'Keep Shopping', store_index_path, :class => 'btn'  %>
-  <%= submit_tag "Update Cart", :class => 'btn' %>
+  <%= submit_tag "Update Cart", :class => 'btn', :id => "update_cart" %>
   <%= link_to 'Checkout', checkout_path, :class => 'btn' %> 
-   <% end %>
 </div>
+<% end %>

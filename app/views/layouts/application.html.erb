@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -20,49 +19,38 @@
         <a class="brand" href="/">Our Store</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <!-- <li><%= link_to "Contact Us" %></li> -->
-            <% if current_user %> 
-               <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+          <% if current_user %> 
+            <li>
+              <%= link_to "Edit Profile", edit_user_path(current_user.id), :id => "edit_profile" %>
+            </li>
             <% if current_user.admin? %>
-              <li class="dropdown">
-                  <a href="#"
-                    class="dropdown-toggle"
-                    data-toggle="dropdown"> 
-                        Products Editor 
-                        <b class="caret"></b>
-                  </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Create Product", new_product_path %></li>
-                      <li><%= link_to "Edit Products", products_path %></li> 
-                    </ul>
+            <li class="dropdown">
+              <a href="#" id="product_menu" class="dropdown-toggle" data-toggle="dropdown">
+                Products Editor <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Create Product", new_product_path, :id => "create_product" %></li>
+                <li><%= link_to "Edit Products", products_path, :id => "edit_product" %></li> 
+              </ul>
             <% end %>
-               <li><%= link_to "Logout", :logout %></li>
-              <% else %>
-               <li><%= link_to "Create an Account", new_user_path %></li>
-               <li><%= link_to "Login", :login %></li>
-              <% end %>
+            <li><%= link_to "Logout", :logout, :id => "logout" %></li>
+          <% else %>
+            <li><%= link_to "Create an Account", new_user_path, :id => "create_account" %></li>
+            <li><%= link_to "Login", :login, :id => "login" %></li>
+          <% end %>
             <li><%= link_to "Cart", cart_show_path %></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-   <!--  <div id="nav">
-    <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-      <%= link_to "Logout", :logout %>
-    <% else %>
-      <%= link_to "Register", new_user_path %> |
-      <%= link_to "Login", :login %>
-    <% end %> -->
-  </div>
   <div>
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
   </div>
-<div class="container-fluid">
-  <div class="span8"><%= yield %></div>
-  <div class="span4"></div>
-</div>
+  <div class="container-fluid">
+    <div class="span8"><%= yield %></div>
+    <div class="span4"></div>
+  </div>
 </body>
 </html>
