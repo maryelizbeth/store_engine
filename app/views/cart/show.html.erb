@@ -8,26 +8,24 @@
         <th>Product Name</th>
         <th>Quantity</th> 
         <th>Price</th> 
-        <th>Subtotal</th>
+        <th>Item Subtotal</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
     <% @cart.cart_products.each do |cp| %>
       <tr id="cart_item_<%= cp.product.id %>">
-        <td><%= cp.product.title %></td>
+        <td><!--<%=image_tag cp.product.thumbnail%>--><%= cp.product.title %></td>
         <td>
           <%= text_field_tag "cp_id_quant[#{cp.id}]", cp.quantity, :size => 4, :class => "quantity" %>
         </td> 
         <td class="cart_item_price"><%= cp.price %></td>
         <td class="cart_item_total"><%= cp.total %></td>
-        <td><%= link_to 'Remove Item', cart_remove_product_path(:cp_id => cp.id), :class => 'btn btn-warning', :method => :post, 
-            :confirm => 'Are you sure?' %>
+        <td><%= link_to "", cart_remove_product_path(:cp_id => cp.id), :class => 'i icon-remove', :method => :post, :confirm => 'Are you sure you\'d like to remove this item?' %>
       </tr>
-      
-      <tr class="order_total"><td>Total:</td></tr> 
     <% end %> 
     </tbody>
+       <tr><td class="order-total">Total:</td></tr>
   </table>
 </div>
 
