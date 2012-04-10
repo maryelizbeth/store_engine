@@ -18,6 +18,8 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'guard'
+  gem 'growl'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
