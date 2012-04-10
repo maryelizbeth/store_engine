@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
     def require_admin
       unless current_user && current_user.admin?
-        flash[:notice] = "You do not have permission to access this area."
+        flash[:alert] = "You do not have permission to access this area."
         redirect_to root_path
       end
     end
