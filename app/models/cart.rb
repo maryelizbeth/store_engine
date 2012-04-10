@@ -1,8 +1,10 @@
 class Cart < ActiveRecord::Base
-  # attr_accessible :title, :body
-
   has_many :cart_products
   has_many :products, :through => :cart_products
+
+  def total
+    cart_products.sum { |cp| cp.total }
+  end
 
   def add_product(product, quantity)
     cp = CartProduct.find(:first, :conditions => ["product_id = ? and cart_id = ?", product.id, self.id])
@@ -12,7 +14,7 @@ class Cart < ActiveRecord::Base
       CartProduct.create(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
     end 
   end
-  
+
   def add_product_to_cart(product_id, quantity)
     product = Product.find_by_id(product_id)
     add_product(product, quantity)

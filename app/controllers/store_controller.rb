@@ -4,11 +4,17 @@ class StoreController < ApplicationController
 
   def index
     if params[:category_id] && !params[:category_id].empty?
-      @products = ProductCategory.find(params[:category_id]).products
+      @products = ProductCategory.find(params[:category_id]).active_products
       @selected_category_id = params[:category_id]
     else
-      @products = Product.all
+      @products = all_active_products
     end  
     @product_categories = ProductCategory.all
+  end
+  
+  private
+  
+  def all_active_products
+    Product.find(:all, :conditions => ["active = ?", true])
   end
 end

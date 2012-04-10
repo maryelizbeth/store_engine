@@ -16,30 +16,58 @@ describe "Store Requests" do
       product_4.product_categories << pc_2
     end
     
-    it "displays all products by default" do
-      visit store_index_path
-      products.each do |product|
-        page.should have_selector "#store_product_#{product.id}_image"
-        find("#store_product_#{product.id}_title").text.should == product.title
-        find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+    context "for active products" do
+      before(:each) do
+        visit store_index_path
+      end
+    
+      it "displays all products by default" do
+        products.each do |product|
+          page.should have_selector "#store_product_#{product.id}_image"
+          find("#store_product_#{product.id}_title").text.should == product.title
+          find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+        end
+      end
+    
+      it "only displays the products in the filtered category" do
+        select pc_2.name, :from => "category_id"
+        find("#submit_category_filter").click
+        expected_products = [product_2, product_4]
+        expected_products.each do |product|
+          page.should have_selector "#store_product_#{product.id}_image"
+          find("#store_product_#{product.id}_title").text.should == product.title
+          find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+        end
+        unexpected_products = [product_1, product_3]
+        unexpected_products.each do |product|
+          page.should_not have_selector "#store_product_#{product.id}_image"
+          page.should_not have_selector "#store_product_#{product.id}_title"
+          page.should_not have_selector "#store_product_#{product.id}_price"
+        end
       end
     end
     
-    it "only displays the products in the filtered category" do
-      visit store_index_path
-      select pc_2.name, :from => "category_id"
-      find("#submit_category_filter").click
-      expected_products = [product_2, product_4]
-      expected_products.each do |product|
-        page.should have_selector "#store_product_#{product.id}_image"
-        find("#store_product_#{product.id}_title").text.should == product.title
-        find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+    context "for inactive products" do
+      before(:each) do
+        product_2.update_attribute(:active, false)
+        visit store_index_path
       end
-      unexpected_products = [product_1, product_3]
-      unexpected_products.each do |product|
-        page.should_not have_selector "#store_product_#{product.id}_image"
-        page.should_not have_selector "#store_product_#{product.id}_title"
-        page.should_not have_selector "#store_product_#{product.id}_price"
+      
+      it "does not display inactive products when not filtering by category" do
+        page.should_not have_selector "#store_product_#{product_2.id}_image"
+        page.should_not have_selector "#store_product_#{product_2.id}_title"
+        page.should_not have_selector "#store_product_#{product_2.id}_price"
+      end
+      
+      it "does not display inactive products when filtering by category" do
+        select pc_2.name, :from => "category_id"
+        find("#submit_category_filter").click
+        page.should have_selector "#store_product_#{product_4.id}_image"
+        find("#store_product_#{product_4.id}_title").text.should == product_4.title
+        find("#store_product_#{product_4.id}_price").text.should == "$#{product_4.price}"
+        page.should_not have_selector "#store_product_#{product_2.id}_image"
+        page.should_not have_selector "#store_product_#{product_2.id}_title"
+        page.should_not have_selector "#store_product_#{product_2.id}_price"
       end
     end
   end

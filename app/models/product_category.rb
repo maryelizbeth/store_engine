@@ -3,4 +3,8 @@ class ProductCategory < ActiveRecord::Base
   has_many :categorizations 
   has_many :products, :through => :categorizations
   validates_uniqueness_of :name
+  
+  def active_products
+    products.find(:all, :conditions => ["active = ?", true])
+  end
 end

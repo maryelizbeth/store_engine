@@ -5,7 +5,7 @@
 <% end %>
 <table>
   <% @products.each_with_index do |product| %>
-    <tr id="store_product_<%= product.id %>_image">
+    <tr>
       <td colspan=2>
         <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
       </td>
@@ -15,7 +15,7 @@
       <td id="store_product_<%= product.id %>_price">$<%= product.display_price %></td>
     </tr>
     <tr> 
-      <td colspan=2>
+      <td colspan=2 id="store_product_<%= product.id %>_add_to_cart">
         <%= form_tag add_to_cart_path, :method => :post do %>
           <%= hidden_field_tag "product_id", product.id %>
           <%= hidden_field_tag "quantity", 1 %>
