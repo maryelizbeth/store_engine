@@ -29,7 +29,9 @@ class CartController < ApplicationController
   end
 
   def checkout
-    # flash[:notice] = "Checking out."
-    # redirect_to cart_show_path    
+    @user = current_user if current_user
+    @credit_card = @user.credit_card if (@user && @user.has_existing_credit_card?)
+    @billing_address = @user.billing_address if (@user && @user.has_existing_billing_address?)
+    @shipping_address = @user.shipping_address if (@user && @user.has_existing_shipping_address?)
   end
 end

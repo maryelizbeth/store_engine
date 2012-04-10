@@ -10,3 +10,8 @@ Fabricate(:admin_user)
 Fabricate(:user_matt)
 Fabricate(:user_jeff)
 Fabricate(:user_chad)
+
+user = Fabricate(:full_user)
+user.credit_cards << Fabricate(:credit_card)
+user.addresses    << Fabricate(:billing_address)
+user.addresses    << Fabricate(:shipping_address)

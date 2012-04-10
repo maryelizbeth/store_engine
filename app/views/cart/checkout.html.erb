@@ -1,10 +1,29 @@
 <%= form_tag process_order_path, :method => :post do %>
   <fieldset>
     <legend>/Checkout</legend>
-
+    <% unless @user %>
+      <div>SHOW ACCOUNT CREATE PARTIAL</div>
+    <% else %>
+      <div>SHOW USER INFO</div>
+    <% end %>
+    <% unless @credit_card %>
+      <div>SHOW CREDIT CARD CREATE PARTIAL</div>
+    <% else %>
+      <div>SHOW CREDIT CARD INFO</div>
+    <% end %>
+    <% unless @billing_address %>
+      <div>SHOW BILLING ADDRESS CREATE PARTIAL</div>
+    <% else %>
+      <div>SHOW BILLING ADDRESS INFO</div>
+    <% end %>
+    <% unless @shipping_address %>
+      <div>SHOW SHIPPING ADDRESS CREATE PARTIAL</div>
+    <% else %>
+      <div>SHOW SHIPPING ADDRESS INFO</div>
+    <% end %>
     <div class="checkout-form-actions">
       <%= submit_tag "checkout", :class => 'btn btn-primary' %>
-        <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
+      <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

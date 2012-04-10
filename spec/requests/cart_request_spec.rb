@@ -91,7 +91,6 @@ describe "Cart Requests" do
             current_path.should == cart_show_path
             find("#notice").text.should == "Your cart has been cleared."
             products.each { |product| page.should_not have_selector "#cart_item_#{product.id}" }
-            save_and_open_page
           end
         end
       end

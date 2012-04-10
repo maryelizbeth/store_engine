@@ -25,7 +25,16 @@ Fabricator(:login_test_user, :class_name => "User") do
    display_name   "john.smith"
    crypted_password   pw_digest
    salt               pw_salt
-end 
+end
+
+Fabricator(:full_user, :class_name => "User") do 
+   full_name      "Full User"
+   email_address  "full.user@lsqa.net"
+   display_name   "fuser"
+   crypted_password   pw_digest
+   salt               pw_salt
+end
+
 
 # Normal user with full name "Matt Yoho", email address "matt.yoho@livingsocial.com", password of "hungry" and no display name
 # Normal user with full name "Jeff", email address "jeff.casimir@livingsocial.com", password of "hungry" and display name "j3"
