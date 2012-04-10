@@ -6,29 +6,21 @@ Filter by Category:
 <% end %>
 
 <table class = "product-listings">
-  <tr class = "product">
-    <td>
-      <% @products.each do |product| %>
-    <table class = "indiv-product">
-    <tr> 
-    <td colspan=2>
-        <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
-    </td>
-    <td id="store_product_<%= product.id %>_title"><%= product.title %>
-    </td>
-    <td id="store_product_<%= product.id %>_price">$<%= product.display_price %>
-    </td>
-      <td id="store_product_<%= product.id %>_add_to_cart">
-        <%= form_tag add_to_cart_path, :method => :post do %>
-          <%= hidden_field_tag "product_id", product.id %>
-          <%= hidden_field_tag "quantity", 1 %>
-          <div class="add_to_cart">
-          <%= submit_tag "Add to Cart", :class => 'btn' %>
-          </div>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+  <table class = "product">
+    <tr id="product">
+      <td>
+        <% @products.each do |product| %>
+      <table class = "indiv-product">
+        <tr>
+          <td colspan=2>
+              <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
+          </td>
+          <td>
+            <%= render :partial => "product_details", :locals => { :product => product } %>
+
+          </td>
+        </tr>
+      </table>
   <% end %>
 </td>
 </tr>

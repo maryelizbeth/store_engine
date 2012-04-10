@@ -4,7 +4,7 @@
 
 .pager{
   float: right;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 .product-listings {
  /* border-spacing: 5px;*/
@@ -17,18 +17,24 @@
 .product {
 
   border-collapse: separate;
-  border: 10px;
+  border-spacing: 10px;
+
 
 }
 
 .indiv-product {
   display: inline-block;
   border-collapse: separate;
-  border: 10px;
+  border-spacing: 10px;
  }
 
-td.store_product_title{
+.prod-attributes{
+  display: inline-block;
 
+}
+
+td.store_product_title{
+  border-spacing: 10pxx;
 }
 
 img.store_product_image {
@@ -38,5 +44,6 @@ img.store_product_image {
 
 td.add_to_cart{
   vertical-align: middle;
+
 }
 
