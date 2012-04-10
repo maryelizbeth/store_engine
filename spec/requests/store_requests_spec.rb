@@ -9,13 +9,15 @@ describe "Store Requests" do
     let!(:products)   { [product_1, product_2, product_3, product_4]}
     let!(:pc_1)       { Fabricate(:product_category) }
     let!(:pc_2)       { Fabricate(:product_category) }
-        
+    
+    before(:each) do
+      product_2.product_categories << pc_2
+      product_3.product_categories << pc_1
+      product_4.product_categories << pc_2
+    end
+    
     context "for active products" do
       before(:each) do
-        product_2.product_categories << pc_2
-        product_3.product_categories << pc_1
-        product_4.product_categories << pc_2
-
         visit store_index_path
       end
     
@@ -47,14 +49,25 @@ describe "Store Requests" do
     
     context "for inactive products" do
       before(:each) do
-        product_3.update_attribute(:active, false)
+        product_2.update_attribute(:active, false)
+        visit store_index_path
       end
       
-      it "does not display inactive products" do
-        visit store_index_path
-        page.should_not have_selector "#store_product_#{product_3.id}_image"
-        page.should_not have_selector "#store_product_#{product_3.id}_title"
-        page.should_not have_selector "#store_product_#{product_3.id}_price"
+      it "does not display inactive products when not filtering by category" do
+        page.should_not have_selector "#store_product_#{product_2.id}_image"
+        page.should_not have_selector "#store_product_#{product_2.id}_title"
+        page.should_not have_selector "#store_product_#{product_2.id}_price"
+      end
+      
+      it "does not display inactive products when filtering by category" do
+        select pc_2.name, :from => "category_id"
+        find("#submit_category_filter").click
+        page.should have_selector "#store_product_#{product_4.id}_image"
+        find("#store_product_#{product_4.id}_title").text.should == product_4.title
+        find("#store_product_#{product_4.id}_price").text.should == "$#{product_4.price}"
+        page.should_not have_selector "#store_product_#{product_2.id}_image"
+        page.should_not have_selector "#store_product_#{product_2.id}_title"
+        page.should_not have_selector "#store_product_#{product_2.id}_price"
       end
     end
   end
