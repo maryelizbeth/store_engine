@@ -1,7 +1,14 @@
 // Place all the styles related to the cart controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.keep-shopping{ 
+  float: right;
+  padding: 10px;
+}
+/*#cart{ 
+  padding: 2px; 
+  border: 2px solid black; 
+}*/
 .cart-form-actions{ 
   float: right;
 }
