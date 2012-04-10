@@ -12,10 +12,14 @@ img.store_product_image {
 }
 
 .product-listing { 
-  border-spacing: 5px;
+ /* border-spacing: 5px;*/
   border-collapse: separate;
 }
 
 td.add_to_cart{
   vertical-align: middle;
+}
+
+td.store_product_price{ 
+  border-collapse: collapse;
 }

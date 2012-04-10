@@ -1,9 +1,8 @@
 
 <%= form_tag store_index_path, :method => :get  do %>
-  <p>Filter by Category:
+Filter by Category:
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <%= submit_tag "Filter", :id => "submit_category_filter"%>
-</p>
 <% end %>
 <table class = "product-listing">
   <% @products.each do |product| %>
