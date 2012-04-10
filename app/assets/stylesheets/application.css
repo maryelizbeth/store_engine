@@ -11,6 +11,16 @@
  *= require_self
  *= require_tree .
 */
+.body{ 
+
+  padding-top: 50px;
+
+}
+
+.container {
+position: relative;
+width: 100%;
+}
 
 .footer{ 
 
@@ -29,3 +39,4 @@ display: inline;
 list-style-type: none;
 padding-right: 20px;
 }
+

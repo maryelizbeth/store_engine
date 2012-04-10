@@ -1,10 +1,11 @@
 <%= form_tag store_index_path, :method => :get  do %>
-  Filter by Category: 
+  <p>Filter by Category:
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <%= submit_tag "Filter", :id => "submit_category_filter"%>
+</p>
 <% end %>
 <table>
-  <% @products.each_with_index do |product| %>
+  <% @products.each do |product| %>
     <tr>
       <td colspan=2>
         <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>

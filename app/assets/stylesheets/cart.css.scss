@@ -3,18 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .keep-shopping{ 
   float: right;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-/*#cart{ 
-  padding: 2px; 
-  border: 2px solid black; 
-}*/
 .cart-form-actions{ 
   float: right;
 }
 
-.checkout-form-actions{ 
-  float: right;
+#cart_item_price{ 
+  text-align: right;
+}
+
+th, tr, td{ 
+  vertical-align: middle;
 }
 
 
