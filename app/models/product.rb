@@ -17,6 +17,10 @@ class Product < ActiveRecord::Base
     photo_url || DEFAULT_IMAGE_PATH
   end
 
+  def has_photo?
+    !photo_url.blank?
+  end
+
   def display_price
     # number_with_precision(self.price, :precision => 2)
     "%.2f" % self.price

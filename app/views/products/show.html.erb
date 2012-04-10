@@ -2,26 +2,31 @@
 
 <p>
   <b>Title</b><br>
-  <%= @product.title %>
+  <span id="product_title"><%= @product.title %></span>
 </p>
 
 <p>
   <b>Description</b><br>
-  <%= @product.description %>
+  <span id="product_description"><%= @product.description %>
 </p>
 
 <p>
   <b>Price</b><br>
-  <%= @product.price %>
+  <span id="product_price"><%= number_to_currency(@product.price) %>
 </p>
 
 <p>
   <b>Photo url</b><br>
-  <%= @product.photo_url %>
+  <span id="product_photo_url"><%= @product.photo_url %>
+</p>
+
+<p>
+  <b>Active?</b><br>
+  <%= display_boolean_icon(@product.active?) %>
 </p>
 
 <div class="form-actions">
-  <%= link_to 'Back', products_path, :class => 'btn'  %>
+  <%= link_to 'View All Products', products_path, :class => 'btn'  %>
   <%= link_to 'Edit', edit_product_path(@product), :class => 'btn' %>
   <%= link_to 'Delete', product_path(@product), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>
