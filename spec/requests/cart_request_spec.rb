@@ -57,7 +57,7 @@ describe "Cart Requests" do
           quantity = 0
           click_link_or_button "Add to Cart"
           within "#cart_item_#{product_1.id}" do
-            click_link "Remove Item"
+            find(".icon-remove").click
           end
           within "#notice" do
             page.should have_content "'#{product_1.title}' was removed from your cart."
