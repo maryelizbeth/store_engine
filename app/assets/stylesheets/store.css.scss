@@ -3,13 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pager{
-  float: right; 
+  float: right;
 }
-ul.pager.li{ 
-  
-}
+
 
 img.store_product_image { 
   height: 100px; width: 100px; 
 }
 
+.product-listing { 
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+
+td.add_to_cart{
+  vertical-align: middle;
+}
