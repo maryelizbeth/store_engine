@@ -12,8 +12,13 @@ class CartController < ApplicationController
   end
 
   def update
-    @cart.update_cart_quantities(params[:cp_id_quant])
-    flash[:notice] = "Cart updated."
+    unless params[:commit] == "Empty Cart"
+      @cart.update_cart_quantities(params[:cp_id_quant])
+      flash[:notice] = "Cart updated."
+    else
+      @cart.destroy
+      flash[:notice] = "Your cart has been cleared."
+    end
     redirect_to cart_show_path
   end
 

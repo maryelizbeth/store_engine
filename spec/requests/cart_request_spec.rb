@@ -27,7 +27,9 @@ describe "Cart Requests" do
 
         before(:each) do
           visit root_path
-          click_link_or_button "Add to Cart"
+          within "#store_product_#{product_1.id}_add_to_cart" do
+            click_link_or_button "Add to Cart"
+          end
         end
 
         it "updates the quantity for a product if the entered quantity is > 0" do
@@ -71,6 +73,26 @@ describe "Cart Requests" do
             page.should have_content "'#{product_1.title}' was removed from your cart."
           end
           page.should_not have_selector "#cart_item_#{product_1.id}"
+        end
+        
+        context "when clearing a cart" do
+          let!(:product_2)  { Fabricate(:product, :price => 3.21) }
+          let!(:products)   { [product_1, product_2] }
+          
+          before(:each) do
+            visit root_path
+            within "#store_product_#{product_2.id}_add_to_cart" do
+              click_link_or_button "Add to Cart"
+            end
+          end
+          
+          it "removes all items" do
+            find("#empty_cart").click
+            current_path.should == cart_show_path
+            find("#notice").text.should == "Your cart has been cleared."
+            products.each { |product| page.should_not have_selector "#cart_item_#{product.id}" }
+            save_and_open_page
+          end
         end
       end
     end
