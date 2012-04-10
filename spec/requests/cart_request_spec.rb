@@ -18,11 +18,14 @@ describe "Cart Requests" do
     context "on the cart show page" do
       context "and the cart has products" do
 
-        before(:each)  { visit root_path }
+        before(:each) do
+          visit root_path
+          click_link_or_button "Add to Cart"
+        end
         
         it "updates the quantity for a product if the entered quantity is > 0" do
           quantity = 5
-          click_link_or_button "Add to Cart"
+
           within "#cart_item_#{product_1.id}" do
             find(".quantity").set(quantity)
           end
@@ -40,7 +43,7 @@ describe "Cart Requests" do
         
         it "removes a product from the cart on update if the entered quantity is 0" do
           quantity = 0
-          click_link_or_button "Add to Cart"
+
           within "#cart_item_#{product_1.id}" do
             find(".quantity").set(quantity)
           end
@@ -54,8 +57,6 @@ describe "Cart Requests" do
         end
         
         it "removes a product from the cart after clicking 'remove item'" do
-          quantity = 0
-          click_link_or_button "Add to Cart"
           within "#cart_item_#{product_1.id}" do
             find(".icon-remove").click
           end
