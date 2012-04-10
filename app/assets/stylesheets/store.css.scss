@@ -5,21 +5,32 @@
 .pager{
   float: right;
 }
-
-
-img.store_product_image { 
-  height: 100px; width: 100px; 
-}
-
-.product-listing { 
+.p
+roduct-listings {
  /* border-spacing: 5px;*/
   border-collapse: separate;
+
+}
+.product {
+
+  border-collapse: separate;
+
+}
+
+.indiv-product {
+  display: inline-block;
+  border-collapse: separate;
+ }
+
+td.store_product_title{
+  display: inline-block;
+}
+
+img.store_product_image {
+  height: 100px; width: 100px;
 }
 
 td.add_to_cart{
   vertical-align: middle;
 }
 
-td.store_product_price{ 
-  border-collapse: collapse;
-}

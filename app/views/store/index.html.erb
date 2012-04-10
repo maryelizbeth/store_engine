@@ -1,22 +1,24 @@
-
 <%= form_tag store_index_path, :method => :get  do %>
+
 Filter by Category:
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <%= submit_tag "Filter", :id => "submit_category_filter"%>
 <% end %>
-<table class = "product-listing">
-  <% @products.each do |product| %>
-    <tr>
-      <td colspan=2>
-        <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
-      </td>
-    </tr>
-    <tr>
-      <td id="store_product_<%= product.id %>_title"><%= product.title %></td>
-      <td id="store_product_<%= product.id %>_price">$<%= product.display_price %></td>
-    </tr>
+
+<table class = "product-listings">
+  <tr class = "product">
+    <td>
+      <% @products.each do |product| %>
+    <table class = "indiv-product">
     <tr> 
-      <td colspan=2 id="store_product_<%= product.id %>_add_to_cart">
+    <td colspan=2>
+        <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
+    </td>
+    <td id="store_product_<%= product.id %>_title"><%= product.title %>
+    </td>
+    <td id="store_product_<%= product.id %>_price">$<%= product.display_price %>
+    </td>
+      <td id="store_product_<%= product.id %>_add_to_cart">
         <%= form_tag add_to_cart_path, :method => :post do %>
           <%= hidden_field_tag "product_id", product.id %>
           <%= hidden_field_tag "quantity", 1 %>
@@ -26,7 +28,10 @@ Filter by Category:
         <% end %>
       </td>
     </tr>
+  </table>
   <% end %>
+</td>
+</tr>
 </table>
 <div>
   <ul class="pager">
