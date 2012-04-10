@@ -26,7 +26,7 @@ describe "Cart Requests" do
           within "#cart_item_#{product_1.id}" do
             find(".quantity").set(quantity)
           end
-          within ".form-actions" do
+          within ".cart-form-actions" do
             find("input#update_cart").click
           end
           within "#notice" do
@@ -44,7 +44,7 @@ describe "Cart Requests" do
           within "#cart_item_#{product_1.id}" do
             find(".quantity").set(quantity)
           end
-          within ".form-actions" do
+          within ".cart-form-actions" do
             find("input#update_cart").click
           end
           within "#notice" do
