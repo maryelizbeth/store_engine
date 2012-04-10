@@ -55,6 +55,11 @@ describe "Products" do
           page.should have_content "The product has been deleted."
           page.should_not have_selector "#product_#{product_1.id}"
         end
+        
+        it "redirects to the product's new page after clicking new" do
+          find("#create_product").click
+          current_path.should == new_product_path
+        end
       end
 
       context "#edit" do
