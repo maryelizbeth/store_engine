@@ -89,6 +89,22 @@ describe "Login Requests" do
         end
       end
     end
+  
+    context "trying to access an area that requires authentication" do
+      let!(:order)  { Fabricate(:order) }
+      
+      before(:each) do
+        visit order_path(order)
+      end
+      
+      it "takes me to the login page" do
+        current_path.should == login_path
+      end
+      
+      it "lets me know that I need to login" do
+        page.should have_content "Please login first."
+      end
+    end
   end
   
   context "Authenticated user" do
