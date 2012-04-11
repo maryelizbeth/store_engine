@@ -1,0 +1,16 @@
+<div class="name">
+  <%= label_tag :street_address1 %><br />
+  <%= text_field_tag :street_address1 %>
+</div>
+<div class="cc-number">
+  <%= label_tag :street_address2 %><br />
+  <%= text_field_tag :street_address2 %>
+</div>
+ <div class="exp-date">
+  <%=select_date (my_date, :prompt => {:month => 'Choose Month', :year => 'Choose Year'})%>
+  <%end%>
+</div>
+ <div class="cvv">
+  <%= label_tag :zipcode %><br />
+  <%= password_field_tag :zipcode %>
+</div>

@@ -21,13 +21,31 @@
     <% else %>
       <div>SHOW SHIPPING ADDRESS INFO</div>
     <% end %>
-    <%#= render :partial => "shipping_address" %>
+    <div class="street-1">
+      <%= label_tag :street_address1 %><br />
+      <%= text_field_tag :street_address1 %>
+    </div>
+    <div class="street-2">
+      <%= label_tag :street_address2 %><br />
+      <%= text_field_tag :street_address2 %>
+    </div>
+    <div class="city">
+      <%= label_tag :city %><br />
+      <%= text_field_tag :city %>
+    </div>
+    <div class="state">
+      <%= label_tag :state %><br />
+      <%= text_field_tag :state %>
+    </div>
+    <div class="zipcode">
+      <%= label_tag :zipcode %><br />
+      <%= text_field_tag :zipcode %>
+    </div>
 
-    <div class="checkout-form-actions">
-      <%= submit_tag "checkout", :class => 'btn btn-primary' %>
+    <div class="form-actions">
+      <%= submit_tag 'Checkout', :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
     </div>
-      <%#= render 'form' %>
   </fieldset>
 <% end %>
 

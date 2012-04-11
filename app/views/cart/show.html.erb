@@ -28,12 +28,12 @@
       </tr>
     <% end %> 
     </tbody>
-       <tr>
+       <tr class="order-total">
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td class="order-total">Total:</td>
-        <td id="order-total"><%= number_to_currency(@cart.total) %></td>
+        <td class="total-label">Total:</td>
+        <td id="total-amount"><%= number_to_currency(@cart.total) %></td>
       </tr>
   </table>
 </div>
