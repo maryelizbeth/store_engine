@@ -24,8 +24,12 @@ describe "Store Requests" do
       it "displays all products by default" do
         products.each do |product|
           page.should have_selector "#store_product_#{product.id}_image"
-          find("#store_product_#{product.id}_title").text.should == product.title
-          find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+          within "#store_product_#{product.id}_title" do
+            page.should have_content product.title
+          end
+          within "#store_product_#{product.id}_price" do
+            page.should have_content product.price
+          end
         end
       end
     
@@ -35,8 +39,12 @@ describe "Store Requests" do
         expected_products = [product_2, product_4]
         expected_products.each do |product|
           page.should have_selector "#store_product_#{product.id}_image"
-          find("#store_product_#{product.id}_title").text.should == product.title
-          find("#store_product_#{product.id}_price").text.should == "$#{product.price}"
+          within "#store_product_#{product.id}_title" do
+            page.should have_content product.title
+          end
+          within "#store_product_#{product.id}_price" do
+            page.should have_content product.price
+          end
         end
         unexpected_products = [product_1, product_3]
         unexpected_products.each do |product|
@@ -63,8 +71,12 @@ describe "Store Requests" do
         select pc_2.name, :from => "category_id"
         find("#submit_category_filter").click
         page.should have_selector "#store_product_#{product_4.id}_image"
-        find("#store_product_#{product_4.id}_title").text.should == product_4.title
-        find("#store_product_#{product_4.id}_price").text.should == "$#{product_4.price}"
+        within "#store_product_#{product_4.id}_title" do
+          page.should have_content product_4.title
+        end
+        within "#store_product_#{product_4.id}_price" do
+          page.should have_content product_4.price
+        end
         page.should_not have_selector "#store_product_#{product_2.id}_image"
         page.should_not have_selector "#store_product_#{product_2.id}_title"
         page.should_not have_selector "#store_product_#{product_2.id}_price"

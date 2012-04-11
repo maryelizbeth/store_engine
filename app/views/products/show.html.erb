@@ -17,7 +17,7 @@
 
 <p>
   <b>Photo url</b><br>
-  <span id="product_photo_url"><%= @product.photo_url %>
+  <span id="product_photo_url"><%= @product.has_photo? ? @product.photo_url : "None" %>
 </p>
 
 <p>
