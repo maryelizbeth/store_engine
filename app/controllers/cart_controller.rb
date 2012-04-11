@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_filter :find_cart_from_session
-  skip_before_filter :require_login
+  skip_before_filter :require_login, :except => :checkout
 
   def show
   end
@@ -29,9 +29,28 @@ class CartController < ApplicationController
   end
 
   def checkout
-    @user = current_user if current_user
-    @credit_card = @user.credit_card if (@user && @user.has_existing_credit_card?)
-    @billing_address = @user.billing_address if (@user && @user.has_existing_billing_address?)
-    @shipping_address = @user.shipping_address if (@user && @user.has_existing_shipping_address?)
+  end
+  
+  def convert_cart_to_order
+    @order = Order.new
+    @order.status = :pending
+    @order.special_url = create_special_url
+    @order.user_id = current_user.id
+    @cart.cart_products.each do |cp|
+      op = @order.order_products.build
+      op.update_attributes(:product_id => cp.product.id,
+                          :quantity => cp.quantity,
+                          :price => cp.price)
+    end
+    @order.save
+    @cart.delete
+
+    redirect_to order_path(@order)
+  end
+  
+  private
+  
+  def create_special_url
+    Digest::SHA1.hexdigest("#{Time.now.to_i.to_s + current_user.full_name}")
   end
 end

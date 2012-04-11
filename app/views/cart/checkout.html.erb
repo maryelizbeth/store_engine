@@ -1,72 +1,7 @@
-<%= form_tag process_order_path, :method => :post do %>
-  <fieldset>
-    <legend>/Checkout</legend>
-    <% unless @user %>
-      <div>SHOW ACCOUNT CREATE PARTIAL</div>
-    <% else %>
-      <div>SHOW USER INFO</div>
-    <% end %>
-    <% unless @credit_card %>
-      <div>SHOW CREDIT CARD CREATE PARTIAL</div>
-    <% else %>
-      <div>SHOW CREDIT CARD INFO</div>
-    <% end %>
-    <% unless @billing_address %>
-      <div>SHOW BILLING ADDRESS CREATE PARTIAL</div>
-    <% else %>
-      <div>SHOW BILLING ADDRESS INFO</div>
-    <% end %>
-    <% unless @shipping_address %>
-      <div>SHOW SHIPPING ADDRESS CREATE PARTIAL</div>
-    <% else %>
-      <div>SHOW SHIPPING ADDRESS INFO</div>
-    <% end %>
-    <div class="street-1">
-      <%= label_tag :street_address1 %><br />
-      <%= text_field_tag :street_address1 %>
-    </div>
-    <div class="street-2">
-      <%= label_tag :street_address2 %><br />
-      <%= text_field_tag :street_address2 %>
-    </div>
-    <div class="city">
-      <%= label_tag :city %><br />
-      <%= text_field_tag :city %>
-    </div>
-    <div class="state">
-      <%= label_tag :state %><br />
-      <%= text_field_tag :state %>
-    </div>
-    <div class="zipcode">
-      <%= label_tag :zipcode %><br />
-      <%= text_field_tag :zipcode %>
-    </div>
-
-    <div class="form-actions">
-      <%= submit_tag 'Checkout', :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
-    </div>
-  </fieldset>
-<% end %>
-
-    <!--  <div class="modal" id="LoginModal">
-            <div class="modal-header">
-              <a class="close" data-dismiss="modal">×</a>
-                <h3>Please login in order to checkout.</h3>
-            </div>
-            <div class="modal-body">
-              <%= form_tag user_sessions_path, :method => :post do %>
-                  <div class="field">
-                    <%= label_tag :email_address %><br />
-                    <%= text_field_tag :email_address %>
-                  </div>
-                  <div class="field">
-                    <%= label_tag :password %><br />
-                    <%= password_field_tag :password %>
-                  </div>
-              </div>
-            <div class="modal-footer">
-              <%=submit_tag "Login" %>
-            </div>
-            <%end%> 
-        </div> -->
+<fieldset>
+<legend>/Checkout</legend>
+<div class="form-actions">
+  <%= link_to 'Continue', convert_cart_to_order_path, :class => 'btn btn-primary', :method => :post %>
+  <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
+</div>
+</fieldset>

@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :order_products
 
-  validates :user_id, :presence => true, :uniqueness => true
+  validates :user_id, :presence => true
 
   aasm :column => :status do 
     state :pending, :initial => true
@@ -28,9 +28,5 @@ class Order < ActiveRecord::Base
     event :cancel do 
       transitions :to => :cancelled, :from => [:pending, :cart]
     end 
-  end
-  
-  def create_special_url
-    self.special_url = "/store?order=" + Digest::SHA1.hexdigest("#{Time.now.to_i}")
   end
 end
