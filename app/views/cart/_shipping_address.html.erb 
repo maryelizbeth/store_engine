@@ -1,4 +1,4 @@
- <div class="street-1">
+<div class="street-1">
   <%= label_tag :street_address1 %><br />
   <%= text_field_tag :street_address1 %>
 </div>
