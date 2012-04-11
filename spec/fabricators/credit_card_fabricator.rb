@@ -3,4 +3,5 @@ Fabricator(:credit_card, :class_name => "CreditCard") do
   ccv               "365"
   expiration_month  "01"
   expiration_year   "2018"
+  user              { Fabricate(:user) }
 end

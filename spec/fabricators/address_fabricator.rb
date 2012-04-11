@@ -5,6 +5,7 @@ Fabricator(:billing_address, :class_name => "Address") do
   state       { Faker::Address.us_state_abbr }
   zip_code    { Faker::Address.zip_code }
   address_type        "billing"
+  user        { Fabricate(:user) }
 end
 
 Fabricator(:shipping_address, :class_name => "Address") do
@@ -14,4 +15,5 @@ Fabricator(:shipping_address, :class_name => "Address") do
   state       { Faker::Address.us_state_abbr }
   zip_code    { Faker::Address.zip_code }
   address_type        "shipping"
+  user        { Fabricate(:user) }
 end
