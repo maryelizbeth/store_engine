@@ -29,9 +29,11 @@ class CartController < ApplicationController
   end
 
   def checkout
+    @user = current_user
   end
   
   def convert_cart_to_order
+    raise params.inspect
     @order = Order.new
     @order.status = :pending
     @order.special_url = create_special_url

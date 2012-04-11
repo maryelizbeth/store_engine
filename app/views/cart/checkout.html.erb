@@ -1,7 +1,14 @@
 <fieldset>
 <legend>/Checkout</legend>
+<h2><%= @user.full_name %></h2>
+<h3><%= @user.email_address %></h3>
+<%= form_tag convert_cart_to_order_path, :method => :post do %>
+<%= render :partial => "billing_type" %>
+<%= render :partial => "billing_address" %>
+<%= render :partial => "shipping_address" %>
 <div class="form-actions">
-  <%= link_to 'Continue', convert_cart_to_order_path, :class => 'btn btn-primary', :method => :post %>
+  <%= submit_tag "Continue", :class => 'btn btn-primary' %>
+<% end %>
   <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
 </div>
 </fieldset>

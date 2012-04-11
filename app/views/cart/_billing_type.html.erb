@@ -1,15 +1,17 @@
-<div class="name">
-  <%= label_tag :street_address1 %><br />
-  <%= text_field_tag :street_address1 %>
+<h2>Payment Info</h2>
+<div class="card_number">
+  <%= label_tag "billing_type[card_number]", "Card Number" %><br />
+  <%= text_field_tag "billing_type[card_number]" %>
 </div>
-<div class="cc-number">
-  <%= label_tag :street_address2 %><br />
-  <%= text_field_tag :street_address2 %>
+<div class="expiration_month">
+  <%= label_tag "billing_type[expiration_month]", "Expiration Month" %><br />
+  <%= text_field_tag "billing_type[expiration_month]" %>
 </div>
- <div class="exp-date">
-  <%=select_date (my_date, :prompt => {:month => 'Choose Month', :year => 'Choose Year'})%>
+<div class="expiration_year">
+  <%= label_tag "billing_type[expiration_year]", "Expiration Year" %><br />
+  <%= text_field_tag "billing_type[expiration_year]" %>
 </div>
- <div class="cvv">
-  <%= label_tag :zipcode %><br />
-  <%= password_field_tag :zipcode %>
+<div class="ccv">
+  <%= label_tag "billing_type[ccv]", "CCV" %><br />
+  <%= text_field_tag "billing_type[ccv]" %>
 </div>
