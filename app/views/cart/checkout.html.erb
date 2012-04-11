@@ -3,9 +3,24 @@
 <h2><%= @user.full_name %></h2>
 <h3><%= @user.email_address %></h3>
 <%= form_tag convert_cart_to_order_path, :method => :post do %>
-<%= render :partial => "billing_type" %>
-<%= render :partial => "billing_address" %>
-<%= render :partial => "shipping_address" %>
+<h3>Payment Info</h3>
+  <% unless @user.has_existing_credit_card? %>
+    <%= render :partial => "billing_type" %>
+  <% else %>
+    has credit card <%= @user.credit_card.card_number %>
+  <% end %>
+<h3>Billing Address</h3>
+  <% unless @user.has_existing_billing_address? %>
+    <%= render :partial => "billing_address" %>
+  <% else %>
+    has billing address for <%= @user.billing_address.street_1 %>
+  <% end %>
+<h3>Shipping Address</h3>
+<% unless @user.has_existing_shipping_address? %>
+  <%= render :partial => "shipping_address" %>
+<% else %>
+  has shipping address for <%= @user.shipping_address.street_1 %>
+<% end %>
 <div class="form-actions">
   <%= submit_tag "Continue", :class => 'btn btn-primary' %>
 <% end %>
