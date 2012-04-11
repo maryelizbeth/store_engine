@@ -33,7 +33,37 @@ class CartController < ApplicationController
   end
   
   def convert_cart_to_order
-    raise params.inspect
+    unless current_user.has_existing_credit_card?
+      card_ok = build_credit_card(params[:billing_type])
+    else
+      card_ok = true
+    end
+    unless current_user.has_existing_billing_address?
+      billing_address_ok = build_address(params[:billing_address], "billing")
+    else
+      billing_address_ok = true
+    end
+    unless current_user.has_existing_shipping_address?
+      shipping_address_ok = build_address(params[:shipping_address], "shipping")
+    else 
+      shipping_address_ok = true
+    end
+    if card_ok && billing_address_ok && shipping_address_ok
+      process_order
+      redirect_to order_path(@order)
+    else
+      flash[:alert] = "Order process failed."
+      redirect_to checkout_path
+    end
+  end
+  
+  private
+  
+  def create_special_url
+    Digest::SHA1.hexdigest("#{Time.now.to_i.to_s + current_user.full_name}")
+  end
+  
+  def process_order
     @order = Order.new
     @order.status = :pending
     @order.special_url = create_special_url
@@ -46,13 +76,25 @@ class CartController < ApplicationController
     end
     @order.save
     @cart.delete
-
-    redirect_to order_path(@order)
   end
   
-  private
+  def build_credit_card(billing_info)
+    cc = current_user.credit_cards.build
+    cc.update_attributes(:card_number => billing_info[:card_number],
+                        :expiration_month => billing_info[:expiration_month],
+                        :expiration_year => billing_info[:expiration_year],
+                        :ccv => billing_info[:ccv])
+    cc.save
+  end
   
-  def create_special_url
-    Digest::SHA1.hexdigest("#{Time.now.to_i.to_s + current_user.full_name}")
+  def build_address(address, address_type)
+    ba = current_user.addresses.build
+    ba.update_attributes(:address_type => address_type,
+                        :street_1 => address[:street_address1],
+                        :street_2 => address[:street_address2],
+                        :city => address[:city],
+                        :state => address[:state],
+                        :zip_code => address[:zipcode])
+    ba.save
   end
 end
