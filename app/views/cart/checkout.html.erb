@@ -16,11 +16,11 @@
     has billing address for <%= @user.billing_address.street_1 %>
   <% end %>
 <h3>Shipping Address</h3>
-<% unless @user.has_existing_shipping_address? %>
-  <%= render :partial => "shipping_address" %>
-<% else %>
-  has shipping address for <%= @user.shipping_address.street_1 %>
-<% end %>
+  <% unless @user.has_existing_shipping_address? %>
+    <%= render :partial => "shipping_address" %>
+  <% else %>
+    has shipping address for <%= @user.shipping_address.street_1 %>
+  <% end %>
 <div class="form-actions">
   <%= submit_tag "Continue", :class => 'btn btn-primary' %>
 <% end %>
