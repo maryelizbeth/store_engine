@@ -18,7 +18,9 @@ describe "Cart Requests" do
       end
 
       it "displays the correct order total" do
-        find("#order-total").text.should == "$3.21"
+        within ".order-total" do
+         page.should have_content "$3.21"
+       end
       end
     end
 
