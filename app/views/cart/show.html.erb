@@ -4,7 +4,7 @@
 <div class="keep-shopping">
    <%= link_to 'Keep Shopping', store_index_path, :class => 'btn'  %>
 </div>
-<div id="cart">
+<div id="class">
   <table class="table" width="600">
     <thead>
       <tr>
@@ -34,7 +34,6 @@
         <td>&nbsp;</td>
         <td class="order-total">Total:</td>
         <td id="order-total"><%= number_to_currency(@cart.total) %></td>
-        <!-- >>>>>>> a7252ab5f2fad13d216547f3e38c8388c07e0b80 -->
       </tr>
   </table>
 </div>
