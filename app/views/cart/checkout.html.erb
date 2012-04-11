@@ -21,7 +21,7 @@
   <% else %>
     has shipping address for <%= @user.shipping_address.street_1 %>
   <% end %>
-<div class="form-actions">
+<div class="checkout-form-actions">
   <%= submit_tag "Continue", :class => 'btn btn-primary' %>
 <% end %>
   <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
