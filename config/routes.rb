@@ -5,6 +5,8 @@ resources :user_sessions
 resources :users
 resources :products
 resources :product_categories
+resources :orders
+
 
 get   "cart/show"
 post  "cart/update"
@@ -14,7 +16,7 @@ post  "cart/add_to_cart", :as => :add_to_cart
 
 get   "order/index"
 get   "order/show"
-post  "order/process",    :as => :process_order
+post  "order/process_order",    :as => :process_order
 
 get   "store/index"
 

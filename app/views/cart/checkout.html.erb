@@ -21,11 +21,13 @@
     <% else %>
       <div>SHOW SHIPPING ADDRESS INFO</div>
     <% end %>
+    <%#= render :partial => "shipping_address" %>
+
     <div class="checkout-form-actions">
       <%= submit_tag "checkout", :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
     </div>
-      <% render 'form' %>
+      <%#= render 'form' %>
   </fieldset>
 <% end %>
 

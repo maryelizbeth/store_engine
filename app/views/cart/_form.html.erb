@@ -7,26 +7,4 @@
       <%= link_to 'Cancel', cart_path, :class => 'btn btn-danger' %>
     </div>
   </fieldset>
-
-  <%= form_for "Shipping Info", checkout_path, :method => :post do %>
-   <div class="street-address1">
-    <%= label_tag :street_address1 %><br />
-    <%= text_field_tag :street_address1 %>
-  </div>
-  <div class="street-address2">
-    <%= label_tag :street_address2 %><br />
-    <%= password_field_tag :street_address2 %>
-  </div>
-   <div class="city">
-    <%= label_tag :city %><br />
-    <%= password_field_tag :city %>
-  </div>
-   <div class="state">
-    <%= label_tag :state %><br />
-    <%= password_field_tag :state %>
-  </div>
-   <div class="zipcode">
-    <%= label_tag :zipcode %><br />
-    <%= password_field_tag :zipcode %>
-  </div>
-<% end %>
+  <% end %>
