@@ -13,14 +13,6 @@ class User < ActiveRecord::Base
   def admin?
     is_admin
   end
-
-  def shopping_cart
-    Order.find(:last, :conditions => ["user_id = ? and status = ?", self.id, "cart"])
-  end
-
-  def has_a_shopping_cart?
-    shopping_cart
-  end
   
   def has_existing_credit_card?
     credit_cards.count > 0
