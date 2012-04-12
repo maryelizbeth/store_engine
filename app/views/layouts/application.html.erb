@@ -47,13 +47,15 @@
       </div>
     </div>
   </div>
-  <div>
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
-  </div>
   <div class="wrapper">
     <div class="container-fluid">
-      <div class="span12"><%= yield %></div>
+      <div class="span12">
+         <div class="alerts">
+            <p id="notice"><%= notice %></p>
+            <p id="alert"><%= alert %></p>
+          </div>
+        <%= yield %>
+      </div>
     </div>
   </div>
   <div class="footer">
