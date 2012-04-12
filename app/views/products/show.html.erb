@@ -21,11 +21,6 @@
 </p>
 
 <p>
-  <b>Active?</b><br>
-  <%= display_boolean_icon(@product.active?) %>
-</p>
-
-<p>
   <b>Product categories</b>
   <ul id="product_categories">
   <% @product.product_categories.each do |pc| %>
@@ -36,12 +31,15 @@
 
 <div class="indiv-product-form-actions">
   <div><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
-  <%= form_tag add_to_cart_path, :method => :post do %>
-    <%= hidden_field_tag "product_id", @product.id %>
-    <%= submit_tag "Add to Cart", :class => 'btn' %>
-  <% end %>
-  <% if current_user && current_user.can_two_click_checkout? %>
-    <%= link_to "Two Click Checkout™", two_click_checkout_path(:product_id => @product.id), 
+  <% if @product.active? %>
+    <%= form_tag add_to_cart_path, :method => :post do %>
+      <%= hidden_field_tag "product_id", @product.id %>
+      <%= submit_tag "Add to Cart", :class => 'btn' %>
+    <% end %>
+
+    <% if current_user && current_user.can_two_click_checkout? %>
+      <%= link_to "Two Click Checkout™", two_click_checkout_path(:product_id => @product.id), 
                 :method => :post, :class => 'btn', :confirm => "Place an order for '#{@product.title}'?" %>
+    <% end %>
   <% end %>
 </div>
