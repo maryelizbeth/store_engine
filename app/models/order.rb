@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
     state :paid 
     state :shipped 
     state :returned 
-    state :cancelled 
+    state :canceled 
 
     event :process_payment do 
       transitions :to => :paid, :from => [:pending]
@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
       transitions :to => :returned, :from => [:shipped]
     end 
     event :cancel do 
-      transitions :to => :cancelled, :from => [:pending, :cart]
+      transitions :to => :canceled, :from => [:pending]
     end 
   end
 end
