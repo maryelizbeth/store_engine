@@ -17,12 +17,18 @@
 
 <p>
 	<b>OrderProducts</b>
-	<table>
+	<table class="table-bordered table-striped">
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
 		<% @order.order_products.each do |op| %>
 			<tr>
 				<td><%= link_to op.product.title, product_path(op.product) %></td>
-				<td><%= op.price %></td>
+				<td><%= number_to_currency(op.price) %></td>
 				<td><%= op.quantity %></td>
+				<td><%= number_to_currency(op.total) %></td>
 			</tr>
 		<% end %>
 	</table>
