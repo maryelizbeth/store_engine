@@ -11,6 +11,10 @@ resources :orders do
   end
 end
 
+namespace :admin do
+  resources :orders, :products
+end
+
 
 get   "cart/show"
 post  "cart/update"

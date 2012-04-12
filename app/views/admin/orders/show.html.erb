@@ -1,0 +1,35 @@
+<h1>/Order</h1>
+
+<p>
+  <b>Status</b><br>
+  <%= @order.status %>
+</p>
+
+<p>
+  <b>Special url</b><br>
+  <%= link_to @special_url, @special_url %>
+</p>
+
+<p>
+  <b>User</b><br>
+  <%= @order.user_id %>
+</p>
+
+<p>
+	<b>OrderProducts</b>
+	<table>
+		<% @order.order_products.each do |op| %>
+			<tr>
+				<td><%= op.product.title %></td>
+				<td><%= op.price %></td>
+				<td><%= op.quantity %></td>
+			</tr>
+		<% end %>
+	</table>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', orders_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_order_path(@order), :class => 'btn' %>
+  <%= link_to 'Delete', order_path(@order), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,66 @@
+<%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @product.errors.any? %> 
+    <div id ="error_explanation"> 
+      <div class= "alert alert-error">
+      <h2><%= pluralize(@product.errors.count, "error") %>
+        prohibited this product from being saved:</h2>
+      <ul> 
+        <% @product.errors.full_messages.each do |msg| %> 
+        <li><%= msg %></li> 
+      <%end%>
+      </ul> 
+     </div>
+    </div> 
+  <%end%>
+
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> /Product</legend>
+
+    <div class="control-group">
+      <%= f.label :title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :title, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'text_area' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :price, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :price, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :photo_url, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :photo_url, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :active, :class => 'check_box' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :product_categories, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :product_category_ids, ProductCategory.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', products_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>
