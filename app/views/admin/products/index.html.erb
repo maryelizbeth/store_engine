@@ -1,4 +1,7 @@
 <h1>Products</h1>
+<div class= "new-product-button"> 
+  <%= link_to 'Create New Product', new_admin_product_path, :class => 'btn btn-new-product', :id => "create_product" %>
+</div> 
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,6 +13,7 @@
       <th>Actions</th>
     </tr>
   </thead>
+
     <tbody>
     <% @products.each do |product| %>
       <tr id=<%= dom_id(product) %> >
@@ -26,5 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New', new_admin_product_path, :class => 'btn btn-primary', :id => "create_product" %>
