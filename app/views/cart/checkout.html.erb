@@ -1,29 +1,36 @@
 <fieldset>
-<legend>/Checkout</legend>
-<h2><%= @user.full_name %></h2>
-<h3><%= @user.email_address %></h3>
-<%= form_tag convert_cart_to_order_path, :method => :post do %>
-<h3>Payment Info</h3>
-  <% unless @user.has_existing_credit_card? %>
-    <%= render :partial => "billing_type" %>
-  <% else %>
-    has credit card <%= @user.credit_card.card_number %>
+  <div class="user-acct-info">
+    <h1><%= @user.full_name %></h2>
+    <h4><%= @user.email_address %></h4>
+  </div> 
+  <%= form_tag convert_cart_to_order_path, :method => :post do %>
+  <div class="shipping-address">
+  <h3>Shipping Address</h3>
+    <% unless @user.has_existing_shipping_address? %>
+      <%= render :partial => "shipping_address" %>
+    <% else %>
+      has shipping address for <%= @user.shipping_address.street_1 %>
+    <% end %>
+  </div>
+  <h3>Billing Address</h3>
+    <div class="billing address">
+    <% unless @user.has_existing_billing_address? %>
+      <%= render :partial => "billing_address" %>
+    <% else %>
+      has billing address for <%= @user.billing_address.street_1 %>
+    <% end %>
+  </div>
+  <h3>Payment Info</h3>
+    <div class="payment-info">
+    <% unless @user.has_existing_credit_card? %>
+      <%= render :partial => "billing_type" %>
+    <% else %>
+      has credit card <%= @user.credit_card.card_number %>
+    <% end %>
+    </div>
+  <div class="checkout-form-actions">
+    <%= submit_tag "Continue", :class => 'btn btn-primary' %>
   <% end %>
-<h3>Billing Address</h3>
-  <% unless @user.has_existing_billing_address? %>
-    <%= render :partial => "billing_address" %>
-  <% else %>
-    has billing address for <%= @user.billing_address.street_1 %>
-  <% end %>
-<h3>Shipping Address</h3>
-  <% unless @user.has_existing_shipping_address? %>
-    <%= render :partial => "shipping_address" %>
-  <% else %>
-    has shipping address for <%= @user.shipping_address.street_1 %>
-  <% end %>
-<div class="checkout-form-actions">
-  <%= submit_tag "Continue", :class => 'btn btn-primary' %>
-<% end %>
-  <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
-</div>
+    <%= link_to 'Cancel', cart_show_path, :class => 'btn' %>
+  </div>
 </fieldset>
