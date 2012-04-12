@@ -1,8 +1,5 @@
 class OrdersController < ApplicationController
   
-  def index
-  end
-
   def show
     @order = Order.find(params[:id])
     unless @order.user == current_user || current_user.is_admin?

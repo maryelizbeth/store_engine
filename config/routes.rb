@@ -5,11 +5,8 @@ resources :user_sessions
 resources :users
 resources :products, :only => [:index, :show]
 
-resources :orders do
-  collection do
-    get :lookup
-  end
-end
+get "orders/lookup"
+resources :orders, :only => [:index, :show]
 
 namespace :admin do
   resources :orders, :products, :product_categories, :users

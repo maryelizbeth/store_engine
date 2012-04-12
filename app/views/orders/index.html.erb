@@ -15,12 +15,9 @@
         <td><%= link_to order.status, order_path(order) %></td>
         <td><%= order.created_at %></td>
         <td>
-          <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', order_path(order), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'View', order_path(order), :class => 'btn btn-mini' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New', new_order_path, :class => 'btn btn-primary' %>
