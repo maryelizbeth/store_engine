@@ -1,5 +1,5 @@
 StoreEngine::Application.routes.draw do
-root :to => 'product#index'
+root :to => 'products#index'
 
 resources :user_sessions
 resources :users
