@@ -7,7 +7,8 @@
     <%= label_tag :password %>
     <%= password_field_tag :password %>
   </div>
-  <div class="actions">
+  <div class = "login-form-actions">
+    <%= link_to 'Back to Store', store_index_path, :class => 'btn btn-back' %>
     <%= submit_tag "Login", :class => 'btn' %>
   </div>
 <% end %>
