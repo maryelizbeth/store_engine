@@ -1,7 +1,10 @@
 <!-- <h1>UserSessions#new</h1>
 <p>Find me in app/views/user_sessions/new.html.erb</p> -->
 <h1>Login</h1>
-
+<div class= "back-button">
+<%= link_to 'Back', store_index_path, :class => 'btn btn-back' %>
+</div> 
+<div class= "login-form">
 <%= render 'form' %>
+</div> 
 
-<%= link_to 'Back', user_sessions_path %>
