@@ -40,7 +40,7 @@
     <%= hidden_field_tag "product_id", @product.id %>
     <%= submit_tag "Add to Cart", :class => 'btn' %>
   <% end %>
-  <% if current_user.can_two_click_checkout? %>
+  <% if current_user && current_user.can_two_click_checkout? %>
     <%= link_to "Two Click Checkout™", two_click_checkout_path(:product_id => @product.id), 
                 :method => :post, :class => 'btn', :confirm => "Place an order for '#{@product.title}'?" %>
   <% end %>
