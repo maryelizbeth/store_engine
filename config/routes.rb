@@ -24,8 +24,6 @@ post  "cart/convert_cart_to_order", :as => :convert_cart_to_order
 
 post  "cart/add_to_cart", :as => :add_to_cart
 
-get   "store/index"
-
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout
 end
