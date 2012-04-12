@@ -18,7 +18,7 @@ describe "Store Requests" do
     
     context "for active products" do
       before(:each) do
-        visit store_index_path
+        visit root_path
       end
     
       it "displays all products by default" do
@@ -58,7 +58,7 @@ describe "Store Requests" do
     context "for inactive products" do
       before(:each) do
         product_2.update_attribute(:active, false)
-        visit store_index_path
+        visit root_path
       end
       
       it "does not display inactive products when not filtering by category" do
