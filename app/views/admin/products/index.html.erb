@@ -12,6 +12,7 @@
       <th>Active?</th>
       <th>Photo?</th>
       <th>Actions</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
 
@@ -25,6 +26,13 @@
         <td class="has_photo"><%= display_boolean_icon(product.has_photo?) %></td>
         <td>
           <%= link_to 'Edit', edit_admin_product_path(product), :class => 'btn btn-mini' %>
+          <% if product.active? %>
+            <%= link_to 'Deactivate', admin_product_path(product, "product[active]" => false), :method => :put, :class => 'btn btn-mini' %>
+          <% else %>
+            <%= link_to 'Activate', admin_product_path(product, "product[active]" => true), :method => :put, :class => 'btn btn-mini' %>
+          <% end %>
+        </td>
+        <td>
           <%= link_to 'Destroy', admin_product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
