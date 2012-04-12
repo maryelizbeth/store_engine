@@ -20,9 +20,11 @@ get   "cart/show"
 post  "cart/update"
 post  "cart/remove_product", :as => :cart_remove_product
 get   "cart/checkout",       :as => :checkout
+post  "cart/add_to_cart", :as => :add_to_cart
+post  "cart/two_click_checkout", :as => :two_click_checkout
 post  "cart/convert_cart_to_order", :as => :convert_cart_to_order
 
-post  "cart/add_to_cart", :as => :add_to_cart
+
 get   "contact_us", :to => "pages#contact_us"
 
 match 'login' => 'user_sessions#new', :as => :login

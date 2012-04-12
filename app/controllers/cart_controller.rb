@@ -4,9 +4,15 @@ class CartController < ApplicationController
 
   def show
   end
+
+  def two_click_checkout
+    @cart.add_product_to_cart(params[:product_id])
+    process_order
+    redirect_to order_path(@order)
+  end
   
   def add_to_cart
-    @cart.add_product_to_cart(params[:product_id], params[:quantity])
+    @cart.add_product_to_cart(params[:product_id])
     session[:cart_id] = @cart.id
     redirect_to cart_show_path
   end

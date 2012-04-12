@@ -1,17 +1,16 @@
 <table class = "prod-attributes">
     <tr>
-      <td id="store_product_<%= product.id %>_title"><%= product.title %>
+      <td id="store_product_<%= product.id %>_title"><%= link_to product.title, product_path(product) %>
       </td>
     </tr>
     <tr>
-    <td id="store_product_<%= product.id %>_price">$<%= product.display_price %>
+    <td id="store_product_<%= product.id %>_price"><%= number_to_currency(product.display_price) %>
     </td>
     </tr>
     <tr>
       <td id="store_product_<%= product.id %>_add_to_cart">
         <%= form_tag add_to_cart_path, :method => :post do %>
           <%= hidden_field_tag "product_id", product.id %>
-          <%= hidden_field_tag "quantity", 1 %>
           <div class="add_to_cart">
           <%= submit_tag "Add to Cart", :class => 'btn' %>
           </div>
