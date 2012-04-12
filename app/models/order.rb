@@ -29,4 +29,14 @@ class Order < ActiveRecord::Base
       transitions :to => :canceled, :from => [:pending]
     end 
   end
+  
+  def transition(method_name)
+    case method_name
+      when "process-payment"  then self.process_payment
+      when "ship"             then self.ship
+      when "return"           then self.return
+      when "cancel"           then self.cancel
+    end
+    self.save
+  end
 end
