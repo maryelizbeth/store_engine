@@ -1,10 +1,10 @@
 <table class = "prod-attributes">
     <tr>
-      <td id="store_product_<%= product.id %>_title"><%= product.title %>
+      <td id="store_product_<%= product.id %>_title"><%= link_to product.title, product_path(product) %>
       </td>
     </tr>
     <tr>
-    <td id="store_product_<%= product.id %>_price">$<%= product.display_price %>
+    <td id="store_product_<%= product.id %>_price"><%= number_to_currency(product.display_price) %>
     </td>
     </tr>
     <tr>

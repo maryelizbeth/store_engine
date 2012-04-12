@@ -13,7 +13,7 @@ Filter by Category:
       <table class = "indiv-product">
         <tr>
           <td colspan=2>
-              <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
+              <%= link_to (image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image"), product_path(product) %>
           </td>
           <td>
             <%= render :partial => "product_details", :locals => { :product => product } %>
