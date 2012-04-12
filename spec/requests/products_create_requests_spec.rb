@@ -27,7 +27,7 @@ describe "Product create" do
 
         before(:each) do
           fill_in "Photo url", :with => url
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
@@ -74,7 +74,7 @@ describe "Product create" do
       context "with no photo url entered" do
         before(:each) do
           fill_in "Photo url", :with => ""
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
@@ -99,7 +99,7 @@ describe "Product create" do
       context "when selecting categories" do
         before(:each) do
           select(product_category_2.name, :from => "product_product_category_ids")
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
@@ -140,7 +140,7 @@ describe "Product create" do
       context "after not entering a title" do
         before(:each) do
           fill_in "Title", :with => ""
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
@@ -159,7 +159,7 @@ describe "Product create" do
       context "after not entering a description" do
         before(:each) do
           fill_in "Description", :with => ""
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
@@ -178,7 +178,7 @@ describe "Product create" do
       context "after not entering a price" do
         before(:each) do
           fill_in "Price", :with => ""
-          within ".form-actions" do
+          within ".product-form-actions" do
             click_link_or_button "Create Product"
           end
         end
