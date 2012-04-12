@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     addresses.find_by_address_type("shipping")
   end
   
+  def can_two_click_checkout?
+    has_existing_credit_card? && has_existing_billing_address? && has_existing_shipping_address?
+  end
+  
   def credit_card
     credit_cards.first if credit_cards
   end

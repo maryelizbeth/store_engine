@@ -15,9 +15,9 @@ class Cart < ActiveRecord::Base
     end 
   end
 
-  def add_product_to_cart(product_id, quantity)
+  def add_product_to_cart(product_id)
     product = Product.find_by_id(product_id)
-    add_product(product, quantity)
+    add_product(product, 1)
   end
 
   def remove_product(cp_id)
