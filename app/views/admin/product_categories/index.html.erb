@@ -1,4 +1,4 @@
-<h1>Product Categorys</h1>
+<h1>Product Categories</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,12 +15,12 @@
         <td id="<%= dom_id(product_category) %>_name"><%= link_to product_category.name, product_category_path(product_category) %></td>
         <td id="<%= dom_id(product_category) %>_count"><%= product_category.product_count %></td>
         <td>
-          <%= link_to 'Edit', edit_product_category_path(product_category), :class => 'btn btn-mini', :id => "#{dom_id(product_category)}_edit" %>
-          <%= link_to 'Destroy', product_category_path(product_category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "#{dom_id(product_category)}_destroy" %>
+          <%= link_to 'Edit', edit_admin_product_category_path(product_category), :class => 'btn btn-mini', :id => "#{dom_id(product_category)}_edit" %>
+          <%= link_to 'Destroy', admin_product_category_path(product_category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "#{dom_id(product_category)}_destroy" %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_product_category_path, :class => 'btn btn-primary', :id => "create_product_category"%>
+<%= link_to 'New', new_admin_product_category_path, :class => 'btn btn-primary', :id => "create_product_category"%>

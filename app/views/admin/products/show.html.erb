@@ -35,7 +35,7 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to 'View All Products', products_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_product_path(@product), :class => 'btn' %>
-  <%= link_to 'Delete', product_path(@product), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'View All Products', admin_products_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_product_path(@product), :class => 'btn' %>
+  <%= link_to 'Delete', admin_product_path(@product), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>

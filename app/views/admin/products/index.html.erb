@@ -14,17 +14,17 @@
     <% @products.each do |product| %>
       <tr id=<%= dom_id(product) %> >
         <td class="id"><%= product.id %></td>
-        <td class="title"><%= link_to product.title, product_path(product) %></td>
+        <td class="title"><%= link_to product.title, admin_product_path(product) %></td>
         <td class="price"><%= number_to_currency(product.price) %></td>
         <td class="is_active"><%= display_boolean_icon(product.active?) %></td>
         <td class="has_photo"><%= display_boolean_icon(product.has_photo?) %></td>
         <td>
-          <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Edit', edit_admin_product_path(product), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', admin_product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_product_path, :class => 'btn btn-primary', :id => "create_product" %>
+<%= link_to 'New', new_admin_product_path, :class => 'btn btn-primary', :id => "create_product" %>
