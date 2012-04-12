@@ -12,7 +12,7 @@
       </ul>
     </div>
   <% end %>
-<div>
+<div class="sign-up-form">
   <%= f.label :full_name %>
   <%= f.text_field :full_name %>
   <%= f.label :display_name %>
@@ -23,6 +23,8 @@
   <%= f.password_field :password %>
   <%= f.label :password_confirmation %>
   <%= f.password_field  :password_confirmation %>
-  <%= f.submit %>
+  <div class = "sign-up-form-actions">
+    <%= f.submit :class => 'btn' %>
+  </div> 
 </div>
 <% end %>
