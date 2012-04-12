@@ -23,7 +23,7 @@ get   "cart/checkout",       :as => :checkout
 post  "cart/convert_cart_to_order", :as => :convert_cart_to_order
 
 post  "cart/add_to_cart", :as => :add_to_cart
-# get   "contact_us"
+get   "contact_us", :to => "pages#contact_us"
 
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout
