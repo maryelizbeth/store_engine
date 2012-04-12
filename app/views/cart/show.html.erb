@@ -18,7 +18,7 @@
     <tbody>
     <% @cart.cart_products.each do |cp| %>
       <tr id="cart_item_<%= cp.product.id %>">
-        <td><!--<%=image_tag cp.product.thumbnail%>--><%= cp.product.title %></td>
+        <td><!--<%=image_tag cp.product.thumbnail%>--><%= link_to cp.product.title, product_path(cp.product) %></td>
         <td>
           <%= text_field_tag "cp_id_quant[#{cp.id}]", cp.quantity, :size => 4, :class => "quantity" %>
         </td> 
