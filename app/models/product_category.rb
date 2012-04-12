@@ -7,4 +7,8 @@ class ProductCategory < ActiveRecord::Base
   def active_products
     products.find(:all, :conditions => ["active = ?", true])
   end
+  
+  def product_count
+    products.count
+  end
 end

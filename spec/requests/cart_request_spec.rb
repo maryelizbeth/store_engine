@@ -9,18 +9,33 @@ describe "Cart Requests" do
         visit root_path
         click_link_or_button "Add to Cart"
       end
+      
+      context "if the product is not yet in the cart" do
+        it "can add one product to the cart" do
+          within "#cart_item_#{product_1.id}" do
+            find(".quantity").value.should == "1"
+            find(".cart_item_total").text.should == "$3.21"
+          end
+        end
 
-      it "can add one product to the cart" do
-        within "#cart_item_#{product_1.id}" do
-          find(".quantity").value.should == "1"
-          find(".cart_item_total").text.should == "$3.21"
+        it "displays the correct order total" do
+          within ".order-total" do
+           page.should have_content "$3.21"
+         end
         end
       end
-
-      it "displays the correct order total" do
-        within ".order-total" do
-         page.should have_content "$3.21"
-       end
+      
+      context "if the product is already in the cart" do
+        before(:each) do
+          visit root_path
+          click_link_or_button "Add to Cart"
+        end
+        
+        it "increments the quantity of the product to the cart" do
+          within "#cart_item_#{product_1.id}" do
+            find(".quantity").value.should == "2"
+          end
+        end
       end
     end
 
