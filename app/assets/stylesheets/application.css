@@ -12,9 +12,7 @@
  *= require_tree .
 */
 .body{ 
-
   padding-top: 50px;
-
 }
 
 .container {
@@ -40,3 +38,19 @@ list-style-type: none;
 padding-right: 20px;
 }
 
+#contact-info{ 
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.email-phone{
+  padding-bottom: 25px;
+}
+
+.physical-address{ 
+  padding-top: 25px;
+}
+
+.map-location{ 
+
+}
