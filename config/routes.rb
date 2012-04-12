@@ -1,10 +1,10 @@
 StoreEngine::Application.routes.draw do
-root :to => 'store#index'
+root :to => 'product#index'
 
 resources :user_sessions
 resources :users
-resources :products
-resources :product_categories
+resources :products, :only => [:index, :show]
+
 resources :orders do
   collection do
     get :lookup
@@ -12,7 +12,7 @@ resources :orders do
 end
 
 namespace :admin do
-  resources :orders, :products
+  resources :orders, :products, :product_categories, :users
 end
 
 
