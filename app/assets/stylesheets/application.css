@@ -24,6 +24,8 @@ width: 100%;
 
   border-top: 2px solid black;
   margin-top: inherit;
+  margin-bottom: 25px;
+  height: 100px;
 }
 
 .nav{ 
