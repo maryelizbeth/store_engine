@@ -14,8 +14,7 @@
   <%end%>
 
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> /Product</legend>
-
+    <div class="new-product-form">
     <div class="control-group">
       <%= f.label :title, :class => 'control-label' %>
       <div class="controls">
@@ -58,14 +57,10 @@
       </div>
     </div>
 
-    <div class="form-actions">
-<<<<<<< HEAD
+    <div class="product-form-actions">
       <%= f.submit nil, :class => 'btn btn-new-product' %>
-      <%= link_to 'Cancel', products_path, :class => 'btn' %>
-=======
-      <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', admin_products_path, :class => 'btn' %>
->>>>>>> namespace_admin
     </div>
+  <div> 
   </fieldset>
 <% end %>
