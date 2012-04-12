@@ -1,14 +1,18 @@
 StoreEngine::Application.routes.draw do
-root :to => 'store#index'
+root :to => 'products#index'
 
 resources :user_sessions
 resources :users
-resources :products
-resources :product_categories
-resources :orders do
-  collection do
-    get :lookup
-  end
+resources :products, :only => [:index, :show]
+
+get "orders/lookup"
+resources :orders, :only => [:index, :show]
+
+namespace :admin do
+  resources :orders, :only => [:index, :show, :update]
+  resources :products
+  resources :product_categories
+  resources :users, :only => [:index, :show]
 end
 
 
@@ -19,9 +23,7 @@ get   "cart/checkout",       :as => :checkout
 post  "cart/convert_cart_to_order", :as => :convert_cart_to_order
 
 post  "cart/add_to_cart", :as => :add_to_cart
-
-get   "store/index"
-get   "store/contact_us"
+# get   "contact_us"
 
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout

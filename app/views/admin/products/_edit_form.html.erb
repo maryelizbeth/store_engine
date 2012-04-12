@@ -1,4 +1,4 @@
-<%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @product, :url => admin_product_path(@product), :method => :put, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @product.errors.any? %> 
     <div id ="error_explanation"> 
       <div class= "alert alert-error">
@@ -59,8 +59,8 @@
     </div>
 
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-new-product' %>
-      <%= link_to 'Cancel', products_path, :class => 'btn' %>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', admin_products_path, :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

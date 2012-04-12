@@ -1,0 +1,26 @@
+<h1>Product Categories</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th># Products</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @product_categories.each do |product_category| %>
+      <tr id="<%= dom_id(product_category) %>">
+        <td id="<%= dom_id(product_category) %>_id"><%= product_category.id %></td>
+        <td id="<%= dom_id(product_category) %>_name"><%= link_to product_category.name, admin_product_category_path(product_category) %></td>
+        <td id="<%= dom_id(product_category) %>_count"><%= product_category.product_count %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_product_category_path(product_category), :class => 'btn btn-mini', :id => "#{dom_id(product_category)}_edit" %>
+          <%= link_to 'Destroy', admin_product_category_path(product_category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :id => "#{dom_id(product_category)}_destroy" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_admin_product_category_path, :class => 'btn btn-primary', :id => "create_product_category"%>

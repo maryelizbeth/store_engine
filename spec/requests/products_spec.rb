@@ -14,7 +14,7 @@ describe "Products" do
       let!(:products)   { [product_1, product_2] }
 
       context "#index" do
-        before(:each) { visit products_path }
+        before(:each) { visit admin_products_path }
       
         it "displays the id of each existing product" do
           products.each do |product|
@@ -44,21 +44,21 @@ describe "Products" do
           within "#product_#{product_2.id}" do
             click_link "Edit"
           end
-          current_path.should == edit_product_path(product_2)
+          current_path.should == edit_admin_product_path(product_2)
         end
         
         it "destroys a product after clicking delete" do
           within "#product_#{product_1.id}" do
             click_link "Destroy"
           end
-          current_path.should == products_path
+          current_path.should == admin_products_path
           page.should have_content "The product has been deleted."
           page.should_not have_selector "#product_#{product_1.id}"
         end
         
         it "redirects to the product's new page after clicking new" do
           find("#create_product").click
-          current_path.should == new_product_path
+          current_path.should == new_admin_product_path
         end
       end
 
@@ -68,7 +68,7 @@ describe "Products" do
         
         before(:each) do
           product_1.product_categories << product_category_2
-          visit edit_product_path(product_1)
+          visit edit_admin_product_path(product_1)
         end
 
         context "using valid attributes" do
@@ -76,7 +76,7 @@ describe "Products" do
             title = Faker::Lorem.words(1).first
             fill_in "Title", :with => title
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Product was successfully updated."
             within "#product_title" do
               page.should have_content title
@@ -87,7 +87,7 @@ describe "Products" do
             description = Faker::Lorem.paragraphs(1).first
             fill_in "Description", :with => description
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Product was successfully updated."
             within "#product_description" do
               page.should have_content description
@@ -98,7 +98,7 @@ describe "Products" do
             price = "1.43"
             fill_in "Price", :with => price
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Product was successfully updated."
             within "#product_price" do
               page.should have_content price
@@ -109,7 +109,7 @@ describe "Products" do
             url = "http://a1.ak.lscdn.net/deals/images/refresh/branding/livingsocial-logo.png"
             fill_in "Photo url", :with => url
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Product was successfully updated."
             within "#product_photo_url" do
               page.should have_content url
@@ -119,7 +119,7 @@ describe "Products" do
           it "modifies the active value on save" do
             uncheck "Active"
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Product was successfully updated."
             page.should have_selector ".icon-remove"
           end
@@ -149,21 +149,21 @@ describe "Products" do
           it "returns an error when attempting to save without a title" do
             fill_in "Title", :with => ""
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Title can't be blank"
           end
           
           it "returns an error when attempting to save without a description" do
             fill_in "Description", :with => ""
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Description can't be blank"
           end
 
           it "returns an error when attempting to save without a price" do
             fill_in "Price", :with => ""
             click_link_or_button "Update Product"
-            current_path.should == product_path(product_1)
+            current_path.should == admin_product_path(product_1)
             page.should have_content "Price can't be blank"
           end
         end

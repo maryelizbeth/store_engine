@@ -8,7 +8,7 @@ describe "Product create" do
     
     before(:each) do
       login_user_post(admin_user.email_address)
-      visit new_product_path
+      visit new_admin_product_path
     end
   
     context "using valid attributes" do
@@ -34,7 +34,7 @@ describe "Product create" do
 
         context "a new product is created" do
           it "takes me to the show page for the newly created product" do
-            current_path.should == product_path(Product.all.last)
+            current_path.should == admin_product_path(Product.all.last)
           end
 
           it "informs me that the product creation was a success" do
@@ -81,7 +81,7 @@ describe "Product create" do
         
         context "a new product is created" do
           it "takes me to the show page for the newly created product" do
-            current_path.should == product_path(Product.all.last)
+            current_path.should == admin_product_path(Product.all.last)
           end
 
           it "informs me that the product creation was a success" do
@@ -106,7 +106,7 @@ describe "Product create" do
         
         context "a new product is created" do
           it "takes me to the show page for the newly created product" do
-            current_path.should == product_path(Product.all.last)
+            current_path.should == admin_product_path(Product.all.last)
           end
 
           it "informs me that the product creation was a success" do
@@ -147,7 +147,7 @@ describe "Product create" do
 
         context "a new product is not created" do
           it "takes me back to the create product page" do
-            current_path.should == products_path()
+            current_path.should == admin_products_path()
           end
 
           it "informs me that there was a problem with title" do
@@ -166,7 +166,7 @@ describe "Product create" do
 
         context "a new product is not created" do
           it "takes me back to the create product page" do
-            current_path.should == products_path()
+            current_path.should == admin_products_path()
           end
 
           it "informs me that there was a problem with description" do
@@ -185,7 +185,7 @@ describe "Product create" do
 
         context "a new product is not created" do
           it "takes me back to the create product page" do
-            current_path.should == products_path()
+            current_path.should == admin_products_path()
           end
 
           it "informs me that there was a problem with price" do

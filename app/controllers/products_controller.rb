@@ -1,15 +1,15 @@
 class ProductsController < ApplicationController
-  before_filter :require_admin
-  
-  # GET /products
-  # GET /products.json
-  def index
-    @products = Product.all
+  skip_before_filter :require_login
+  before_filter :find_cart_from_session
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @products }
-    end
+  def index
+    if params[:category_id] && !params[:category_id].empty?
+      @products = ProductCategory.find(params[:category_id]).active_products
+      @selected_category_id = params[:category_id]
+    else
+      @products = all_active_products
+    end  
+    @product_categories = ProductCategory.all
   end
 
   # GET /products/1
@@ -22,65 +22,10 @@ class ProductsController < ApplicationController
       format.json { render json: @product }
     end
   end
-
-  # GET /products/new
-  # GET /products/new.json
-  def new
-    @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @product }
-    end
-  end
-
-  # GET /products/1/edit
-  def edit
-    @product = Product.find(params[:id])
-  end
-
-  # POST /products
-  # POST /products.json
-  def create
-    @product = Product.new(params[:product])
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /products/1
-  # PUT /products/1.json
-  def update
-    @product = Product.find(params[:id])
-
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /products/1
-  # DELETE /products/1.json
-  def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-    flash[:notice] = "The product has been deleted."
-    
-    respond_to do |format|
-      format.html { redirect_to products_url }
-      format.json { head :no_content }
-    end
+  
+  private
+  
+  def all_active_products
+    Product.find(:all, :conditions => ["active = ?", true])
   end
 end

@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
   
   def index
+    @orders = current_user.orders
   end
-
+  
   def show
-    @order = Order.find(params[:id])
-    unless @order.user == current_user || current_user.is_admin?
+    @order = current_user.orders.find(params[:id])
+    unless @order || current_user.is_admin?
       flash[:alert] = "Could not find order"
       redirect_to root_path
     else

@@ -1,34 +1,36 @@
-<h1>Products</h1>
-
-<div class= "new-product-button">
-<%=link_to 'Create New Product', new_product_path, :class => 'btn btn-new-product', :id => "create_product" %>
+<%= form_tag root_path, :method => :get  do %>
+<div class="filter">
+Filter by Category:
+  <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
+  <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_category_filter"%>
+  <% end %>
 </div> 
-<div class= "products-table">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Active?</th>
-      <th>Photo?</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-    <tbody>
-    <% @products.each do |product| %>
-      <tr id=<%= dom_id(product) %> >
-        <td class="id"><%= product.id %></td>
-        <td class="title"><%= link_to product.title, product_path(product) %></td>
-        <td class="price"><%= number_to_currency(product.price) %></td>
-        <td class="is_active"><%= display_boolean_icon(product.active?) %></td>
-        <td class="has_photo"><%= display_boolean_icon(product.has_photo?) %></td>
-        <td>
-          <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+
+  <table class = "product">
+    <tr id="product">
+      <td>
+        <% @products.each do |product| %>
+      <table class = "indiv-product">
+        <tr>
+          <td colspan=2>
+              <%= image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image" %>
+          </td>
+          <td>
+            <%= render :partial => "product_details", :locals => { :product => product } %>
+          </td>
+        </tr>
+      </table>
+  <% end %>
+</td>
+</tr>
 </table>
+<div>
+  <ul class="pager">
+    <li><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">&raquo;</a></li>
+  </ul>
 </div>

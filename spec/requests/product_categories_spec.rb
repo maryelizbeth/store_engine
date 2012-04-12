@@ -15,7 +15,7 @@ describe "ProductCategories" do
         let!(:product_1)            { Fabricate(:product, :product_categories => [product_category_1]) }
       
         before(:each) do
-          visit product_categories_path
+          visit admin_product_categories_path
         end
 
         it "displays each product category's id" do
@@ -44,7 +44,7 @@ describe "ProductCategories" do
         
         it "redirects to the product category's edit page when clicking edit" do
           find("#product_category_#{product_category_1.id}_edit").click
-          current_path.should == edit_product_category_path(product_category_1)
+          current_path.should == edit_admin_product_category_path(product_category_1)
         end
         
         it "deletes the product category when clicking delete" do
@@ -56,7 +56,7 @@ describe "ProductCategories" do
         
         it "redirects to the new product category page when clicking the new button" do
           find("#create_product_category").click
-          current_path.should == new_product_category_path
+          current_path.should == new_admin_product_category_path
         end
       end
     end
