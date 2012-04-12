@@ -22,6 +22,7 @@ post  "cart/add_to_cart", :as => :add_to_cart
 
 get   "store/index"
 get   "store/contact_us"
+
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout
 end
