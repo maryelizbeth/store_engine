@@ -44,26 +44,29 @@ td.total-label{
  display: inline;
 }
 
+.shipping-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  width: 250px;
+  float: left;
+} 
+.billing-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  width: 250px;
+  float: right;
+}
+
 .payment-info{ 
   margin: 10px; 
   margin-left: 25px;
   width: 250px;
 }
 
-.billing-address{ 
-  margin: 10px;
-  margin-left: 25px;
-  float: right;
-  width: 250px;
+#shipping_address_form{ 
+
 }
 
-.shipping-address{ 
-  margin: 10px;
-  margin-left: 25px;
-  width: 250px;
-} 
-
-
-#shipping_address_form{ 
+#billing_address_form{ 
 
 }
