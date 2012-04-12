@@ -1,13 +1,15 @@
 class ProductsController < ApplicationController
-  # GET /products
-  # GET /products.json
-  def index
-    @products = Product.all
+  skip_before_filter :require_login
+  before_filter :find_cart_from_session
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @products }
-    end
+  def index
+    if params[:category_id] && !params[:category_id].empty?
+      @products = ProductCategory.find(params[:category_id]).active_products
+      @selected_category_id = params[:category_id]
+    else
+      @products = all_active_products
+    end  
+    @product_categories = ProductCategory.all
   end
 
   # GET /products/1
@@ -19,5 +21,11 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @product }
     end
+  end
+  
+  private
+  
+  def all_active_products
+    Product.find(:all, :conditions => ["active = ?", true])
   end
 end
