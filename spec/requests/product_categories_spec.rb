@@ -53,6 +53,11 @@ describe "ProductCategories" do
           end
           page.should_not have_selector "#product_category_#{product_category_1.id}"
         end
+        
+        it "redirects to the new product category page when clicking the new button" do
+          find("#create_product_category").click
+          current_path.should == new_product_category_path
+        end
       end
     end
   end
