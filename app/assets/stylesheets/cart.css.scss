@@ -37,10 +37,33 @@ td.total-label{
   margin-bottom: 10px;
 }
 .checkout-form-actions{ 
-  float: right;
   vertical-align: middle;
 }
 
+.addresses{ 
+ display: inline;
+}
+
 .payment-info{ 
- 
+  margin: 10px; 
+  margin-left: 25px;
+  width: 250px;
+}
+
+.billing-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  float: right;
+  width: 250px;
+}
+
+.shipping-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  width: 250px;
+} 
+
+
+#shipping_address_form{ 
+
 }
