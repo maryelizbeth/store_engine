@@ -4,6 +4,7 @@
     <h4><%= @user.email_address %></h4>
   </div> 
   <%= form_tag convert_cart_to_order_path, :method => :post do %>
+<div class="addresses">
   <div class="shipping-address">
   <h3>Shipping Address</h3>
     <% unless @user.has_existing_shipping_address? %>
@@ -20,6 +21,7 @@
       Bill to: <%= @user.billing_address.street_1 %>
     <% end %>
   </div>
+</div> 
   <div class="payment-info">
   <h3>Payment Info</h3>
     <% unless @user.has_existing_credit_card? %>
