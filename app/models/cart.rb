@@ -11,8 +11,9 @@ class Cart < ActiveRecord::Base
     if cp
       cp.update_attribute(:quantity, cp.quantity + quantity.to_i)
     else
-      CartProduct.create(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
-    end 
+      cp = CartProduct.create(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
+    end
+    cp.product.title
   end
 
   def add_product_to_cart(product_id)
@@ -25,6 +26,10 @@ class Cart < ActiveRecord::Base
     product_title = cart_product.product.title
     cart_product.delete
     product_title
+  end
+
+  def quantity
+    cart_products.sum { |cp| cp.quantity }
   end
 
   def update_cart_quantities(line_items)

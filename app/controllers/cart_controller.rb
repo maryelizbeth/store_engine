@@ -12,9 +12,12 @@ class CartController < ApplicationController
   end
   
   def add_to_cart
-    @cart.add_product_to_cart(params[:product_id])
+    @product_title = @cart.add_product_to_cart(params[:product_id])
     session[:cart_id] = @cart.id
-    redirect_to cart_show_path
+    respond_to do |format|
+      format.html   { redirect_to cart_show_path, notice: "\'#{@product_title}\' was added to your cart." }
+      format.js
+    end
   end
 
   def update
