@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe "Ajax add to cart" do
+  context "before adding items to a cart" do
+    before(:each) do
+      visit root_path
+    end
+    
+    it "displays an item count of 0 in my cart indicator" do
+      within "#cart_info" do
+        page.should have_content "(0 |"
+      end
+    end
+    
+    it "displays a cart total of $0 in my cart indicator" do
+      within "#cart_info" do
+        page.should have_content "$0.00"
+      end
+    end
+  end
+  
   context "when adding items to a cart", :js => true do
     let!(:product_1)    { Fabricate(:product) }
     
