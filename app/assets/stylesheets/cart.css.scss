@@ -23,16 +23,47 @@ th, tr, td{
 /*img.cart_item_image { 
   height: 50px; width: 50px; 
 }*/
-tr.order-total :hover{ 
-  
-}
 
 td.total-label{ 
   float: right;
   border-top: 0px;
 }
 
+.user-acct-info{ 
+  padding-top: 25px;
+  margin-bottom: 10px;
+}
 .checkout-form-actions{ 
-  float: right;
   vertical-align: middle;
+}
+
+.addresses{ 
+ display: inline;
+}
+
+.shipping-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  width: 250px;
+  float: left;
+} 
+.billing-address{ 
+  margin: 10px;
+  margin-left: 25px;
+  width: 250px;
+  float: right;
+}
+
+.payment-info{ 
+  margin: 10px; 
+  margin-left: 25px;
+  width: 250px;
+}
+
+#shipping_address_form{ 
+
+}
+
+#billing_address_form{ 
+
 }
