@@ -1,5 +1,4 @@
 class CartController < ApplicationController
-  before_filter :find_cart_from_session
   skip_before_filter :require_login, :except => :checkout
 
   def show

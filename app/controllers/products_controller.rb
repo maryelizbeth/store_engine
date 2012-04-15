@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   skip_before_filter :require_login
-  before_filter :find_cart_from_session
 
   def index
     if params[:category_id] && !params[:category_id].empty?
