@@ -148,4 +148,47 @@ describe User do
       end
     end
   end
+  
+  context "#can_two_click_checkout?" do
+    let!(:user_1)             { Fabricate(:user) }
+    let!(:shipping_address_1) { Fabricate(:shipping_address, :user => user_1) }
+    let!(:billing_address_1)  { Fabricate(:billing_address, :user => user_1) }
+    let!(:credit_card_1)      { Fabricate(:credit_card, :user => user_1) }
+    
+    context "the user has a credit card, billing address, and shipping address" do
+      it "returns true" do
+        user_1.can_two_click_checkout?.should be_true
+      end
+    end
+    
+    context "the user has no credit card" do
+      before(:each) do
+        user_1.credit_card.destroy
+      end
+      
+      it "returns false" do
+        user_1.can_two_click_checkout?.should be_false
+      end
+    end
+    
+    context "the user has no billing address" do
+      before(:each) do
+        user_1.billing_address.destroy
+      end
+      
+      it "returns false" do
+        user_1.can_two_click_checkout?.should be_false
+      end
+    end
+    
+    context "the user has no shipping address" do
+      before(:each) do
+        user_1.shipping_address.destroy
+      end
+      
+      it "returns false" do
+        user_1.can_two_click_checkout?.should be_false
+      end
+    end
+  end
 end
