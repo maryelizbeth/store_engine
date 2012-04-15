@@ -1,33 +1,29 @@
 <h1>/Product</h1>
 
-<p>
-  <b>Title</b><br>
-  <span id="product_title"><%= @product.title %></span>
-</p>
-
-<p>
-  <b>Description</b><br>
-  <span id="product_description"><%= @product.description %>
-</p>
-
-<p>
-  <b>Price</b><br>
-  <span id="product_price"><%= number_to_currency(@product.price) %>
-</p>
-
-<p>
-  <b>Photo url</b><br>
-  <span id="product_photo_url"><%= @product.has_photo? ? @product.photo_url : "None" %>
-</p>
-
-<p>
-  <b>Product categories</b>
-  <ul id="product_categories">
-  <% @product.product_categories.each do |pc| %>
-    <li><%= pc.name %></li>
-  <% end %>
-  </ul>
-</p>
+<table>
+  <tr>
+    <td rowspan=4>
+        <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>
+    </td>
+    <td id="product_title"><%= @product.title %></td>
+  </tr>
+  <tr>
+    <td id="product_price"><%= number_to_currency(@product.price) %></td>
+  </tr>
+  <tr>
+    <td id="product_description"><%= @product.description %></td>
+  </tr>
+  <tr>
+    <td>
+      <b>Product categories</b>
+	  <ul id="product_categories">
+	  <% @product.product_categories.each do |pc| %>
+	    <li><%= pc.name %></li>
+	  <% end %>
+	  </ul>
+    </td>
+  </tr>
+</table>
 
 <div class="indiv-product-form-actions">
   <div><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
