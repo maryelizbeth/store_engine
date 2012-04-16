@@ -58,6 +58,7 @@ class CartController < ApplicationController
     end
     if card_ok && billing_address_ok && shipping_address_ok
       process_order
+      flash[:notice] = "Order successfully processed."
       redirect_to order_path(@order)
     else
       flash[:alert] = "Order process failed."
