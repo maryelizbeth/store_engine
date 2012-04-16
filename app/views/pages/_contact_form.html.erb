@@ -1,0 +1,26 @@
+<%= form_for @pages, :url => contact_us_path do |f| %>
+  <fieldset class="contact-form">
+    <div class="contact-fullname">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="contact-email">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="contact-subject">
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+    </div>
+    
+    <div class="contact-body">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+  </fieldset>
+  
+  <fieldset class="contact-actions">
+    <%= f.submit "Send", :class => 'btn btn-mini' %>
+  </fieldset>
+<% end %>
