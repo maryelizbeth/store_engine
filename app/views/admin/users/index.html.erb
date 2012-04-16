@@ -1,2 +1,23 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Users</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Display Name</th>
+      <th>Email Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr id="<%= dom_id user %>">
+        <td id="<%= dom_id user %>_id"><%= user.id %></td>
+        <td id="<%= dom_id user %>_full_name"><%= user.full_name%></td>
+        <td id="<%= dom_id user %>_display_name"><%= user.display_name%></td>
+        <td id="<%= dom_id user %>_email_address"><%= user.email_address%></td>
+        <td><%= link_to 'View', admin_user_path(user), :class => 'btn btn-mini', :id => "#{dom_id user}_view" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

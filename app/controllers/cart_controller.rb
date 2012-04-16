@@ -7,6 +7,7 @@ class CartController < ApplicationController
   def two_click_checkout
     @cart.add_product_to_cart(params[:product_id])
     process_order
+    flash[:notice] = "Order successfully processed."
     redirect_to order_path(@order)
   end
   
@@ -58,6 +59,7 @@ class CartController < ApplicationController
     end
     if card_ok && billing_address_ok && shipping_address_ok
       process_order
+      flash[:notice] = "Order successfully processed."
       redirect_to order_path(@order)
     else
       flash[:alert] = "Order process failed."
@@ -67,14 +69,8 @@ class CartController < ApplicationController
   
   private
   
-  def create_special_url
-    Digest::SHA1.hexdigest("#{Time.now.to_i.to_s + current_user.full_name}")
-  end
-  
   def process_order
     @order = Order.new
-    @order.status = :pending
-    @order.special_url = create_special_url
     @order.user_id = current_user.id
     @cart.cart_products.each do |cp|
       op = @order.order_products.build

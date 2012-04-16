@@ -23,25 +23,25 @@ describe Order do
       end
       
       it "transitions from pending to paid when payment is processed" do
-        order_1.process_payment
+        order_1.transition "process-payment"
         order_1.status.should == "paid"
       end
       
       it "transitions from pending to canceled when canceled" do
-        order_1.cancel
+        order_1.transition "cancel"
         order_1.status.should == "canceled"
       end
       
       it "transitions from paid to shipped when shipped" do
-        order_1.process_payment
-        order_1.ship
+        order_1.transition "process-payment"
+        order_1.transition "ship"
         order_1.status.should == "shipped"
       end
       
       it "transitions from shipped to returned when returned by customer" do
-        order_1.process_payment
-        order_1.ship
-        order_1.return
+        order_1.transition "process-payment"
+        order_1.transition "ship"
+        order_1.transition "return"
         order_1.status.should == "returned"
       end
     end

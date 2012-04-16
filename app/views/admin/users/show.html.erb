@@ -1,3 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<p><%= @user.full_name %></p>
+<h1>/User</h1>
+
+<p>
+  <b>Full Name</b><br>
+  <span id="full_name"><%= @user.full_name %></span>
+</p>
+
+<p>
+  <b>Display Name</b><br>
+  <span id="display_name"><%= @user.display_name %></span>
+</p>
+
+<p>
+  <b>Email Address</b><br>
+  <span id="email_address"><%= @user.email_address %></span>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', admin_users_path, :class => 'btn'  %>
+</div>
