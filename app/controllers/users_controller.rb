@@ -35,6 +35,12 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    if request.post?
+      if @user.update_attributes(params[:user])
+          flash[:notice] = "Your details have been updated"
+          redirect_to :action => 'users_edit_path'
+      end
+    end
   end
 
   # POST /users
