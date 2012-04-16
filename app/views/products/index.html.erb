@@ -13,7 +13,7 @@ Filter by Category:
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <% end %>
 </div> 
-
+<%= paginate @products %>
   <table class = "product">
     <tr id="product">
       <td>
@@ -32,7 +32,6 @@ Filter by Category:
 </td>
 </tr>
 </table>
-<%= paginate @products %>
 <div>
   <ul class="pager">
     <li><a href="#">&laquo;</a></li>
