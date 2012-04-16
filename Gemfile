@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'aasm'
 gem 'best_in_place'
+gem 'will_paginate', '3.0.pre2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
