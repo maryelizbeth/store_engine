@@ -3,4 +3,24 @@
   <h3>Display Name: <%= @user.display_name %></h3> 
 </div> 
 
-<h4>Login Information</h4> 
+
+<p><%= link_to "Edit Your Details", :action => :edit %></p>
+
+<div class="login-info">
+  <h4>Login Information</h4> 
+  <%= render :partial => "edit_form" %>
+</div> 
+
+<div class="personal-addresses"> 
+  <h4>Addresses</h4> 
+  <div class="user_shipping">
+    <h5>Shipping Address</h5> 
+  </div> 
+  <div class="user_billing">
+    <h5>Billing Address</h5>
+  </div>  
+</div> 
+
+<div class="credit-card-info">
+  <h4>Credit Card</h4> 
+</div> 
