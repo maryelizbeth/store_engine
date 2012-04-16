@@ -3,6 +3,28 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .login-form{ 
-  padding-top: 25px;
+  width: 300px;
+  height: 250px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 1px solid black;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  /*background: ;
+  -moz-box-shadow:0px -5px 300px #270644;
+  -webkit-box-shadow:0px -5px 300px #270644;*/
+}
+
+.login-form-input{ 
+  width: 230px;
+  /*background;*/
+  padding-top: 35px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+}
+
+.login-form-actions{ 
+  float: right;
 }
 
