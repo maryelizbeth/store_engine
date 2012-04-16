@@ -1,26 +1,26 @@
-<%= form_for @pages, :url => contact_us_path do |f| %>
+<%= form_tag (contact_us_path) do |f| %>
   <fieldset class="contact-form">
     <div class="contact-fullname">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= label_tag :name %>
+      <%= text_field_tag :name %>
     </div>
     
     <div class="contact-email">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
     </div>
     <div class="contact-subject">
-      <%= f.label :subject %>
-      <%= f.text_field :subject %>
+      <%= label_tag :subject %>
+      <%= text_field_tag :subject %>
     </div>
     
     <div class="contact-body">
-      <%= f.label :body %>
-      <%= f.text_area :body %>
+      <%= label_tag :body %>
+      <%= text_area_tag :body %>
     </div>
   </fieldset>
   
   <fieldset class="contact-actions">
-    <%= f.submit "Send", :class => 'btn btn-mini' %>
+    <%= submit_tag "Send", :class => 'btn btn-mini' %>
   </fieldset>
 <% end %>
