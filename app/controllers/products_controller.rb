@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category_id] && !params[:category_id].empty?
-      @products = ProductCategory.find(params[:category_id]).active_products
-      @selected_category_id = params[:category_id]
+      @selected_category_id = params[:category_id].to_i
+      @products = ProductCategory.find_by_id(@selected_category_id).active_products
     else
       @products = all_active_products
     end  
