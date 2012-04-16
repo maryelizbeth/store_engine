@@ -36,11 +36,18 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     if request.post?
+      if params[:user][:password].empty?
+      # password not edited
+      params[:user][:password] = @user.password
+      params[:user][:password_confirmation] = @user.password
+    end
       if @user.update_attributes(params[:user])
           flash[:notice] = "Your details have been updated"
           redirect_to :action => 'users_edit_path'
       end
     end
+    @user.password = nil
+    @user.password_confirmation = nil
   end
 
   # POST /users

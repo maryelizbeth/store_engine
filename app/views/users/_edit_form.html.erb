@@ -1,5 +1,5 @@
-<fieldset> 
-<% form_for @user do |f| %>
+<fieldset id="edit_login_info"> 
+<% remote_form_for @user do |f| %>
   <p>
     <%= f.label :email_address %>:
     <%= f.text_field :email_address %>
