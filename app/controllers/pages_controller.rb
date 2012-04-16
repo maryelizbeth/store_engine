@@ -3,4 +3,7 @@ class PagesController < ApplicationController
   
   def contact_us
   end
+
+  def process_email
+  end 
 end
