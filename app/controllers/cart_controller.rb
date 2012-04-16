@@ -69,14 +69,8 @@ class CartController < ApplicationController
   
   private
   
-  def create_special_url
-    Digest::SHA1.hexdigest("#{Time.now.to_i.to_s + current_user.full_name}")
-  end
-  
   def process_order
     @order = Order.new
-    @order.status = :pending
-    @order.special_url = create_special_url
     @order.user_id = current_user.id
     @cart.cart_products.each do |cp|
       op = @order.order_products.build
