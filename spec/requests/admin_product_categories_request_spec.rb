@@ -13,6 +13,10 @@ describe "ProductCategories" do
         let!(:product_category_2)   { Fabricate(:product_category) }
         let!(:product_categories)   { [product_category_1, product_category_2] }
         let!(:product_1)            { Fabricate(:product, :product_categories => [product_category_1]) }
+        let!(:product_2)            { Fabricate(:product) }
+        let!(:product_3)            { Fabricate(:product) }
+        let!(:product_4)            { Fabricate(:product) }
+        let!(:products)             { [product_1, product_2, product_3, product_4] }
       
         before(:each) do
           visit admin_product_categories_path
@@ -42,21 +46,100 @@ describe "ProductCategories" do
           end
         end
         
-        it "redirects to the product category's edit page when clicking edit" do
-          find("#product_category_#{product_category_1.id}_edit").click
-          current_path.should == edit_admin_product_category_path(product_category_1)
-        end
-        
-        it "deletes the product category when clicking delete" do
-          within "#product_category_#{product_category_1.id}" do
-            click_link "Destroy"
+        context "when editing a product category" do
+          before(:each) do
+            find("#product_category_#{product_category_1.id}_edit").click
           end
-          page.should_not have_selector "#product_category_#{product_category_1.id}"
+          
+          context "after updating a product category's name" do
+            context "using valid data" do
+              before(:each) do
+                fill_in "Name", :with => "New Name"
+                click_button "Update Product category"
+              end
+            
+              it "updates the product category's name" do
+                within "#product_category_name" do
+                  page.should have_content "New Name"
+                end
+              end
+            end
+
+            context "using invalid data" do
+              before(:each) do
+                fill_in "Name", :with => ""
+                click_button "Update Product category"
+              end
+              
+              it "redirects back to the product category page" do
+                current_path.should == admin_product_category_path(product_category_1)
+              end
+              
+              it "returns an error" do
+                find("#error_explanation").text.should have_content "Name can't be blank"
+              end
+            end
+          end
+          
+          context "after updating a product category's product assignment" do
+            before(:each) do
+              products.each do |product|
+                select(product.title, :from => "product_category_product_ids")
+              end
+              click_button "Update Product category"
+            end
+            
+            it "updates the product category's name" do
+              products.each do |product|
+                find("#product_#{product.id}").text.should have_content product.title
+              end
+            end
+          end
         end
         
-        it "redirects to the new product category page when clicking the new button" do
-          find("#create_product_category").click
-          current_path.should == new_admin_product_category_path
+        context "when destroying a product category" do
+          it "deletes the product category when clicking delete" do
+            within "#product_category_#{product_category_1.id}" do
+              click_link "Destroy"
+            end
+            page.should_not have_selector "#product_category_#{product_category_1.id}"
+          end
+        end
+        
+        context "when creating a new product category" do
+          context "using valid data" do
+            before(:each) do
+              find("#create_product_category").click
+              fill_in "Name", :with => "Very Unique Name"
+              click_button "Create Product category"
+              @new_product_category = ProductCategory.last
+            end
+          
+            it "redirects to the newly created product category's page" do
+              current_path.should == admin_product_category_path(@new_product_category)
+            end
+          
+            it "displays the product category's name" do
+              find("#product_category_name").text.should have_content "Very Unique Name"
+            end
+          end
+          
+          context "using invalid data" do
+            before(:each) do
+              find("#create_product_category").click
+              fill_in "Name", :with => ""
+              click_button "Create Product category"
+              @new_product_category = ProductCategory.last
+            end
+          
+            it "redirects to the newly created product category's page" do
+              current_path.should == admin_product_categories_path
+            end
+          
+            it "displays the product category's name" do
+              find("#error_explanation").text.should have_content "Name can't be blank"
+            end
+          end
         end
       end
     end
