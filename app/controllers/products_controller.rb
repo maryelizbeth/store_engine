@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def index
     if params[:category_id] && !params[:category_id].empty?
       @selected_category_id = params[:category_id].to_i
-      @products = ProductCategory.find_by_id(@selected_category_id).active_products
+      @products = ProductCategory.find_by_id(@selected_category_id).active_products.paginate(:per_page => 5, :page => params[:page])
     else
       @products = all_active_products
     end  
