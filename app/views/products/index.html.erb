@@ -1,8 +1,16 @@
-<%= form_tag root_path, :method => :get  do %>
+<%= content_for :head do %>
+<script type="text/javascript">
+$(function(){
+  $('select').live('change',function(){
+    $(this).closest('form#filter').submit();
+  });
+});
+</script>
+<% end %>
+<%= form_tag root_path, :id => "filter", :method => :get do %>
 <div class="filter">
 Filter by Category:
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
-  <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_category_filter" %>
   <% end %>
 </div> 
 
