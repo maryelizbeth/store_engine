@@ -2,7 +2,16 @@
 
 <p>
   <b>Name</b><br>
-  <%= @product_category.name %>
+  <span id="product_category_name"><%= @product_category.name %></span>
+</p>
+
+<p>
+  <b>Products</b><br>
+  <ul>
+    <% @product_category.products.each do |product| %>
+    <li id="<%= dom_id product %>"><%= product.title %></li>
+    <% end %>
+  </ul>
 </p>
 
 <div class="form-actions">

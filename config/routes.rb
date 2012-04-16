@@ -9,7 +9,7 @@ get "orders/lookup"
 resources :orders, :only => [:index, :show]
 
 namespace :admin do
-  resources :orders, :only => [:index, :show, :update]
+  resources :orders, :only => [:index, :show, :update, :edit]
   resources :products
   resources :product_categories
   resources :users, :only => [:index, :show]

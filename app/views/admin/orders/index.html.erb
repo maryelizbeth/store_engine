@@ -3,7 +3,7 @@
 Filter by Status:
 <%= form_tag admin_orders_path, :method => :get  do %>
   <%= select_tag :order_status, options_for_select(@order_statuses, @selected_order_state), :prompt => "all statuses" %>
-  <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_category_filter"%>
+  <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_status_filter" %>
 <% end %>
 </div>
 <table class="table table-striped">
@@ -18,12 +18,12 @@ Filter by Status:
   </thead>
   <tbody>
     <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.id %></td>
-        <td><%= order.user.full_name %></td>
-        <td><%= order.status %></td>
-        <td><%= link_to 'View', admin_order_path(order), :class => 'btn btn-mini' %></td>
-        <td><%= display_status_transition_links(order) %></td>
+      <tr id="<%= dom_id order %>">
+        <td id="<%= dom_id order %>_id"><%= order.id %></td>
+        <td id="<%= dom_id order %>_user_full_name"><%= order.user.full_name %></td>
+        <td id="<%= dom_id order %>_status"><%= order.status %></td>
+        <td><%= link_to 'View', admin_order_path(order), :class => 'btn btn-mini', :id => "#{dom_id order}_view" %></td>
+        <td id="<%= dom_id order %>_transitions"><%= display_status_transition_links(order) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 class Order < ActiveRecord::Base
+  before_create :create_special_url
   include AASM
 
   attr_accessible :special_url, :status, :user_id
@@ -38,5 +39,11 @@ class Order < ActiveRecord::Base
       when "cancel"           then self.cancel
     end
     self.save
+  end
+  
+  private
+  
+  def create_special_url
+    self.special_url = Digest::SHA1.hexdigest("#{ Time.now.to_i.to_s + user.full_name + rand(1..10000).to_s }")
   end
 end
