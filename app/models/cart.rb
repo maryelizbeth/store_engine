@@ -1,5 +1,5 @@
 class Cart < ActiveRecord::Base
-  has_many :cart_products
+  has_many :cart_products, :dependent => :delete_all
   has_many :products, :through => :cart_products
 
   def total
