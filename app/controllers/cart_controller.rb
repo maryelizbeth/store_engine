@@ -7,6 +7,7 @@ class CartController < ApplicationController
   def two_click_checkout
     @cart.add_product_to_cart(params[:product_id])
     process_order
+    flash[:notice] = "Order successfully processed."
     redirect_to order_path(@order)
   end
   
