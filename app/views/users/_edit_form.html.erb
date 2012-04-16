@@ -1,3 +1,4 @@
+<fieldset> 
 <% form_for @user do |f| %>
   <p>
     <%= f.label :email_address %>:
@@ -9,9 +10,10 @@
   </p>
   <p>
     <%= f.label :password_confirmation %>:
-    <%= f.text_field :occupation %>
+    <%= f.password_field :password_confirmation %>
   </p>
   <p>
     <%= f.submit "Update Login Info" %>
   </p>
 <% end %>
+</fieldset>
