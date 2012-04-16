@@ -1,2 +1,7 @@
-<h1><%= @user.full_name %>'s Profile</h1>
-<h3><%= @user.email_address %></h3>
+<div class="personal-info">
+  <h1>Welcome, <%= @user.full_name %>!</h1>
+  <h3>Display Name: <%= @user.display_name %></h3> 
+</div> 
+
+<h4>Edit Your Login Info</h4>
+<%= render :partial => "edit_form"%> 
