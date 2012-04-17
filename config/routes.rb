@@ -25,8 +25,8 @@ post  "cart/two_click_checkout", :as => :two_click_checkout
 post  "cart/convert_cart_to_order", :as => :convert_cart_to_order
 
 
-get   "contact_us", :to => "pages#contact_us"
-post  "contact_us", :to => "pages#contact_us"
+get   "/contact_us", :to => "pages#contact_us"
+post  "/contact_us", :to => "pages#contact_us"
 
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout

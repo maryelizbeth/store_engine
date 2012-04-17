@@ -22,7 +22,7 @@ width: 100%;
 
 .footer{ 
 
-  border-top: 2px solid black;
+  border-top: 2px solid #888;
   margin-top: inherit;
   margin-bottom: 25px;
   height: 100px;
@@ -68,5 +68,8 @@ padding-right: 20px;
   float: right;
 }
 
+#customer_contact{ 
+  display: inline;
+}
 
 
