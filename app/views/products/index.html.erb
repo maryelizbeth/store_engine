@@ -9,7 +9,7 @@ $(function(){
 <% end %>
 <%= form_tag root_path, :id => "filter", :method => :get do %>
 <div class="filter">
-<p>Filter Products by Category:</p>
+<p id="filter_label">Filter Products by Category:</p>
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <% end %>
 </div> 
@@ -31,7 +31,7 @@ $(function(){
 </td>
 </tr>
 </table>
-<div>
+<!-- <div>
   <ul class="pager">
     <li><a href="#">&laquo;</a></li>
     <li class="active"><a href="#">1</a></li>
@@ -40,4 +40,4 @@ $(function(){
     <li><a href="#">4</a></li>
     <li><a href="#">&raquo;</a></li>
   </ul>
-</div>
+</div> -->
