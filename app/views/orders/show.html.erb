@@ -2,7 +2,8 @@
 
 <p>
   <b>Special url</b><br>
-  <span id="order_special_url"><%= link_to @special_url, @special_url %></span>
+  <% special_url = display_order_special_url(@order) %>
+  <span id="order_special_url"><%= link_to special_url, special_url %></span>
 </p>
 
 <p>

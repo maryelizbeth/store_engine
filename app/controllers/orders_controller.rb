@@ -9,8 +9,6 @@ class OrdersController < ApplicationController
     unless @order || current_user.is_admin?
       flash[:alert] = "Could not find order"
       redirect_to root_path
-    else
-      @special_url = orders_lookup_url(:sid => @order.special_url)
     end
   end
   

@@ -7,7 +7,8 @@
 
 <p>
   <b>Special url</b><br>
-  <%= link_to @special_url, @special_url %>
+  <% special_url = display_order_special_url(@order) %>
+  <%= link_to special_url, special_url %>
 </p>
 
 <p>
