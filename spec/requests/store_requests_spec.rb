@@ -33,9 +33,8 @@ describe "Store Requests" do
         end
       end
     
-      it "only displays the products in the filtered category" do
+      it "only displays the products in the filtered category", :js => true do
         select pc_2.name, :from => "category_id"
-        find("#submit_category_filter").click
         expected_products = [product_2, product_4]
         expected_products.each do |product|
           page.should have_selector "#store_product_#{product.id}_image"
@@ -67,9 +66,8 @@ describe "Store Requests" do
         page.should_not have_selector "#store_product_#{product_2.id}_price"
       end
       
-      it "does not display inactive products when filtering by category" do
+      it "does not display inactive products when filtering by category", :js => true do
         select pc_2.name, :from => "category_id"
-        find("#submit_category_filter").click
         page.should have_selector "#store_product_#{product_4.id}_image"
         within "#store_product_#{product_4.id}_title" do
           page.should have_content product_4.title
