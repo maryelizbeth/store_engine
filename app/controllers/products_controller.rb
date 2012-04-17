@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
     if params[:category_id] && !params[:category_id].empty?
       @selected_category_id = params[:category_id].to_i
       @products = ProductCategory.find_by_id(@selected_category_id).active_products
-    else
       @products = all_active_products
     end  
     @product_categories = ProductCategory.all
