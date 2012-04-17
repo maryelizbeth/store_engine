@@ -28,6 +28,7 @@ Filter by Status:
 <table class="table table-bodered table-striped">
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th>ID</th>
       <th>User</th>
       <th>Status</th>
@@ -38,6 +39,7 @@ Filter by Status:
   <tbody>
     <% @orders.each do |order| %>
       <tr id="<%= dom_id order %>">
+        <td><%= link_to "", admin_order_path(order), :method => :get, :class => 'icon-plus-sign', :id => "order_#{order.id}_details_control", :remote => true %></td>
         <td id="<%= dom_id order %>_id"><%= order.id %></td>
         <td id="<%= dom_id order %>_user_full_name"><%= order.user.full_name %></td>
         <td id="<%= dom_id order %>_status"><%= order.status %></td>
@@ -47,4 +49,5 @@ Filter by Status:
     <% end %>
   </tbody>
 </table>
+<div id="details_pane"></div>
 </div>

@@ -1,0 +1,11 @@
+$('#details_pane').html("<table class=\"table\"> \
+<tr> \
+<td id=\"order_<%= @order.id %>_details_datetime\"><%= @order.created_at %></td> \
+<td id=\"order_<%= @order.id %>_details_user_full_name\"><%= @order.user.full_name %></td> \
+<td id=\"order_<%= @order.id %>_details_user_email_address\"><%= @order.user.email_address %></td> \
+<td id=\"order_<%= @order.id %>_details_total\"><%= number_to_currency(@order.total) %></td> \
+<td id=\"order_<%= @order.id %>_details_status\"><%= @order.status %></td> \
+</tr> \
+</table>");
+$("#order_<%= @order.id %>_details_control").removeClass("icon-plus-sign")
+$("#order_<%= @order.id %>_details_control").addClass("icon-minus-sign")

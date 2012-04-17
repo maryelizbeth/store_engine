@@ -41,6 +41,10 @@ class Order < ActiveRecord::Base
     self.save
   end
   
+  def total
+    order_products.sum { |op| op.total }
+  end
+
   private
   
   def create_special_url

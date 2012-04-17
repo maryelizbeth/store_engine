@@ -3,9 +3,14 @@ module Sorcery
     module Rails
       def login_user_post(email, password = DEFAULT_USER_PASSWORD, redirect_path = "/")
         page.driver.post(user_sessions_url, { email_address: email, password: password })
-        # HACK - redirects to a "redirect" page post-login which has 
-        # a single link that points to "example.com"
-        visit redirect_path 
+        visit redirect_path
+      end
+
+      def login_user(email, password = DEFAULT_USER_PASSWORD, redirect_path = "/")
+        visit login_path
+        fill_in "Email", :with => email
+        fill_in "Password", :with => password
+        click_button "Login"
       end
     end
   end

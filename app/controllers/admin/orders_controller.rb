@@ -17,10 +17,17 @@ class Admin::OrdersController < ApplicationController
     @order_count[:returned] = Order.find_all_by_status("returned").count
     @order_count[:canceled] = Order.find_all_by_status("canceled").count
     @order_statuses = ORDER_STATUSES
+    respond_to do |format|
+      format.html
+    end
   end
   
   def show
     @order = Order.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def update
