@@ -68,8 +68,14 @@ padding-right: 20px;
   float: right;
 }
 
-#customer_contact{ 
-  display: inline;
+
+.contact-fullname{ 
+  float: left;
+}
+.contact-email{ 
+  float: right;
 }
 
-
+.contact-message{ 
+  float: left;
+}
