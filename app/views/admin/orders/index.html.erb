@@ -6,7 +6,26 @@ Filter by Status:
   <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_status_filter" %>
 <% end %>
 </div>
-<table class="table table-striped">
+<div>
+  <table class="table table-bodered">
+    <tr>
+      <th># Pending</th>
+      <th># Paid</th>
+      <th># Shipped</th>
+      <th># Returned</th>
+      <th># Canceled</th>
+    </tr>
+    <tr>
+      <td id="scoreboard_pending_count"><%= @order_count[:pending] %></td>
+      <td id="scoreboard_paid_count"><%= @order_count[:paid] %></td>
+      <td id="scoreboard_shipped_count"><%= @order_count[:shipped] %></td>
+      <td id="scoreboard_returned_count"><%= @order_count[:returned] %></td>
+      <td id="scoreboard_canceled_count"><%= @order_count[:canceled] %></td>
+    </tr>
+  </table>
+</div>
+<div>
+<table class="table table-bodered table-striped">
   <thead>
     <tr>
       <th>ID</th>
@@ -28,3 +47,4 @@ Filter by Status:
     <% end %>
   </tbody>
 </table>
+</div>

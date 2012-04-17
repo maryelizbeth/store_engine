@@ -70,20 +70,50 @@ describe "Admin Order requests" do
         
         context "regarding transitions" do
           context "for pending orders" do
-            it "transitions to paid after processing payment" do
-              within "#order_#{order_3.id}_transitions" do
-                click_link "Process payment"
-              end
-              find("#notice").text.should have_content "Order successfully transtitioned from 'pending' to 'paid'"
-              find("#order_#{order_3.id}_status").should have_content "paid"
+            it "displays the total pending order count in the scoreboard" do
+              find("#scoreboard_pending_count").text.should == "3"
             end
             
-            it "transitions to canceled after cancelling the order" do
-              within "#order_#{order_1.id}_transitions" do
-                click_link "Cancel"
+            context "when processing payment" do
+              before(:each) do
+                within "#order_#{order_3.id}_transitions" do
+                  click_link "Process payment"
+                end
               end
-              find("#notice").text.should have_content "Order successfully transtitioned from 'pending' to 'canceled'"
-              find("#order_#{order_1.id}_status").should have_content "canceled"
+              
+              it "transitions to paid" do
+                find("#notice").text.should have_content "Order successfully transtitioned from 'pending' to 'paid'"
+                find("#order_#{order_3.id}_status").should have_content "paid"
+              end
+              
+              it "updates the total paid order count in the scoreboard" do
+                find("#scoreboard_paid_count").text.should == "1"
+              end
+              
+              it "updates the total pending order count in the scoreboard" do
+                find("#scoreboard_pending_count").text.should == "2"
+              end
+            end
+            
+            context "when cancelling the order" do
+              before(:each) do
+                within "#order_#{order_1.id}_transitions" do
+                  click_link "Cancel"
+                end
+              end
+              
+              it "transitions to canceled" do
+                find("#notice").text.should have_content "Order successfully transtitioned from 'pending' to 'canceled'"
+                find("#order_#{order_1.id}_status").should have_content "canceled"
+              end
+              
+              it "updates the total canceled order count in the scoreboard" do
+                find("#scoreboard_canceled_count").text.should == "1"
+              end
+              
+              it "updates the total pending order count in the scoreboard" do
+                find("#scoreboard_pending_count").text.should == "2"
+              end
             end
           end
           
@@ -93,12 +123,29 @@ describe "Admin Order requests" do
               visit admin_orders_path
             end
             
-            it "transitions to shipped after shipping the order" do
-              within "#order_#{order_3.id}_transitions" do
-                click_link "Ship"
+            it "displays the total paid order count in the scoreboard" do
+              find("#scoreboard_paid_count").text.should == "1"
+            end
+            
+            context "shipping the order" do
+              before(:each) do
+                within "#order_#{order_3.id}_transitions" do
+                  click_link "Ship"
+                end
               end
-              find("#notice").text.should have_content "Order successfully transtitioned from 'paid' to 'shipped'"
-              find("#order_#{order_3.id}_status").should have_content "shipped"
+              
+              it "transitions to shipped" do
+                find("#notice").text.should have_content "Order successfully transtitioned from 'paid' to 'shipped'"
+                find("#order_#{order_3.id}_status").should have_content "shipped"
+              end
+              
+              it "updates the total shipped order count in the scoreboard" do
+                find("#scoreboard_shipped_count").text.should == "1"
+              end
+              
+              it "updates the total paid order count in the scoreboard" do
+                find("#scoreboard_paid_count").text.should == "0"
+              end
             end
           end
           
@@ -109,12 +156,29 @@ describe "Admin Order requests" do
               visit admin_orders_path
             end
             
-            it "transitions to shipped after shipping the order" do
-              within "#order_#{order_3.id}_transitions" do
-                click_link "Return"
+            it "displays the total shipped order count in the scoreboard" do
+              find("#scoreboard_shipped_count").text.should == "1"
+            end
+            
+            context "when shipping the order" do
+              before(:each) do
+                within "#order_#{order_3.id}_transitions" do
+                  click_link "Return"
+                end
               end
-              find("#notice").text.should have_content "Order successfully transtitioned from 'shipped' to 'returned'"
-              find("#order_#{order_3.id}_status").should have_content "returned"
+              
+              it "transitions to shipped" do
+                find("#notice").text.should have_content "Order successfully transtitioned from 'shipped' to 'returned'"
+                find("#order_#{order_3.id}_status").should have_content "returned"
+              end
+              
+              it "updates the total returned order count in the scoreboard" do
+                find("#scoreboard_returned_count").text.should == "1"
+              end
+              
+              it "updates the total shipped order count in the scoreboard" do
+                find("#scoreboard_shipped_count").text.should == "0"
+              end
             end
           end
         end
