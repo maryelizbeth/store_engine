@@ -2,25 +2,23 @@
   <fieldset class="contact-form">
     <div id="customer_contact">
       <div class="contact-fullname">
-        <%= label_tag :name %> 
         <%= text_field_tag :name %>
       </div>
       
       <div class="contact-email">
-        <%= label_tag :email %>
         <%= text_field_tag :email %>
       </div>
     </div>
-    
+
+  <div id="contact-message">
     <div class="contact-subject">
-      <%= label_tag :subject %>
       <%= text_field_tag :subject %>
     </div>
     
     <div class="contact-body">
-      <%= label_tag :body %>
       <%= text_area_tag :body %>
     </div>
+  </div>
   
   <fieldset class="contact-actions">
     <%= submit_tag "Send Us an Email", :class => 'btn btn-mini' %>
