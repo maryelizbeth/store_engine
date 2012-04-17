@@ -24,7 +24,7 @@
         </td> 
         <td class="cart_item_price"><%= number_to_currency(cp.price) %></td>
         <td class="cart_item_total"><%= number_to_currency(cp.total) %></td>
-        <td><%= link_to "", cart_remove_product_path(:cp_id => cp.id), :class => 'i icon-remove', :method => :post, :confirm => 'Are you sure you\'d like to remove this item?' %>
+        <td class="remove-item-cart"><%= link_to "", cart_remove_product_path(:cp_id => cp.id), :class => 'i icon-remove', :method => :post, :confirm => 'Are you sure you\'d like to remove this item?' %>
       </tr>
     <% end %> 
     </tbody>
