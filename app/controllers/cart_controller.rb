@@ -53,12 +53,17 @@ class CartController < ApplicationController
       billing_address_ok = true
     end
     unless current_user.has_existing_shipping_address?
-      shipping_address_ok = build_address(params[:shipping_address], "shipping")
+      if params[:shipping_address][:use_billing]
+        shipping_address_ok = build_address(params[:billing_address], "shipping")
+      else
+        shipping_address_ok = build_address(params[:shipping_address], "shipping")
+      end
     else 
       shipping_address_ok = true
     end
     if card_ok && billing_address_ok && shipping_address_ok
       process_order
+      charge_order
       flash[:notice] = "Order successfully processed."
       redirect_to order_path(@order)
     else
@@ -82,6 +87,10 @@ class CartController < ApplicationController
     @cart.delete
   end
   
+  def charge_order
+    @order.transition("process-payment")
+  end
+
   def build_credit_card(billing_info)
     cc = current_user.credit_cards.build
     cc.update_attributes(:card_number => billing_info[:card_number],
