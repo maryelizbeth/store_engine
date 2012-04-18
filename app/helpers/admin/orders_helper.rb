@@ -7,8 +7,12 @@ module Admin::OrdersHelper
       when "shipped"  then ["return"]
       else [] # nothing to do
     end
-    actions.each { |action| links << create_status_transition_link(order, action) }
-    links.join(" | ").html_safe
+    if actions.empty?
+      "N/A"
+    else
+      actions.each { |action| links << create_status_transition_link(order, action) }
+      links.join(" | ").html_safe
+    end
   end
   
   def create_status_transition_link(order, status)
