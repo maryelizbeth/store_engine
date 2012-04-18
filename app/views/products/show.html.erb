@@ -1,4 +1,9 @@
-<h1 class="index-prod-title" id="index-prod-title"><%= @product.title %>&nbsp;&nbsp;(<%= number_to_currency(@product.price) %>)</h1>
+<h1 class="index-prod-title" id="index-prod-title">
+  <%= @product.title %>&nbsp;&nbsp;(<%= number_to_currency(@product.price) %>)
+  <% unless @product.active? %>
+    <span class="retired">- RETIRED</span>
+  <% end %>
+</h1>
 
   <div id="index_prod_image">
       <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>

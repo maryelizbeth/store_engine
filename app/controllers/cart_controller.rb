@@ -15,8 +15,12 @@ class CartController < ApplicationController
     @product_title = @cart.add_product_to_cart(params[:product_id])
     session[:cart_id] = @cart.id
     respond_to do |format|
-      format.html   { redirect_to cart_show_path, notice: "\'#{@product_title}\' was added to your cart." }
-      format.js
+      if @product_title
+        format.html   { redirect_to cart_show_path, notice: "\'#{@product_title}\' was added to your cart." }
+        format.js
+      else
+        format.html   { redirect_to product_path(params[:product_id]), alert: "This product is retired." }
+      end
     end
   end
 
