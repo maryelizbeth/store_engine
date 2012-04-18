@@ -2,7 +2,7 @@
 
 <p>
   <b>Products</b><br>
-  <ul>
+  <ul class="prods-in-cat">
     <% @product_category.products.each do |product| %>
     <li id="<%= dom_id product %>"><%= product.title %></li>
     <% end %>
