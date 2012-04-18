@@ -12,6 +12,11 @@
 </p>
 
 <p>
+  <b>Total</b><br>
+  <span id="order_total"><%= number_to_currency(@order.total) %></span>
+</p>
+
+<p>
 	<b>Items Ordered</b>
 	<table class="table-bordered table-striped" id="order_items">
 		<tr>
