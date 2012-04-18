@@ -20,7 +20,7 @@
   <% if @product.active? %>
     <%= form_tag add_to_cart_path, :method => :post do %>
       <%= hidden_field_tag "product_id", @product.id %>
-      <div class="prod-index-add"><%= submit_tag "Add to Cart", :class => 'btn' %></div>
+      <div class="prod-index-add"><%= submit_tag "Add to Cart", :class => 'btn', :id => "add_to_cart_button" %></div>
     <% end %>
 
     <% if current_user && current_user.can_two_click_checkout? %>
