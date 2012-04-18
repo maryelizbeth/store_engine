@@ -4,12 +4,23 @@ describe "User Types" do
   context "Administrator" do
     let!(:admin_user) { Fabricate(:admin_user) }
     
-    it "can access the product creation screen" do
+    before(:each) do
       login_user_post(admin_user.email_address)
+    end
+    
+    it "can access the admin product screen" do
       within "ul.nav" do
         click_link "Products Editor"
-        click_link "Create Product"
-        current_path.should == new_admin_product_path
+        click_link "Create, View, & Edit Products"
+        current_path.should == admin_products_path
+      end
+    end
+    
+    it "can access the admin product categories screen" do
+      within "ul.nav" do
+        click_link "Products Editor"
+        click_link "Create, View, & Edit Product Categories"
+        current_path.should == admin_product_categories_path
       end
     end
   end
@@ -23,22 +34,22 @@ describe "User Types" do
     end
     
     context "for admin features in nav" do
-      it "can not access the product creation screen" do
+      it "can not access the admin product screen" do
         within "ul.nav" do
           page.should_not have_selector "#product_menu"
-          page.should_not have_selector "#create_product"
+          page.should_not have_selector "#products_editor"
         end
-        visit new_admin_product_path
-        current_path.should_not == new_admin_product_path
+        visit admin_products_path
+        current_path.should_not == admin_products_path
       end
 
       it "can not access the product edit screen" do
         within "ul.nav" do
           page.should_not have_selector "#product_menu"
-          page.should_not have_selector "#edit_product"
+          page.should_not have_selector "#categories_editor"
         end
-        visit edit_admin_product_path(product)
-        current_path.should_not == edit_admin_product_path(product)
+        visit admin_product_categories_path
+        current_path.should_not == admin_product_categories_path
       end
     end
     
