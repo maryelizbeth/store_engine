@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
 */
-.body{ 
+.body{
   padding-top: 50px;
 }
 
@@ -20,7 +20,7 @@ position: relative;
 width: 100%;
 }
 
-.footer{ 
+.footer{
 
   border-top: 2px solid #888;
   margin-top: inherit;
@@ -28,7 +28,7 @@ width: 100%;
   height: 100px;
 }
 
-.nav{ 
+.nav{
   float: right;
 }
 
@@ -40,16 +40,16 @@ display: inline;
 list-style-type: none;
 padding-right: 20px;
 }
-.contact{ 
+.contact{ \
   display: inline-block;
   height: 200px;
   width: 300px;
 }
-#contact_info{ 
+#contact_info{
   padding-bottom: 25px;
 }
 
-.physical-address{ 
+.physical-address{
   padding-top: 25px;
   height: 65px;
   width: 300px;
@@ -62,7 +62,7 @@ padding-right: 20px;
 }
 
 
-.contact-form{ 
+.contact-form{
   height: 300px;
   width: 600px;
   float: right;
