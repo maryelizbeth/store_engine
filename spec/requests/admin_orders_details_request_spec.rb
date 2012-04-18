@@ -32,11 +32,7 @@ describe "Admin Orders Details flyout" do
           end
 
           it "displays the order date and time" do
-            find("#order_#{order_2.id}_details_datetime").text.should have_content order_2.created_at
-          end
-
-          it "displays the purchaser's full name" do
-            find("#order_#{order_2.id}_details_user_full_name").text.should have_content order_2.user.full_name
+            find("#order_#{order_2.id}_details_datetime").text.should have_content order_2.placed_at
           end
 
           it "displays the purchaser's email address" do
@@ -45,10 +41,6 @@ describe "Admin Orders Details flyout" do
 
           it "displays the total for the order" do
             find("#order_#{order_2.id}_details_total").text.should have_content number_to_currency(order_2.total)
-          end
-
-          it "displays the status of the order" do
-            find("#order_#{order_2.id}_details_status").text.should have_content order_2.status
           end
         end
       end
