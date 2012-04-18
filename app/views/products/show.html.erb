@@ -1,11 +1,10 @@
-<h1>/Product</h1>
-
+<h1 class="index-prod-title"><%= @product.title %></h1>
+ <div><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
 <table>
   <tr>
     <td rowspan=4>
         <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>
     </td>
-    <td id="product_title"><%= @product.title %></td>
   </tr>
   <tr>
     <td id="product_price"><%= number_to_currency(@product.price) %></td>
@@ -13,29 +12,28 @@
   <tr>
     <td id="product_description"><%= @product.description %></td>
   </tr>
-  <tr>
-    <td>
-      <b>Product categories</b>
-	  <ul id="product_categories">
-	  <% @product.product_categories.each do |pc| %>
-	    <li><%= pc.name %></li>
-	  <% end %>
-	  </ul>
-    </td>
-  </tr>
+    <div class="index-prod-cat">
+  	  <ul id="product_categories">
+      <p>Product Categories:</b> 
+  	  <% @product.product_categories.each do |pc| %>
+  	    <li><%= pc.name %></li>
+  	  <% end %>
+  	  </ul>
+    </div>
 </table>
 
 <div class="indiv-product-form-actions">
-  <div><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
   <% if @product.active? %>
     <%= form_tag add_to_cart_path, :method => :post do %>
       <%= hidden_field_tag "product_id", @product.id %>
-      <%= submit_tag "Add to Cart", :class => 'btn' %>
+      <div class="prod-index-add"><%= submit_tag "Add to Cart", :class => 'btn' %></div>
     <% end %>
 
     <% if current_user && current_user.can_two_click_checkout? %>
+    <div class="two-click-checkout">
       <%= link_to "Two Click Checkout™", two_click_checkout_path(:product_id => @product.id), 
                 :method => :post, :class => 'btn', :confirm => "Place an order for '#{@product.title}'?", :id => "two_click_checkout" %>
     <% end %>
+  </div>
   <% end %>
 </div>

@@ -5,9 +5,6 @@
 .filter{ 
   padding-top: 25px;
 }
-.product-listings {
-
-}
 
 li.indiv-product {
   display: inline-block;
@@ -57,6 +54,16 @@ img.store_product_image {
   margin-bottom: 25px;
 }
 
+h1.index-prod-title{ 
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.prod-index-add{ 
+  float: right;
+  margin-bottom: 25px;
+  margin-right: 10px;
+}
 /*.container-fluid{ 
   background-image:url('http://apod.nasa.gov/apod/image/1102/rosette_lula_1700.jpg');
 }*/
