@@ -59,11 +59,35 @@ h1.index-prod-title{
   margin-bottom: 10px;
 }
 
+#prod_price{ 
+  float: right;
+  margin-right: 10px;
+  padding-top: 5px;
+  vertical-align: middle;
+}
+
+#prod_descrip{ 
+  margin-bottom: 10px;
+}
+
+#index_prod_image{ 
+  float: left;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
 .prod-index-add{ 
   float: right;
-  margin-bottom: 25px;
   margin-right: 10px;
 }
-/*.container-fluid{ 
-  background-image:url('http://apod.nasa.gov/apod/image/1102/rosette_lula_1700.jpg');
-}*/
+
+.prod-cat-list-title{ 
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+ul.product_categories{ 
+  list-style-type: none;
+}
+
+
