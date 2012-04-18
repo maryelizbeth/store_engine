@@ -23,7 +23,7 @@ describe "Product requests" do
     context "for a product's image" do
       context "when the product does not have a photo url value" do
         it "shows the correct product image" do
-          find("#product_image")[:src].should == "/no_image.jpg"
+          find("#product_image")[:src].should == "/assets/no_image.jpg"
         end
       end
       
