@@ -1,29 +1,42 @@
 <h1>/Order</h1>
 
 <p>
-  <b>Status</b><br>
-  <%= @order.status %>
-</p>
-
-<p>
   <b>Special url</b><br>
   <% special_url = display_order_special_url(@order) %>
   <%= link_to special_url, special_url %>
 </p>
 
 <p>
+  <b>Status</b><br>
+  <%= @order.status %>
+</p>
+
+
+<p>
   <b>User</b><br>
-  <%= @order.user_id %>
+  <%= @order.user.full_name %>(<%= @order.user.email_address %>)
+</p>
+
+
+<p>
+  <b>Order Total</b><br>
+  <%= number_to_currency(@order.total) %>
 </p>
 
 <p>
-	<b>OrderProducts</b>
-	<table>
+	<b>Items Ordered</b>
+	<table class="table-bordered table-striped" id="order_items">
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
 		<% @order.order_products.each do |op| %>
 			<tr>
-				<td><%= op.product.title %></td>
-				<td><%= op.price %></td>
-				<td><%= op.quantity %></td>
+				<td id="order_item_<%= op.id %>_title"><%= link_to op.product.title, product_path(op.product) %></td>
+				<td id="order_item_<%= op.id %>_price"><%= number_to_currency(op.price) %></td>
+				<td id="order_item_<%= op.id %>_quantity"><%= op.quantity %></td>
+				<td id="order_item_<%= op.id %>_total"><%= number_to_currency(op.total) %></td>
 			</tr>
 		<% end %>
 	</table>
