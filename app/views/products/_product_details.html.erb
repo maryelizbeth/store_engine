@@ -1,9 +1,9 @@
 <div class= "prod-attributes">
-     <div id="store_product_<%= product.id %>_title"><%= link_to product.title, product_path(product) %>
+     <div class="store_product_<%= product.id %>_title"><%= link_to product.title, product_path(product) %>
   
-    <div id="store_product_<%= product.id %>_price"><%= number_to_currency(product.display_price) %>
+    <div class="store_product_<%= product.id %>_price"><%= number_to_currency(product.display_price) %>
    </div> 
-  <div id="store_product_<%= product.id %>_add_to_cart">
+  <div class="store_product_<%= product.id %>_add_to_cart">
     <%= link_to "Add to Cart", add_to_cart_path(:product_id => product), :method => :post, :class => 'btn add_to_cart', :remote => true %>
   </div> 
 </div> 

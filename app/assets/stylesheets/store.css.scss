@@ -30,9 +30,6 @@ li.indiv-product {
   top: 215px;
 }
 
-#store_product_title{
- 
-}
 
 img.store_product_image {
   height: 300px;
@@ -40,8 +37,9 @@ img.store_product_image {
   overflow: hidden;
 }
 
-#add_to_cart{
+.add_to_cart{
   vertical-align: middle;
+  float: right;
 }
 
 .clear {
