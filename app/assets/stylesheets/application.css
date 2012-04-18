@@ -33,8 +33,7 @@ width: 100%;
 }
 
 
-#navlist li
-{
+#navlist li{
 float: right;
 display: inline;
 list-style-type: none;
