@@ -1,12 +1,9 @@
-<div class="view-all-index"><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
-
-<h1 class="index-prod-title"><%= @product.title %></h1>
+<h1 class="index-prod-title"><%= @product.title %>(<%= number_to_currency(@product.price) %>)</h1>
 
   <div id="index_prod_image">
       <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>
   </div>
 
-  <div id="prod_descrip"><%= @product.description %></div>
 
 <div class="index-prod-cat">
     <ul class="product_categories">
@@ -16,6 +13,8 @@
     <% end %>
     </ul>
 </div>
+
+<div id="prod_descrip"><%= @product.description %></div>
 
 <div class="indiv-product-cart-actions">
   <% if @product.active? %>
@@ -30,9 +29,9 @@
                 :method => :post, :class => 'btn', :confirm => "Place an order for '#{@product.title}'?", :id => "two_click_checkout" %>
     <% end %>
   </div>
-  <div id="prod_price"><%= number_to_currency(@product.price) %></div>
+  <br /> <br /> 
   <% end %>
+  <div class="view-all-index"><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
 </div>
-
 
 

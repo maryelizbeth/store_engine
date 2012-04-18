@@ -55,15 +55,8 @@ img.store_product_image {
 }
 
 h1.index-prod-title{ 
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 10px;
-}
-
-#prod_price{ 
-  float: right;
-  margin-right: 10px;
-  padding-top: 5px;
-  vertical-align: middle;
 }
 
 #prod_descrip{ 
@@ -88,6 +81,10 @@ h1.index-prod-title{
 
 ul.product_categories{ 
   list-style-type: none;
+}
+
+.view-all-index{ 
+  float: right;
 }
 
 
