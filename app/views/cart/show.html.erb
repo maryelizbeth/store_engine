@@ -18,12 +18,12 @@
     <tbody>
     <% @cart.cart_products.each do |cp| %>
       <tr id="cart_item_<%= cp.product.id %>">
-        <td><!--<%=image_tag cp.product.thumbnail%>--><%= link_to cp.product.title, product_path(cp.product) %></td>
+        <td id="cart_item_<%= cp.product.id %>_title"><%= link_to cp.product.title, product_path(cp.product) %></td>
         <td>
           <%= text_field_tag "cp_id_quant[#{cp.id}]", cp.quantity, :size => 4, :class => "quantity" %>
         </td> 
-        <td class="cart_item_price"><%= number_to_currency(cp.price) %></td>
-        <td class="cart_item_total"><%= number_to_currency(cp.total) %></td>
+        <td class="cart_item_price" id="cart_item_<%= cp.product.id %>_price"><%= number_to_currency(cp.price) %></td>
+        <td class="cart_item_total" id="cart_item_<%= cp.product.id %>_total"><%= number_to_currency(cp.total) %></td>
         <td class="remove-item-cart"><%= link_to "", cart_remove_product_path(:cp_id => cp.id), :class => 'i icon-remove', :method => :post, :confirm => 'Are you sure you\'d like to remove this item?' %>
       </tr>
     <% end %> 
@@ -42,6 +42,6 @@
 <div class="cart-form-actions">
   <%= submit_tag "Empty Cart", :class => 'btn', :id => "empty_cart" %>
   <%= submit_tag "Update Cart", :class => 'btn', :id => "update_cart" %>
-  <%= link_to 'Checkout', checkout_path, :class => 'btn btn-back' %> 
+  <%= link_to 'Checkout', checkout_path, :class => 'btn btn-back', :id => "checkout_button" %> 
 </div>
 <% end %>
