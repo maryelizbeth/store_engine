@@ -17,8 +17,12 @@ class Cart < ActiveRecord::Base
   end
 
   def add_product_to_cart(product_id)
-    product = Product.find_by_id(product_id)
-    add_product(product, 1)
+    product = Product.find(:first, :conditions => ["id = ? and active = ?", product_id, true])
+    if product
+      add_product(product, 1)
+    else
+      return nil
+    end
   end
 
   def remove_product(cp_id)
