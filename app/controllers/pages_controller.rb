@@ -5,5 +5,9 @@ class PagesController < ApplicationController
   end
 
   def process_email
-  end 
+  end
+  
+  def to_github
+    redirect_to "https://github.com/maryelizbeth/store_engine/"
+  end
 end

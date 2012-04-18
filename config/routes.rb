@@ -30,4 +30,6 @@ post  "/contact_us", :to => "pages#contact_us"
 
 match 'login' => 'user_sessions#new', :as => :login
 match 'logout' => 'user_sessions#destroy', :as => :logout
+
+match 'code' => 'pages#to_github', :as => :code
 end
