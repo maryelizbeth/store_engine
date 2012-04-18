@@ -5,20 +5,20 @@
   </div> 
   <%= form_tag convert_cart_to_order_path, :method => :post do %>
 <div class="addresses">
-  <div class="shipping-address">
-  <h3>Shipping Address</h3>
-    <% unless @user.has_existing_shipping_address? %>
-      <div id="shipping_address_form"><%= render :partial => "shipping_address" %></div> 
-    <% else %>
-      Ship to: <%= @user.shipping_address.street_1%>
-    <% end %>
-  </div>
   <div class="billing-address">
   <h3>Billing Address</h3>
     <% unless @user.has_existing_billing_address? %>
       <div id="billing_address_form"><%= render :partial => "billing_address" %></div>
     <% else %>
       Bill to: <%= @user.billing_address.street_1 %>
+    <% end %>
+  </div>
+  <div class="shipping-address">
+  <h3>Shipping Address</h3>
+    <% unless @user.has_existing_shipping_address? %>
+      <div id="shipping_address_form"><%= render :partial => "shipping_address" %></div> 
+    <% else %>
+      Ship to: <%= @user.shipping_address.street_1%>
     <% end %>
   </div>
 </div> 
