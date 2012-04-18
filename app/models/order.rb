@@ -45,8 +45,12 @@ class Order < ActiveRecord::Base
     order_products.sum { |op| op.total }
   end
 
+  def placed_at
+    created_at.strftime("%Y-%m-%d %H:%M UTC")
+  end
+
   private
-  
+
   def create_special_url
     self.special_url = Digest::SHA1.hexdigest("#{ Time.now.to_i.to_s + user.full_name + rand(1..10000).to_s }")
   end
