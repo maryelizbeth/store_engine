@@ -5,47 +5,86 @@
 .filter{ 
   padding-top: 25px;
 }
-.product-listings {
-  border-collapse: separate;
-  border: 10px;
-  margin-top: 50px;
-  margin-bottom: 25px;
-}
-.product {
-  border-collapse: separate;
-  border-spacing: 10px;
-}
 
-.indiv-product {
+li.indiv-product {
   display: inline-block;
-  border-collapse: separate;
-  border-spacing: 10px;
-  height: 125px;
-  width: 325px;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  position: relative;
+  margin: 0 10px 20px 0;
+  float: none;
  }
 
 .prod-attributes{
   display: inline-block;
-
+  width: 93%;
+  position: absolute;
+  background-color: rgba(136, 136, 136, 0.7);
+  background-repeat:no-repeat;
+  padding: 10px;
+  margin: 0px;
+  top: 215px;
 }
 
-td.store_product_title{
-  border-spacing: 10px;
-}
 
 img.store_product_image {
-  height: 100px;
-  width: 100px;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
 }
 
-td.add_to_cart{
+.add_to_cart{
   vertical-align: middle;
+  float: right;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 .pager{
   float: right;
   margin-bottom: 25px;
 }
 
-/*.container-fluid{ 
-  background-image:url('http://apod.nasa.gov/apod/image/1102/rosette_lula_1700.jpg');
-}*/
+h1.index-prod-title{ 
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+#prod_descrip{ 
+  margin-bottom: 10px;
+}
+
+#index_prod_image{ 
+  float: left;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.prod-index-add{ 
+  float: right;
+  margin-right: 10px;
+}
+
+.prod-cat-list-title{ 
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+ul.product_categories{ 
+  list-style-type: none;
+}
+
+.view-all-index{ 
+  float: right;
+}
+
+

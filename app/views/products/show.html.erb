@@ -1,41 +1,37 @@
-<h1>/Product</h1>
+<h1 class="index-prod-title"><%= @product.title %>(<%= number_to_currency(@product.price) %>)</h1>
 
-<table>
-  <tr>
-    <td rowspan=4>
-        <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>
-    </td>
-    <td id="product_title"><%= @product.title %></td>
-  </tr>
-  <tr>
-    <td id="product_price"><%= number_to_currency(@product.price) %></td>
-  </tr>
-  <tr>
-    <td id="product_description"><%= @product.description %></td>
-  </tr>
-  <tr>
-    <td>
-      <b>Product categories</b>
-	  <ul id="product_categories">
-	  <% @product.product_categories.each do |pc| %>
-	    <li><%= pc.name %></li>
-	  <% end %>
-	  </ul>
-    </td>
-  </tr>
-</table>
+  <div id="index_prod_image">
+      <%= link_to (image_tag @product.thumbnail, :class => "product_image", :id => "product_image"), product_path(@product) %>
+  </div>
 
-<div class="indiv-product-form-actions">
-  <div><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
+
+<div class="index-prod-cat">
+    <ul class="product_categories">
+    <div class="prod-cat-list-title">Product Categories:</div> 
+    <% @product.product_categories.each do |pc| %>
+      <li><%= pc.name %></li>
+    <% end %>
+    </ul>
+</div>
+
+<div id="prod_descrip"><%= @product.description %></div>
+
+<div class="indiv-product-cart-actions">
   <% if @product.active? %>
     <%= form_tag add_to_cart_path, :method => :post do %>
       <%= hidden_field_tag "product_id", @product.id %>
-      <%= submit_tag "Add to Cart", :class => 'btn' %>
+      <div class="prod-index-add"><%= submit_tag "Add to Cart", :class => 'btn' %></div>
     <% end %>
 
     <% if current_user && current_user.can_two_click_checkout? %>
+    <div class="two-click-checkout">
       <%= link_to "Two Click Checkout™", two_click_checkout_path(:product_id => @product.id), 
                 :method => :post, :class => 'btn', :confirm => "Place an order for '#{@product.title}'?", :id => "two_click_checkout" %>
     <% end %>
+  </div>
+  <br /> <br /> 
   <% end %>
+  <div class="view-all-index"><%= link_to 'View All Products', products_path, :class => 'btn add_to_cart' %></div>
 </div>
+
+
