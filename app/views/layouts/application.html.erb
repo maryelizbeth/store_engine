@@ -24,6 +24,9 @@
             <li>
               <%= link_to "Edit Profile", edit_user_path(current_user.id), :id => "edit_profile" %>
             </li>
+            <li>
+              <%= link_to "View Orders", orders_path, :id => "view_past_orders" %>
+            </li>
             <% if current_user.admin? %>
             <li class="dropdown">
               <a href="#" id="product_menu" class="dropdown-toggle" data-toggle="dropdown">
