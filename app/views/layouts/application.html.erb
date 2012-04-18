@@ -30,8 +30,9 @@
                 Products Editor <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Create Product", new_admin_product_path, :id => "create_product" %></li>
-                <li><%= link_to "Edit Products", admin_products_path, :id => "edit_product" %></li> 
+                <!-- <li><%= link_to "Create A New Product", new_admin_product_path, :id => "create_product" %></li> -->
+                <li><%= link_to "Create, View, & Edit Products", admin_products_path, :id => "edit_product" %></li> 
+                <li><%= link_to "Create, View, & Edit Product Categories", admin_product_categories_path, :id => "product_category" %></li>
               </ul>
             <% end %>
             <li><%= link_to "Logout", :logout, :id => "logout" %></li>
