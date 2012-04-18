@@ -9,15 +9,15 @@ describe "Product requests" do
     end
     
     it "shows the product title" do
-      find("#product_title").text.should have_content product_1.title
+      find(".index-prod-title").text.should have_content product_1.title
     end
     
     it "shows the product description" do
-      find("#product_description").text.should have_content product_1.description
+      find("#prod_descrip").text.should have_content product_1.description
     end
     
     it "shows the product price" do
-      find("#product_price").text.should have_content number_to_currency(product_1.price)
+      find(".index-prod-title").text.should have_content number_to_currency(product_1.price)
     end
     
     context "for a product's image" do
