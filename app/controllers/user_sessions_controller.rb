@@ -6,8 +6,10 @@ class UserSessionsController < ApplicationController
   end
   
   def create
+    cart_id = session[:cart_id]
     respond_to do |format|
       if @user = login(params[:email_address],params[:password])
+        session[:cart_id] = cart_id unless cart_id.nil?
         format.html { redirect_back_or_to(root_path, :notice => 'Login successful.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
