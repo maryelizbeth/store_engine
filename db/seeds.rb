@@ -1,6 +1,8 @@
+image_base_url = "http://severe-beach-6680.herokuapp.com/images/image"
+
 (0..2).each do |a|
   pc = Fabricate(:product_category)
-  (1..3).each { |b| Fabricate(:product).product_categories << pc }
+  (1..4).each { |b| Fabricate(:product, :photo_url => "#{image_base_url}/images/image#{(a*4+b)}.jpg").product_categories << pc }
 end
 
 5.times { Fabricate(:user) }
