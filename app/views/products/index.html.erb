@@ -13,24 +13,17 @@ $(function(){
   <%= select_tag :category_id, options_from_collection_for_select(@product_categories, "id", "name", @selected_category_id), :prompt => "all categories" %>
   <% end %>
 </div> 
-  <table class = "product">
-    <tr id="product">
-      <td>
+  <ul class = "product-listing">
         <% @products.each do |product| %>
-      <table class = "indiv-product">
-        <tr>
-          <td colspan=2>
-              <%= link_to (image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image"), product_path(product) %>
-          </td>
-          <td>
-            <%= render :partial => "product_details", :locals => { :product => product } %>
-          </td>
-        </tr>
-      </table>
+      <li class = "indiv-product">
+        <div class="idiv-product-thumbnail">
+          <%= link_to (image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image"), product_path(product) %>
+        </div>
+        <div class="indiv-product-details">
+          <%= render :partial => "product_details", :locals => { :product => product } %>
+        </div>
+      </li> 
   <% end %>
-</td>
-</tr>
-</table>
 <!-- <div>
   <ul class="pager">
     <li><a href="#">&laquo;</a></li>
