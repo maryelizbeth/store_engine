@@ -10,27 +10,27 @@ class Order < ActiveRecord::Base
 
   validates :user_id, :presence => true
 
-  aasm :column => :status do 
+  aasm :column => :status do
     state :pending, :initial => true
-    state :paid 
-    state :shipped 
-    state :returned 
-    state :canceled 
+    state :paid
+    state :shipped
+    state :returned
+    state :canceled
 
-    event :process_payment do 
+    event :process_payment do
       transitions :to => :paid, :from => [:pending]
-    end 
-    event :ship do 
+    end
+    event :ship do
       transitions :to => :shipped, :from => [:paid]
-    end 
-    event :return do 
+    end
+    event :return do
       transitions :to => :returned, :from => [:shipped]
-    end 
-    event :cancel do 
+    end
+    event :cancel do
       transitions :to => :canceled, :from => [:pending]
-    end 
+    end
   end
-  
+
   def transition(method_name)
     case method_name
       when "process-payment"  then self.process_payment
@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
     end
     self.save
   end
-  
+
   def total
     order_products.sum { |op| op.total }
   end
@@ -52,6 +52,8 @@ class Order < ActiveRecord::Base
   private
 
   def create_special_url
-    self.special_url = Digest::SHA1.hexdigest("#{ Time.now.to_i.to_s + user.full_name + rand(1..10000).to_s }")
+    self.special_url =
+    Digest::SHA1.hexdigest(%Q|#{ Time.now.to_i.to_s +
+    user.full_name + rand(1..10000).to_s }|)
   end
 end
