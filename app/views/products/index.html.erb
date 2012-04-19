@@ -18,7 +18,6 @@ $(function(){
       <li class = "indiv-product">
         <div class="indiv-product-thumbnail">
           <%= link_to (image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image"), product_path(product) %>
-        </div>
           <%= render :partial => "product_details", :locals => { :product => product } %>
         </div>
       </li> 
