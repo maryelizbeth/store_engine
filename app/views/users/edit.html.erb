@@ -9,7 +9,6 @@
   <h4 class="personal-login">Login Information</h4>
   <%= best_in_place @user, :email_address %><br />
   <%= link_to 'Edit Password' %>
-  <%= form_for @user do |f| %> 
     <%= best_in_place @user, :password, nil, :placeholder => "Click to Edit Your Password" %>
 
 </div> 
