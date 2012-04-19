@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
+gem 'pg'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'aasm'
 gem 'best_in_place'
 gem 'kaminari'
+gem 'heroku'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
