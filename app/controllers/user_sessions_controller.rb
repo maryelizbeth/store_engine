@@ -6,7 +6,18 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    cart_id = session[:cart_id]
+    handle_create(session[:cart_id])
+  end
+
+  def destroy
+    logout
+    clear_cart
+    redirect_to(login_path, :notice => 'Logged out!')
+  end
+
+  private
+
+  def handle_create(cart_id)
     respond_to do |format|
       if @user = login(params[:email_address],params[:password])
         session[:cart_id] = cart_id unless cart_id.nil?
@@ -17,11 +28,5 @@ class UserSessionsController < ApplicationController
                       render :action => "new" }
       end
     end
-  end
-
-  def destroy
-    logout
-    clear_cart
-    redirect_to(login_path, :notice => 'Logged out!')
   end
 end
