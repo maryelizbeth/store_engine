@@ -1,11 +1,19 @@
+<%= content_for :head do %>
+<script type="text/javascript">
+$(function(){
+  $('select').live('change',function(){
+    $(this).closest('form#filter').submit();
+  });
+});
+</script>
+<% end %>
 <h1>Orders</h1>
 <div class="filter">
-Filter by Status:
-<%= form_tag admin_orders_path, :method => :get  do %>
-  <%= select_tag :order_status, options_for_select(@order_statuses, @selected_order_state), :prompt => "all statuses" %>
-  <%= submit_tag "Filter", :class => 'btn btn-mini', :id => "submit_status_filter" %>
-<% end %>
-</div>
+  <%= form_tag admin_orders_path, :id => "filter", :method => :get  do %>
+  <p id="filter_label">Filter Orders by Status:</p> 
+    <%= select_tag :order_status, options_from_collection_for_select(@order_statuses, "id", @selected_order_state), :prompt => "all statuses" %>
+  <% end %>
+  </div>
 <div>
   <table class="table table-bodered">
     <tr>
