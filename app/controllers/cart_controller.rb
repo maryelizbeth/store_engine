@@ -10,16 +10,18 @@ class CartController < ApplicationController
     flash[:notice] = "Order successfully processed."
     redirect_to order_path(@order)
   end
-  
+
   def add_to_cart
     @product_title = @cart.add_product_to_cart(params[:product_id])
     session[:cart_id] = @cart.id
     respond_to do |format|
       if @product_title
-        format.html   { redirect_to cart_show_path, notice: "\'#{@product_title}\' was added to your cart." }
+        format.html { redirect_to cart_show_path,
+                      notice: "\'#{@product_title}\' was added to your cart." }
         format.js
       else
-        format.html   { redirect_to product_path(params[:product_id]), alert: "This product is retired." }
+        format.html { redirect_to product_path(params[:product_id]),
+                      alert: "This product is retired." }
       end
     end
   end
@@ -44,7 +46,7 @@ class CartController < ApplicationController
   def checkout
     @user = current_user
   end
-  
+
   def convert_cart_to_order
     unless current_user.has_existing_credit_card?
       card_ok = build_credit_card(params[:billing_type])
@@ -58,11 +60,13 @@ class CartController < ApplicationController
     end
     unless current_user.has_existing_shipping_address?
       if params[:shipping_address][:use_billing]
-        shipping_address_ok = build_address(params[:billing_address], "shipping")
+        shipping_address_ok =
+          build_address(params[:billing_address], "shipping")
       else
-        shipping_address_ok = build_address(params[:shipping_address], "shipping")
+        shipping_address_ok =
+          build_address(params[:shipping_address], "shipping")
       end
-    else 
+    else
       shipping_address_ok = true
     end
     if card_ok && billing_address_ok && shipping_address_ok
@@ -75,9 +79,9 @@ class CartController < ApplicationController
       redirect_to checkout_path
     end
   end
-  
+
   private
-  
+
   def process_order
     @order = Order.new
     @order.user_id = current_user.id
@@ -90,7 +94,7 @@ class CartController < ApplicationController
     @order.save
     @cart.delete
   end
-  
+
   def charge_order
     @order.transition("process-payment")
   end
@@ -103,7 +107,7 @@ class CartController < ApplicationController
                         :ccv => billing_info[:ccv])
     cc.save
   end
-  
+
   def build_address(address, address_type)
     ba = current_user.addresses.build
     ba.update_attributes(:address_type => address_type,

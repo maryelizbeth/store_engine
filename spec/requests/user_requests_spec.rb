@@ -10,7 +10,7 @@ describe "User Types" do
     
     it "can access the admin product screen" do
       within "ul.nav" do
-        click_link "Admin Products"
+        click_link "Admin Dashboards"
         click_link "Create, View, & Edit Products"
         current_path.should == admin_products_path
       end
@@ -18,7 +18,7 @@ describe "User Types" do
     
     it "can access the admin product categories screen" do
       within "ul.nav" do
-        click_link "Admin Products"
+        click_link "Admin Dashboards"
         click_link "Create, View, & Edit Product Categories"
         current_path.should == admin_product_categories_path
       end

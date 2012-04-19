@@ -7,17 +7,22 @@ class Cart < ActiveRecord::Base
   end
 
   def add_product(product, quantity)
-    cp = CartProduct.find(:first, :conditions => ["product_id = ? and cart_id = ?", product.id, self.id])
+    cp = CartProduct.find(:first, :conditions =>
+         ["product_id = ? and cart_id = ?", product.id, self.id])
     if cp
       cp.update_attribute(:quantity, cp.quantity + quantity.to_i)
     else
-      cp = CartProduct.create(:cart_id => self.id, :product_id => product.id, :quantity => quantity, :price => product.price)
+      cp = CartProduct.create(:cart_id => self.id,
+                              :product_id => product.id,
+                              :quantity => quantity,
+                              :price => product.price)
     end
     cp.product.title
   end
 
   def add_product_to_cart(product_id)
-    product = Product.find(:first, :conditions => ["id = ? and active = ?", product_id, true])
+    product = Product.find(:first, :conditions =>
+              ["id = ? and active = ?", product_id, true])
     if product
       add_product(product, 1)
     else

@@ -4,21 +4,21 @@ class UserSessionsController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def create
     cart_id = session[:cart_id]
     respond_to do |format|
       if @user = login(params[:email_address],params[:password])
         session[:cart_id] = cart_id unless cart_id.nil?
-        format.html { redirect_back_or_to(root_path, :notice => 'Login successful.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        format.html { redirect_back_or_to(root_path,
+                      :notice => 'Login successful.') }
       else
-        format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { flash.now[:alert] = "Login failed.";
+                      render :action => "new" }
       end
     end
   end
-    
+
   def destroy
     logout
     clear_cart
