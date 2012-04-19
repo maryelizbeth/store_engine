@@ -14,4 +14,6 @@ begin
   RSpec::Core::RakeTask.new("spec:acceptance") do |t|
     t.rspec_opts = "--tag acceptance"
   end
+rescue
+  
 end
