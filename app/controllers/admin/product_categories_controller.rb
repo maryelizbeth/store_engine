@@ -37,11 +37,15 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       if @product_category.save
-        format.html { redirect_to admin_product_category_path(@product_category), notice: 'Product category was successfully created.' }
-        format.json { render json: @product_category, status: :created, location: @product_category }
+        format.html {
+          redirect_to admin_product_category_path(@product_category),
+          notice: 'Product category was successfully created.' }
+        format.json { render json: @product_category,
+                      status: :created, location: @product_category }
       else
         format.html { render action: "new" }
-        format.json { render json: @product_category.errors, status: :unprocessable_entity }
+        format.json { render json: @product_category.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
@@ -51,11 +55,14 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       if @product_category.update_attributes(params[:product_category])
-        format.html { redirect_to admin_product_category_path(@product_category), notice: 'Product category was successfully updated.' }
+        format.html {
+          redirect_to admin_product_category_path(@product_category),
+          notice: 'Product category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @product_category.errors, status: :unprocessable_entity }
+        format.json { render json: @product_category.errors,
+                      status: :unprocessable_entity }
       end
     end
   end
