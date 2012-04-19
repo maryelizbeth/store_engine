@@ -16,3 +16,21 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+function adjustStyle(width) {
+    width = parseInt(width);
+    if (width < 980) {
+        $("#size-stylesheet").attr("href", "stylesheets/mobile.css.scss");
+    } else if ((width >= 980) && (width < 1260)) {
+        $("#size-stylesheet").attr("href", "stylesheets/smallbrowser.css.scss");
+    } else {
+       $("#size-stylesheet").attr("href", "stylesheets/application.css.scss");
+    }
+}
+
+$(function() {
+    adjustStyle($(this).width());
+    $(window).resize(function() {
+        adjustStyle($(this).width());
+    });
+});

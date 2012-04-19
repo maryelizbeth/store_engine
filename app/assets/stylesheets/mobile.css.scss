@@ -1,0 +1,23 @@
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px){
+  .body{
+    padding-top: inherit
+  }
+
+  .nav{
+    float: right;
+    width: 100%;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+  }
+
+  .footer{
+    border-top: 2px solid #888;
+    margin-top: inherit;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+}

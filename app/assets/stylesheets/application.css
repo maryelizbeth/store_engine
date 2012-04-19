@@ -12,10 +12,41 @@
  *= require_tree .
 */
 
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px){
 
+}
 
 .body{
   padding-top: 50px;
+}
+
+.nav{
+  float: right;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.footer{
+  border-top: 2px solid #888;
+  margin-top: inherit;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+#navlist li{
+float: right;
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+.contact{ 
+  display: inline-block;
+  height: 200px;
+  width: 300px;
 }
 
 .purr {
@@ -29,35 +60,6 @@
   &:first-letter { text-transform: uppercase; }
 }
 
-.container {
-position: relative;
-width: 100%;
-}
-
-.footer{
-
-  border-top: 2px solid #888;
-  margin-top: inherit;
-  margin-bottom: 25px;
-  height: 100px;
-}
-
-.nav{
-  float: right;
-}
-
-
-#navlist li{
-float: right;
-display: inline;
-list-style-type: none;
-padding-right: 20px;
-}
-.contact{ 
-  display: inline-block;
-  height: 200px;
-  width: 300px;
-}
 #contact_info{
   padding-bottom: 25px;
 }
