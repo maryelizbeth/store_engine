@@ -14,8 +14,10 @@ module Admin::OrdersHelper
       links.join(" | ").html_safe
     end
   end
-  
+
   def create_status_transition_link(order, status)
-    link_to(status.capitalize, admin_order_path(order, :transition => status.parameterize), :method => :put, :class => 'btn btn-mini')
+    link_to(status.capitalize,
+    admin_order_path(order, :transition => status.parameterize),
+                     :method => :put, :class => 'btn btn-mini')
   end
 end
