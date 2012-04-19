@@ -21,22 +21,25 @@
         <div class="nav-collapse">
           <ul class="nav">
           <% if current_user %> 
-            <li>
-              <%= link_to "Edit Profile", edit_user_path(current_user.id), :id => "edit_profile" %>
-            </li>
-            <li>
-              <%= link_to "View Orders", orders_path, :id => "view_past_orders" %>
-            </li>
             <% if current_user.admin? %>
             <li class="dropdown">
               <a href="#" id="product_menu" class="dropdown-toggle" data-toggle="dropdown">
-                Products Editor <b class="caret"></b>
+                Admin Products <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Create, View, & Edit Products", admin_products_path, :id => "edit_product" %></li> 
                 <li><%= link_to "Create, View, & Edit Product Categories", admin_product_categories_path, :id => "product_category" %></li>
               </ul>
+            </li>
+            <li><%= link_to "Admin Orders", admin_orders_path, :id => "admin_orders" %></li>
+            <li>|</li>
             <% end %>
+            <li>
+              <%= link_to "View Profile", user_path(current_user.id), :id => "view_profile" %>
+            </li>
+            <li>
+              <%= link_to "Past Orders", orders_path, :id => "view_past_orders" %>
+            </li>
             <li><%= link_to "Logout", :logout, :id => "logout" %></li>
           <% else %>
             <li><%= link_to "Create an Account", new_user_path, :id => "create_account" %></li>

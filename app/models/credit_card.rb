@@ -6,4 +6,8 @@ class CreditCard < ActiveRecord::Base
   validates :expiration_month,  :length => { :in => 1..2 }
   validates :expiration_year,   :length => { :is => 4 }
   validates :ccv,               :length => { :is => 3 }
+  
+  def masked_number
+    "X" * (card_number.length - 4) + card_number[-4,4]
+  end
 end
