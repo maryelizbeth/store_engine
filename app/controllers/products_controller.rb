@@ -4,10 +4,11 @@ class ProductsController < ApplicationController
   def index
     if params[:category_id] && !params[:category_id].empty?
       @selected_category_id = params[:category_id].to_i
-      @products = ProductCategory.find_by_id(@selected_category_id).active_products
+      @products =
+        ProductCategory.find_by_id(@selected_category_id).active_products
     else
       @products = all_active_products
-    end  
+    end
     @product_categories = ProductCategory.all
   end
 
@@ -21,9 +22,9 @@ class ProductsController < ApplicationController
       format.json { render json: @product }
     end
   end
-  
+
   private
-  
+
   def all_active_products
     Product.find(:all, :conditions => ["active = ?", true])
   end

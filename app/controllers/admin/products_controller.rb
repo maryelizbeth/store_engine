@@ -1,12 +1,11 @@
 class Admin::ProductsController < ApplicationController
   before_filter :require_admin
-  
+
   def index
     @products = Product.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @products }
     end
   end
 
@@ -15,7 +14,6 @@ class Admin::ProductsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @product }
     end
   end
 
@@ -24,7 +22,6 @@ class Admin::ProductsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @product }
     end
   end
 
@@ -37,11 +34,10 @@ class Admin::ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to admin_product_path(@product), notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
+        format.html { redirect_to admin_product_path(@product),
+                      notice: 'Product was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,11 +47,10 @@ class Admin::ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to admin_product_path(@product), notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to admin_product_path(@product),
+                      notice: 'Product was successfully updated.' }
       else
         format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,10 +59,9 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     flash[:notice] = "The product has been deleted."
-    
+
     respond_to do |format|
       format.html { redirect_to admin_products_url }
-      format.json { head :no_content }
     end
   end
 end
