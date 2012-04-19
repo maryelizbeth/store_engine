@@ -10,6 +10,7 @@ gem 'kaminari'
 gem 'heroku'
 gem 'faker'
 gem 'fabrication'
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,7 +32,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'simplecov'
-  gem 'twitter-bootstrap-rails'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'cane', :git => "git://github.com/square/cane.git"
 end
