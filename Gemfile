@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
+gem 'pg'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'aasm'
 gem 'best_in_place'
 gem 'kaminari'
+gem 'heroku'
+gem 'faker'
+gem 'fabrication'
+gem 'twitter-bootstrap-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -22,14 +27,15 @@ end
 group :development, :test do
   gem 'guard'
   gem 'growl'
-  gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'faker'
   gem 'simplecov'
-  gem 'twitter-bootstrap-rails'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'cane', :git => "git://github.com/square/cane.git"
+end
+
+group :production do
+  gem 'thin'
 end
