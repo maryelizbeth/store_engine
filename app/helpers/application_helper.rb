@@ -1,8 +1,8 @@
 module ApplicationHelper
   def cart_nav_label
-    %Q^<div id=\"cart_info\">
-       Cart (#{@cart.quantity} | #{number_to_currency(@cart.total)})
-       </div>".html_safe^
+    %Q^<div id=\"cart_info\"> \
+       Cart (#{@cart.quantity} | #{number_to_currency(@cart.total)}) \
+       </div>^.html_safe
   end
 
   def display_order_special_url(order)

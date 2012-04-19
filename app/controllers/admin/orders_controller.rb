@@ -29,8 +29,8 @@ class Admin::OrdersController < ApplicationController
     order = Order.find(params[:id])
     old_status = order.status
     order.transition(params[:transition])
-    flash[:notice] = %Q^Order successfully transtitioned from '
-                     #{old_status}' to '#{order.status}'^
+    flash[:notice] = %Q^Order successfully transtitioned from '#{old_status}' \
+                     to '#{order.status}'^
     redirect_to admin_orders_path
   end
 
@@ -38,10 +38,11 @@ class Admin::OrdersController < ApplicationController
 
   def get_orders_count
     order_count = {}
-    @order_count[:pending] = Order.find_all_by_status("pending").count
-    @order_count[:paid] = Order.find_all_by_status("paid").count
-    @order_count[:shipped] = Order.find_all_by_status("shipped").count
-    @order_count[:returned] = Order.find_all_by_status("returned").count
-    @order_count[:canceled] = Order.find_all_by_status("canceled").count
+    order_count[:pending] = Order.find_all_by_status("pending").count
+    order_count[:paid] = Order.find_all_by_status("paid").count
+    order_count[:shipped] = Order.find_all_by_status("shipped").count
+    order_count[:returned] = Order.find_all_by_status("returned").count
+    order_count[:canceled] = Order.find_all_by_status("canceled").count
+    order_count
   end
 end

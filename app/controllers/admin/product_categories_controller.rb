@@ -6,7 +6,6 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @product_categories }
     end
   end
 
@@ -15,7 +14,6 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @product_category }
     end
   end
 
@@ -24,7 +22,6 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @product_category }
     end
   end
 
@@ -40,12 +37,8 @@ class Admin::ProductCategoriesController < ApplicationController
         format.html {
           redirect_to admin_product_category_path(@product_category),
           notice: 'Product category was successfully created.' }
-        format.json { render json: @product_category,
-                      status: :created, location: @product_category }
       else
         format.html { render action: "new" }
-        format.json { render json: @product_category.errors,
-                      status: :unprocessable_entity }
       end
     end
   end
@@ -58,11 +51,8 @@ class Admin::ProductCategoriesController < ApplicationController
         format.html {
           redirect_to admin_product_category_path(@product_category),
           notice: 'Product category was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @product_category.errors,
-                      status: :unprocessable_entity }
       end
     end
   end
@@ -73,7 +63,6 @@ class Admin::ProductCategoriesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to admin_product_categories_url }
-      format.json { head :no_content }
     end
   end
 end
