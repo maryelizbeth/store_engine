@@ -12,7 +12,7 @@
 
 <p>
   <b>Email Address</b><br>
-  <span id="user_email_address"><%= @user.email_address %></span>
+  <span id="user_email_address"><%=@user.email_address %></span>
 </p>
 
 <p>
@@ -37,7 +37,7 @@
     <% end %>
       <%= @user.billing_address.city %>, <%= @user.billing_address.state %>&nbsp;&nbsp;<%= @user.billing_address.zip_code %>
   <% else %>
-    None
+      None
   <% end %>
   </div>
 </p>
@@ -53,7 +53,7 @@
     <% end %>
       <%= @user.shipping_address.city %>, <%= @user.shipping_address.state %>&nbsp;&nbsp;<%= @user.shipping_address.zip_code %>
   <% else %>
-    None
+     None
   <% end %>
   </div>
 
