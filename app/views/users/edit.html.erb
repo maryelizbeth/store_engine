@@ -7,24 +7,29 @@
 
 <div class="login-info">
   <h4 class="personal-login">Login Information</h4>
-  <%= best_in_place @user, :email_address %>
+  <%= best_in_place @user, :email_address %><br />
+  <%= link_to 'Edit Password' %>
+
 </div> 
 
 <div class="personal-addresses"> 
   <h4>Addresses</h4> 
   <div class="user_shipping">
     <h5>Shipping Address</h5> 
-
+     <%= link_to 'Edit Shipping Address' %>
   </div> 
   <div class="user_billing">
     <h5>Billing Address</h5>
+      <%= link_to 'Edit Billing Address' %>
   </div>  
 </div> 
 
 <div class="credit-card-info">
   <h4>Credit Card</h4>
+    <%= link_to 'Edit Credit Card' %>
 </div> 
 
 <div class="personal-orders"> 
   <h4>Orders</h4> 
+    
 </div> 
