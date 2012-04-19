@@ -36,20 +36,20 @@ Fabricator(:full_user, :class_name => "User") do
 end
 
 
-# Normal user with full name "Matt Yoho", email address "matt.yoho@livingsocial.com", password of "hungry" and no display name
-# Normal user with full name "Jeff", email address "jeff.casimir@livingsocial.com", password of "hungry" and display name "j3"
-# User with admin priviliges with full name "Chad Fowler", email address "chad.fowler@livingsocial.com", password of "hungry", and display name "SaxPlayer"
+# Normal user with full name "Matt Yoho", email address "demoXX+matt@jumpstartlab.com", password of "hungry" and no display name
+# Normal user with full name "Jeff", email address "demoXX+jeff@jumpstartlab.com", password of "hungry" and display name "j3"
+# User with admin priviliges with full name "Chad Fowler", email address "demoXX+chad@jumpstartlab.com", password of "hungry", and display name "SaxPlayer"
 
 Fabricator(:user_matt, :class_name => "User") do 
    full_name      "Matt Yoho"
-   email_address  "matt.yoho@livingsocial.com"
+   email_address  "demo06+matt@jumpstartlab.com"
    crypted_password   pw_digest
    salt               pw_salt
 end
 
 Fabricator(:user_jeff, :class_name => "User") do 
    full_name      "Jeff"
-   email_address  "jeff.casimir@livingsocial.com"
+   email_address  "demo06+jeff@jumpstartlab.com"
    display_name   "j3"
    crypted_password   pw_digest
    salt               pw_salt
@@ -57,7 +57,7 @@ end
 
 Fabricator(:user_chad, :class_name => "User") do 
    full_name      "Chad Fowler"
-   email_address  "chad.fowler@livingsocial.com"
+   email_address  "demo06+chad@jumpstartlab.com"
    display_name   "SaxPlayer"
    crypted_password   pw_digest
    salt               pw_salt
