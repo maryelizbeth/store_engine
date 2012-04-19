@@ -48,16 +48,42 @@ class CartController < ApplicationController
   end
 
   def convert_cart_to_order
+    if credit_card_okay? && billing_address_okay? && shipping_address_okay?
+      handle_order
+      flash[:notice] = "Order successfully processed."
+      redirect_to order_path(@order)
+    else
+      flash[:alert] = "Order process failed."
+      redirect_to checkout_path
+    end
+  end
+
+  private
+
+  def handle_order
+    process_order
+    charge_order
+  end
+
+  def credit_card_okay?
     unless current_user.has_existing_credit_card?
       card_ok = build_credit_card(params[:billing_type])
     else
       card_ok = true
     end
+    card_ok
+  end
+
+  def billing_address_okay?
     unless current_user.has_existing_billing_address?
       billing_address_ok = build_address(params[:billing_address], "billing")
     else
       billing_address_ok = true
     end
+    billing_address_ok
+  end
+
+  def shipping_address_okay?
     unless current_user.has_existing_shipping_address?
       if params[:shipping_address][:use_billing]
         shipping_address_ok =
@@ -69,30 +95,23 @@ class CartController < ApplicationController
     else
       shipping_address_ok = true
     end
-    if card_ok && billing_address_ok && shipping_address_ok
-      process_order
-      charge_order
-      flash[:notice] = "Order successfully processed."
-      redirect_to order_path(@order)
-    else
-      flash[:alert] = "Order process failed."
-      redirect_to checkout_path
-    end
   end
-
-  private
 
   def process_order
     @order = Order.new
     @order.user_id = current_user.id
+    build_order_products
+    @order.save
+    @cart.delete
+  end
+
+  def build_order_products
     @cart.cart_products.each do |cp|
       op = @order.order_products.build
       op.update_attributes(:product_id => cp.product.id,
                           :quantity => cp.quantity,
                           :price => cp.price)
     end
-    @order.save
-    @cart.delete
   end
 
   def charge_order
