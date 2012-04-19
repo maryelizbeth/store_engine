@@ -10,7 +10,8 @@ module Admin::OrdersHelper
     if actions.empty?
       "N/A"
     else
-      actions.each { |action| links << create_status_transition_link(order, action) }
+      actions.each { |action| links <<
+                    create_status_transition_link(order, action) }
       links.join(" | ").html_safe
     end
   end
