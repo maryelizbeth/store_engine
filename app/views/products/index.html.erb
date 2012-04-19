@@ -14,12 +14,13 @@ $(function(){
   <% end %>
 </div> 
   <ul class = "product-listing">
-    <% @products.each do |product| %>
+        <% @products.each do |product| %>
       <li class = "indiv-product">
-        <div class="idiv-product-thumbnail">
+        <div class="indiv-product-thumbnail">
           <%= link_to (image_tag product.thumbnail, :class => "store_product_image", :id => "store_product_#{product.id}_image"), product_path(product) %>
         </div>
           <%= render :partial => "product_details", :locals => { :product => product } %>
+        </div>
       </li> 
   <% end %>
-  <div class="clear"></div>
+  <div class="clear"></div> 
