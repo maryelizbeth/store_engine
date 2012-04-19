@@ -1,4 +1,4 @@
-<h1>/User</h1>
+<h1>Welcome <%= @user.full_name %></h1>
 
 <p>
   <b>Full Name</b><br>
@@ -64,6 +64,6 @@
   <div id="user_past_orders"><%= link_to "View My Orders", orders_path, :class => "btn", :id => "user_past_orders_button" %></div>
 </p>
 
-<div class="form-actions">
+<div class="user-profile-actions">
   <%= link_to 'Back', root_path, :class => 'btn'  %>
 </div>
