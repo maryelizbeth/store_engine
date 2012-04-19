@@ -28,22 +28,22 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-    if request.post?
-      if params[:user][:password].empty?
-      # password not edited
-      params[:user][:password] = @user.password
-      params[:user][:password_confirmation] = @user.password
-    end
-      if @user.update_attributes(params[:user])
-          flash[:notice] = "Your details have been updated"
-          redirect_to :action => 'users_edit_path'
-      end
-    end
-    @user.password = nil
-    @user.password_confirmation = nil
-  end
+  # def edit
+  #   @user = User.find(params[:id])
+  #   if request.post?
+  #     if params[:user][:password].empty?
+  #     # password not edited
+  #     params[:user][:password] = @user.password
+  #     params[:user][:password_confirmation] = @user.password
+  #   end
+  #     if @user.update_attributes(params[:user])
+  #         flash[:notice] = "Your details have been updated"
+  #         redirect_to :action => 'users_edit_path'
+  #     end
+  #   end
+  #   @user.password = nil
+  #   @user.password_confirmation = nil
+  # end
 
   # POST /users
   # POST /users.json
@@ -64,17 +64,17 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.json { respond_with_bip(@user) }
-      else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@user) }
-      end
-    end
-  end
+  # def update
+  #   @user = User.find(params[:id])
+  # 
+  #   respond_to do |format|
+  #     if @user.update_attributes(params[:user])
+  #       format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+  #       format.json { respond_with_bip(@user) }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.json { respond_with_bip(@user) }
+  #     end
+  #   end
+  # end
 end

@@ -2,7 +2,7 @@ StoreEngine::Application.routes.draw do
 root :to => 'products#index'
 
 resources :user_sessions
-resources :users, :only => [:new, :create, :edit, :update, :show]
+resources :users, :only => [:new, :create, :show]
 resources :products, :only => [:index, :show]
 
 get "orders/lookup"

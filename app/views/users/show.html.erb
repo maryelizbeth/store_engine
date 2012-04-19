@@ -2,17 +2,66 @@
 
 <p>
   <b>Full Name</b><br>
-  <span id="full_name"><%= @user.full_name %></span>
+  <span id="user_full_name"><%= @user.full_name %></span>
 </p>
 
 <p>
   <b>Display Name</b><br>
-  <span id="display_name"><%= @user.display_name %></span>
+  <span id="user_display_name"><%= @user.display_name %></span>
 </p>
 
 <p>
   <b>Email Address</b><br>
-  <span id="email_address"><%= @user.email_address %></span>
+  <span id="user_email_address"><%= @user.email_address %></span>
+</p>
+
+<p>
+  <b>Credit Card</b><br>
+  <span id="user_credit_card">
+    <% if @user.has_existing_credit_card? %>
+      Using <%= @user.credit_card.masked_number %>
+    <% else %>
+      None
+    <% end %>
+  </span>
+</p>
+
+
+<p>
+  <b>Billing Address</b><br>
+  <div id="user_billing_address">
+  <% if @user.has_existing_billing_address? %>
+      <%= @user.billing_address.street_1 %></br>
+    <% if @user.billing_address.street_2 %>
+      <%= @user.billing_address.street_2 %></br>
+    <% end %>
+      <%= @user.billing_address.city %>, <%= @user.billing_address.state %>&nbsp;&nbsp;<%= @user.billing_address.zip_code %>
+  <% else %>
+    None
+  <% end %>
+  </div>
+</p>
+
+
+<p>
+  <b>Shipping Address</b><br>
+  <div id="user_shipping_address">
+  <% if @user.has_existing_shipping_address? %>
+      <%= @user.shipping_address.street_1 %></br>
+    <% if @user.shipping_address.street_2 %>
+      <%= @user.shipping_address.street_2 %></br>
+    <% end %>
+      <%= @user.shipping_address.city %>, <%= @user.shipping_address.state %>&nbsp;&nbsp;<%= @user.shipping_address.zip_code %>
+  <% else %>
+    None
+  <% end %>
+  </div>
+
+</p>
+
+<p>
+  <b>Past Orders</b><br>
+  <div id="user_past_orders"><%= link_to "View My Orders", orders_path, :class => "btn", :id => "user_past_orders_button" %></div>
 </p>
 
 <div class="form-actions">

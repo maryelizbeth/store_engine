@@ -112,5 +112,28 @@ describe "Cart Requests" do
         end
       end
     end
+    
+    context "attempting to add a retired product" do
+      context "on the product show page" do
+        before(:each) do
+          visit product_path(product_1)
+          product_1.update_attribute(:active, false)
+        end
+        
+        it "does not add the item to the cart" do
+          expect { find("#add_to_cart_button").click }.to_not change{ CartProduct.count }.by(1)
+        end
+        
+        it "redirects the user to back to the product page" do
+          find("#add_to_cart_button").click
+          current_path.should == product_path(product_1)
+        end
+        
+        it "informs the user that the item has been retired" do
+          find("#add_to_cart_button").click
+          page.should have_content "This product is retired."
+        end
+      end
+    end
   end
 end
