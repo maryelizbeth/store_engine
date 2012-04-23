@@ -6,9 +6,11 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" media="screen and (min-device-width: 400px)" href="stylesheets/mobile.css" />
-  <link rel='stylesheet' media='screen and (min-width: 480px) and (max-width: 980px)' href='stylesheets/smallbrowser.css' />
+  <link rel="stylesheet" media="only screen and (orientation)" href="smallbrowser.css.scss" />
+  <link rel="stylesheet" media="only screen and (orientation)" href="mobile.css.scss" />
+
   
+
 
 
   <%= yield :head %>

@@ -12,7 +12,21 @@
  *= require_tree .
 */
 
-@media only screen and (max-width: 480px), only screen and (max-device-width: 480px){
+@media only screen and (max-device-width: 1024px) and (orientation:portrait), only screen and (max-device-width: 480px) and (orientation:portrait)  { 
+
+    #content {
+       width: 720px; 
+       font-family: Helvetica, sans-serif; ;
+     } 
+
+    #navlist li{
+      float: right;
+      display: inline;
+      list-style-type: none;
+    }
+
+    /*anything else you'd like to override*/
+
 
 }
 
@@ -21,18 +35,16 @@
 }
 
 .nav{
-  float: right;
   width: 100%;
 }
 
 .container {
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
 .footer{
   border-top: 2px solid #888;
-  margin-top: inherit;
   margin-bottom: 25px;
   width: 100%;
 }
